@@ -36,7 +36,8 @@ export function AuthProvider({ children }) {
 
     // Login with Google (redirect)
     const loginWithGoogle = () => {
-        window.location.href = 'http://localhost:3001/api/auth/google';
+        const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+        window.location.href = `${apiBase}/auth/google`;
     };
 
     // Login with username/password (for admin)

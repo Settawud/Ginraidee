@@ -9,7 +9,8 @@ const Home = () => {
 
     useEffect(() => {
         // Track page view
-        fetch('http://localhost:3001/api/users/pageview', {
+        const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+        fetch(`${apiBase}/users/pageview`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ page: 'home' }),
