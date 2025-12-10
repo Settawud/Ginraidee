@@ -1,0 +1,315 @@
+.random-picker {
+    padding: var(--space-xl) 0;
+}
+
+.picker-container {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.picker-header {
+    margin-bottom: var(--space-xl);
+}
+
+.picker-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-md);
+    display: inline-block;
+}
+
+.picker-title {
+    font-size: 2rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Slot Machine */
+.slot-machine {
+    position: relative;
+    background: var(--color-bg-card);
+    border-radius: var(--radius-xl);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    overflow: hidden;
+}
+
+.slot-machine::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-xl);
+    padding: 2px;
+    background: linear-gradient(145deg,
+            rgba(255, 107, 53, 0.5) 0%,
+            rgba(255, 255, 255, 0.1) 50%,
+            rgba(46, 196, 182, 0.5) 100%);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.slot-machine.spinning {
+    animation: machineShake 0.1s ease-in-out infinite;
+}
+
+.slot-machine.result::before {
+    animation: borderGlow 2s ease-in-out infinite;
+}
+
+@keyframes machineShake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-2px);
+    }
+
+    75% {
+        transform: translateX(2px);
+    }
+}
+
+@keyframes borderGlow {
+
+    0%,
+    100% {
+        background: linear-gradient(145deg,
+                rgba(255, 107, 53, 0.5) 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(46, 196, 182, 0.5) 100%);
+    }
+
+    50% {
+        background: linear-gradient(145deg,
+                rgba(46, 196, 182, 0.5) 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 107, 53, 0.5) 100%);
+    }
+}
+
+.slot-window {
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.slot-window::before,
+.slot-window::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 40px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.slot-window::before {
+    top: 0;
+    background: linear-gradient(to bottom, var(--color-bg), transparent);
+}
+
+.slot-window::after {
+    bottom: 0;
+    background: linear-gradient(to top, var(--color-bg), transparent);
+}
+
+/* Slot Item */
+.slot-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.slot-food-image {
+    width: 100px;
+    height: 100px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+}
+
+.slot-emoji {
+    font-size: 3rem;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.slot-food-info {
+    text-align: center;
+}
+
+.slot-food-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: var(--space-xs);
+}
+
+.slot-food-price {
+    font-size: 1.25rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--space-xs);
+}
+
+.slot-food-category {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+}
+
+/* Placeholder */
+.slot-placeholder {
+    text-align: center;
+    color: var(--color-text-muted);
+}
+
+.slot-placeholder span {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: var(--space-md);
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.slot-placeholder p {
+    font-size: 1rem;
+}
+
+/* Decorations */
+.slot-decorations {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.slot-light {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    top: var(--space-lg);
+}
+
+.slot-light.left {
+    left: var(--space-lg);
+    animation: blink 0.5s ease-in-out infinite;
+}
+
+.slot-light.right {
+    right: var(--space-lg);
+    animation: blink 0.5s ease-in-out infinite 0.25s;
+}
+
+.slot-machine.spinning .slot-light {
+    animation: blink 0.1s ease-in-out infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 10px var(--color-primary);
+    }
+
+    50% {
+        opacity: 0.3;
+        box-shadow: none;
+    }
+}
+
+/* Actions */
+.picker-actions {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+}
+
+.spin-button {
+    min-width: 200px;
+}
+
+.spin-button.spinning {
+    background: var(--color-bg-card);
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+.spin-icon {
+    animation: spin 1s linear infinite;
+}
+
+/* Result Details */
+.result-details {
+    margin-top: var(--space-xl);
+    padding: var(--space-lg);
+    background: var(--color-bg-card);
+    border-radius: var(--radius-lg);
+    text-align: left;
+}
+
+.result-description {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+}
+
+.result-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+}
+
+.result-tag {
+    padding: var(--space-xs) var(--space-md);
+    background: rgba(255, 107, 53, 0.15);
+    color: var(--color-primary);
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .picker-title {
+        font-size: 1.5rem;
+    }
+
+    .slot-food-name {
+        font-size: 1.25rem;
+    }
+
+    .picker-actions {
+        flex-direction: column;
+    }
+
+    .spin-button {
+        width: 100%;
+    }
+}

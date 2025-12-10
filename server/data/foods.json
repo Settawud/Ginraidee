@@ -1,0 +1,258 @@
+[
+    {
+        "id": 1,
+        "name": "ผัดกะเพราหมูสับ",
+        "nameEn": "Stir-fried Basil Pork",
+        "description": "หมูสับผัดกับกะเพรา พริก กระเทียม หอมหัวใหญ่ รสจัดจ้าน เสิร์ฟพร้อมไข่ดาว",
+        "price": 50,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "/images/kaprao_rice_1765343503610.png",
+        "tags": [
+            "spicy",
+            "rice",
+            "popular"
+        ],
+        "rating": 4.8
+    },
+    {
+        "id": 2,
+        "name": "ข้าวมันไก่",
+        "nameEn": "Hainanese Chicken Rice",
+        "description": "ไก่ต้มเนื้อนุ่ม เสิร์ฟพร้อมข้าวมันหอม น้ำจิ้มสูตรพิเศษ และน้ำซุปใส",
+        "price": 45,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "/images/khao_man_kai_1765343520453.png",
+        "tags": [
+            "chicken",
+            "rice",
+            "popular"
+        ],
+        "rating": 4.7
+    },
+    {
+        "id": 3,
+        "name": "ต้มยำกุ้ง",
+        "nameEn": "Tom Yum Goong",
+        "description": "ต้มยำกุ้งน้ำข้น รสเปรี้ยวเผ็ด หอมสมุนไพรไทย",
+        "price": 120,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "/images/tom_yum_goong_1765343536083.png",
+        "tags": [
+            "spicy",
+            "soup",
+            "seafood"
+        ],
+        "rating": 4.9
+    },
+    {
+        "id": 4,
+        "name": "ส้มตำไทย",
+        "nameEn": "Thai Papaya Salad",
+        "description": "ส้มตำสูตรดั้งเดิม มะละกอ มะเขือเทศ ถั่วฝักยาว กุ้งแห้ง",
+        "price": 40,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "/images/somtam_thai_1765343550476.png",
+        "tags": [
+            "spicy",
+            "salad",
+            "popular"
+        ],
+        "rating": 4.6
+    },
+    {
+        "id": 5,
+        "name": "ราเมนทงคตสึ",
+        "nameEn": "Tonkotsu Ramen",
+        "description": "ราเมนน้ำซุปกระดูกหมูเข้มข้น ชาชูนุ่ม ไข่ยางมะตูม",
+        "price": 159,
+        "category": "japanese",
+        "categoryName": "อาหารญี่ปุ่น",
+        "image": "/images/ramen_tonkotsu_1765343583916.png",
+        "tags": [
+            "noodle",
+            "soup",
+            "pork"
+        ],
+        "rating": 4.8
+    },
+    {
+        "id": 6,
+        "name": "ซูชิรวม",
+        "nameEn": "Sushi Platter",
+        "description": "เซ็ตซูชิรวม 8 ชิ้น ปลาแซลมอน ทูน่า กุ้ง หอยเชลล์",
+        "price": 289,
+        "category": "japanese",
+        "categoryName": "อาหารญี่ปุ่น",
+        "image": "/images/sushi_platter_1765343601010.png",
+        "tags": [
+            "seafood",
+            "rice",
+            "premium"
+        ],
+        "rating": 4.7
+    },
+    {
+        "id": 7,
+        "name": "บิบิมบับ",
+        "nameEn": "Bibimbap",
+        "description": "ข้าวยำเกาหลี ผักสด น้ำ้จิ้มโคชูจัง ไข่ดาว เนื้อหมัก",
+        "price": 139,
+        "category": "korean",
+        "categoryName": "อาหารเกาหลี",
+        "image": "/images/bibimbap_korean_1765343618871.png",
+        "tags": [
+            "rice",
+            "vegetables",
+            "healthy"
+        ],
+        "rating": 4.5
+    },
+    {
+        "id": 8,
+        "name": "ซัมกยอปซัล",
+        "nameEn": "Samgyeopsal",
+        "description": "หมูสามชั้นย่าง เสิร์ฟพร้อมผักสดและเครื่องเคียง",
+        "price": 299,
+        "category": "korean",
+        "categoryName": "อาหารเกาหลี",
+        "image": "/images/samgyeopsal_bbq_1765343636088.png",
+        "tags": [
+            "pork",
+            "bbq",
+            "sharing"
+        ],
+        "rating": 4.8
+    },
+    {
+        "id": 9,
+        "name": "พิซซ่ามาร์เกอริต้า",
+        "nameEn": "Margherita Pizza",
+        "description": "พิซซ่าสไตล์อิตาเลียนแท้ มะเขือเทศ มอสซาเรลล่า โหระพา",
+        "price": 199,
+        "category": "western",
+        "categoryName": "อาหารตะวันตก",
+        "image": "/images/pizza_margherita_1765343663620.png",
+        "tags": [
+            "cheese",
+            "italian",
+            "sharing"
+        ],
+        "rating": 4.4
+    },
+    {
+        "id": 10,
+        "name": "สเต็กเนื้อ",
+        "nameEn": "Beef Steak",
+        "description": "สเต็กเนื้อออสเตรเลีย Medium Rare พร้อมมันบดและผักย่าง",
+        "price": 359,
+        "category": "western",
+        "categoryName": "อาหารตะวันตก",
+        "image": "/images/beef_steak_1765343679603.png",
+        "tags": [
+            "beef",
+            "premium",
+            "dinner"
+        ],
+        "rating": 4.7
+    },
+    {
+        "id": 11,
+        "name": "เบอร์เกอร์เนื้อ",
+        "nameEn": "Beef Burger",
+        "description": "เบอร์เกอร์เนื้อวัวนุ่มฉ่ำ ชีส ผักสด ซอสพิเศษ เฟรนช์ฟรายส์",
+        "price": 149,
+        "category": "fastfood",
+        "categoryName": "ฟาสต์ฟู้ด",
+        "image": "/images/beef_burger_1765343695735.png",
+        "tags": [
+            "beef",
+            "cheese",
+            "popular"
+        ],
+        "rating": 4.4
+    },
+    {
+        "id": 12,
+        "name": "ไก่ทอด",
+        "nameEn": "Fried Chicken",
+        "description": "ไก่ทอดสูตรพิเศษ กรอบนอกนุ่มใน 6 ชิ้น",
+        "price": 129,
+        "category": "fastfood",
+        "categoryName": "ฟาสต์ฟู้ด",
+        "image": "/images/fried_chicken_1765343711239.png",
+        "tags": [
+            "chicken",
+            "crispy",
+            "sharing"
+        ],
+        "rating": 4.5
+    },
+    {
+        "id": 13,
+        "name": "บิงซูสตรอว์เบอร์รี่",
+        "nameEn": "Strawberry Bingsu",
+        "description": "น้ำแข็งไสเนียนนุ่ม ท็อปสตรอว์เบอร์รี่สด นมข้นหวาน",
+        "price": 159,
+        "category": "dessert",
+        "categoryName": "ของหวาน",
+        "image": "/images/strawberry_bingsu_1765343738506.png",
+        "tags": [
+            "cold",
+            "fruit",
+            "sharing"
+        ],
+        "rating": 4.6
+    },
+    {
+        "id": 14,
+        "name": "ข้าวเหนียวมะม่วง",
+        "nameEn": "Mango Sticky Rice",
+        "description": "ข้าวเหนียวมูนกะทิ มะม่วงน้ำดอกไม้หวานหอม",
+        "price": 79,
+        "category": "dessert",
+        "categoryName": "ของหวาน",
+        "image": "/images/mango_sticky_rice_1765343754900.png",
+        "tags": [
+            "thai",
+            "fruit",
+            "popular"
+        ],
+        "rating": 4.8
+    },
+    {
+        "id": 15,
+        "name": "ผัดไทย",
+        "nameEn": "Pad Thai",
+        "description": "ผัดไทยกุ้งสด ไข่ ถั่วงอก ใบกุยช่าย ถั่วลิสง",
+        "price": 65,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "/images/pad_thai_1765343768945.png",
+        "tags": [
+            "noodle",
+            "seafood",
+            "popular"
+        ],
+        "rating": 4.7
+    },
+    {
+        "id": 16,
+        "name": "แกงเขียวหวานไก่",
+        "nameEn": "Green Curry Chicken",
+        "description": "แกงเขียวหวานไก่ มะเขือ พริกชี้ฟ้า ใบโหระพา",
+        "price": 85,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "/images/green_curry_1765343785737.png",
+        "tags": [
+            "curry",
+            "spicy",
+            "chicken"
+        ],
+        "rating": 4.6
+    }
+]

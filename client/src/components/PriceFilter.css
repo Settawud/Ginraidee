@@ -1,0 +1,93 @@
+.price-filter {
+    margin-bottom: var(--space-xl);
+    padding: var(--space-lg);
+    background: var(--color-bg-card);
+    border-radius: var(--radius-lg);
+}
+
+.price-filter-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-lg);
+}
+
+.price-options {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-sm);
+}
+
+.price-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-md);
+    background: var(--color-bg);
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.price-option:hover {
+    background: var(--color-bg-secondary);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.price-option.active {
+    background: rgba(255, 107, 53, 0.1);
+    border-color: var(--color-primary);
+}
+
+.price-option-level {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    min-height: 24px;
+}
+
+.price-option.active .dollar-icon {
+    color: var(--color-primary);
+}
+
+.dollar-icon {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast);
+}
+
+.price-option:hover .dollar-icon,
+.price-option.active .dollar-icon {
+    color: var(--color-primary);
+}
+
+.price-option-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.price-option-label {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .price-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 400px) {
+    .price-options {
+        grid-template-columns: 1fr;
+    }
+}
