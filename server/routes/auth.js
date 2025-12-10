@@ -210,7 +210,7 @@ module.exports = (db) => {
         }
     });
 
-    // Login with email/password
+    // Login with email/password (for both users and admins)
     router.post('/login', async (req, res) => {
         try {
             const { email, password } = req.body;
@@ -222,9 +222,32 @@ module.exports = (db) => {
                 });
             }
 
-            // Find user
-            const user = db.prepare('SELECT * FROM users WHERE email = ?').get(email);
+            // First, try to find user in users table
+            let user = db.prepare('SELECT * FROM users WHERE email = ?').get(email);
+            let isAdmin = false;
 
+            // If not found in users, check admins table (using username = email)
+            if (!user) {
+                const admin = db.prepare('SELECT * FROM admins WHERE username = ?').get(email);
+                if (admin && bcrypt.compareSync(password, admin.password_hash)) {
+                    // Admin found and password matches
+                    req.session.isAdmin = true;
+                    req.session.adminId = admin.id;
+
+                    return res.json({
+                        success: true,
+                        message: 'เข้าสู่ระบบสำเร็จ!',
+                        user: {
+                            id: admin.id,
+                            name: admin.username,
+                            email: admin.username,
+                            role: 'admin'
+                        }
+                    });
+                }
+            }
+
+            // Check user password
             if (!user || !user.password_hash) {
                 return res.status(401).json({
                     success: false,
@@ -232,7 +255,6 @@ module.exports = (db) => {
                 });
             }
 
-            // Check password
             if (!bcrypt.compareSync(password, user.password_hash)) {
                 return res.status(401).json({
                     success: false,
@@ -243,9 +265,14 @@ module.exports = (db) => {
             // Update last visit
             db.prepare('UPDATE users SET last_visit = CURRENT_TIMESTAMP WHERE id = ?').run(user.id);
 
-            // Set session
-            req.session.userId = user.id;
-            req.session.userRole = user.role;
+            // Set session based on role
+            if (user.role === 'admin') {
+                req.session.isAdmin = true;
+                req.session.adminId = user.id;
+            } else {
+                req.session.userId = user.id;
+                req.session.userRole = user.role;
+            }
 
             res.json({
                 success: true,

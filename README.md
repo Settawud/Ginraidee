@@ -87,10 +87,24 @@ cd server
 npm install
 ```
 
-3. **Install Frontend Dependencies**
+3. **Setup Backend Environment**
+```bash
+# Copy example env file
+cp .env.example .env
+# Edit .env and set your SESSION_SECRET
+```
+
+4. **Install Frontend Dependencies**
 ```bash
 cd ../client
 npm install
+```
+
+5. **Setup Frontend Environment (optional)**
+```bash
+# Copy example env file
+cp .env.example .env
+# Edit if needed (default localhost works for development)
 ```
 
 ### Running the Application
