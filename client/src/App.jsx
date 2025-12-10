@@ -7,6 +7,7 @@ import Recommend from './pages/Recommend';
 import Menu from './pages/Menu';
 import Admin from './pages/Admin';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import LoginCallback from './pages/LoginCallback';
 import { useUser } from './hooks/useFood';
 import './index.css';
@@ -28,6 +29,7 @@ function AppContent() {
           <Route path="/recommend" element={<Recommend />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/login/callback" element={<LoginCallback />} />
 
           {/* Admin only route */}

@@ -252,3 +252,41 @@
         font-size: 0.95rem;
     }
 }
+
+/* Register Link */
+.register-link {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1rem;
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(255, 140, 0, 0.1));
+    border: 1px solid rgba(255, 107, 53, 0.3);
+    border-radius: 12px;
+    font-size: 0.9rem;
+    color: var(--primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin-top: 0.75rem;
+    font-weight: 500;
+}
+
+.register-link:hover {
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(255, 140, 0, 0.2));
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+/* Success Message */
+.login-success {
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #22c55e;
+    padding: 0.875rem 1rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    text-align: center;
+}

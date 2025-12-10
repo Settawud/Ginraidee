@@ -129,6 +129,11 @@ const Login = () => {
                                 <FiUser />
                                 <span>เข้าสู่ระบบสำหรับผู้ดูแลระบบ</span>
                             </button>
+
+                            {/* Register link */}
+                            <Link to="/register" className="register-link">
+                                <span>ยังไม่มีบัญชี? สมัครสมาชิก</span>
+                            </Link>
                         </div>
                     ) : (
                         /* Admin Login Form */

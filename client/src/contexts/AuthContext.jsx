@@ -57,6 +57,23 @@ export function AuthProvider({ children }) {
         }
     };
 
+    // Login with email/password (for users)
+    const loginWithEmail = async (email, password) => {
+        try {
+            const response = await api.post('/auth/login', { email, password });
+            if (response.data.success) {
+                setUser(response.data.user);
+                return { success: true };
+            }
+            return { success: false, error: 'Login failed' };
+        } catch (err) {
+            return {
+                success: false,
+                error: err.response?.data?.error || 'Email หรือรหัสผ่านไม่ถูกต้อง'
+            };
+        }
+    };
+
     // Logout
     const logout = async () => {
         try {
@@ -78,6 +95,7 @@ export function AuthProvider({ children }) {
         isUser: user?.role === 'user',
         loginWithGoogle,
         loginWithCredentials,
+        loginWithEmail,
         logout,
         checkAuth
     };

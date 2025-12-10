@@ -20,6 +20,10 @@ const db = new Database(path.join(__dirname, 'data', 'database.sqlite'));
 db.exec(`
   CREATE TABLE IF NOT EXISTS users (
     id TEXT PRIMARY KEY,
+    email TEXT UNIQUE,
+    password_hash TEXT,
+    name TEXT,
+    role TEXT DEFAULT 'user',
     session_id TEXT,
     preferences TEXT DEFAULT '{}',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,

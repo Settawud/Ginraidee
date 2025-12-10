@@ -53,6 +53,27 @@ module.exports = (db) => {
                     role: 'admin'
                 }
             });
+        } else if (req.session.userId) {
+            // User session from email/password login
+            const user = db.prepare('SELECT * FROM users WHERE id = ?').get(req.session.userId);
+            if (user) {
+                res.json({
+                    success: true,
+                    isAuthenticated: true,
+                    user: {
+                        id: user.id,
+                        email: user.email,
+                        name: user.name,
+                        role: user.role || 'user'
+                    }
+                });
+            } else {
+                res.json({
+                    success: true,
+                    isAuthenticated: false,
+                    user: null
+                });
+            }
         } else {
             res.json({
                 success: true,
@@ -130,6 +151,117 @@ module.exports = (db) => {
 
     // Expose for passport strategy
     router.findOrCreateUser = findOrCreateUser;
+
+    // ========================================
+    // Email/Password Registration & Login
+    // ========================================
+    const bcrypt = require('bcryptjs');
+
+    // Register with email/password
+    router.post('/register', async (req, res) => {
+        try {
+            const { email, password, name } = req.body;
+
+            // Validation
+            if (!email || !password) {
+                return res.status(400).json({
+                    success: false,
+                    error: 'กรุณากรอก email และ password'
+                });
+            }
+
+            if (password.length < 6) {
+                return res.status(400).json({
+                    success: false,
+                    error: 'รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร'
+                });
+            }
+
+            // Check if email already exists
+            const existingUser = db.prepare('SELECT * FROM users WHERE email = ?').get(email);
+            if (existingUser) {
+                return res.status(400).json({
+                    success: false,
+                    error: 'Email นี้ถูกใช้งานแล้ว'
+                });
+            }
+
+            // Hash password
+            const passwordHash = bcrypt.hashSync(password, 10);
+
+            // Create user
+            const result = db.prepare(`
+                INSERT INTO users (id, email, password_hash, name, role, created_at, last_visit)
+                VALUES (?, ?, ?, ?, 'user', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+            `).run(
+                require('uuid').v4(),
+                email,
+                passwordHash,
+                name || email.split('@')[0]
+            );
+
+            res.json({
+                success: true,
+                message: 'ลงทะเบียนสำเร็จ!'
+            });
+        } catch (error) {
+            console.error('Register error:', error);
+            res.status(500).json({ success: false, error: error.message });
+        }
+    });
+
+    // Login with email/password
+    router.post('/login', async (req, res) => {
+        try {
+            const { email, password } = req.body;
+
+            if (!email || !password) {
+                return res.status(400).json({
+                    success: false,
+                    error: 'กรุณากรอก email และ password'
+                });
+            }
+
+            // Find user
+            const user = db.prepare('SELECT * FROM users WHERE email = ?').get(email);
+
+            if (!user || !user.password_hash) {
+                return res.status(401).json({
+                    success: false,
+                    error: 'Email หรือรหัสผ่านไม่ถูกต้อง'
+                });
+            }
+
+            // Check password
+            if (!bcrypt.compareSync(password, user.password_hash)) {
+                return res.status(401).json({
+                    success: false,
+                    error: 'Email หรือรหัสผ่านไม่ถูกต้อง'
+                });
+            }
+
+            // Update last visit
+            db.prepare('UPDATE users SET last_visit = CURRENT_TIMESTAMP WHERE id = ?').run(user.id);
+
+            // Set session
+            req.session.userId = user.id;
+            req.session.userRole = user.role;
+
+            res.json({
+                success: true,
+                message: 'เข้าสู่ระบบสำเร็จ!',
+                user: {
+                    id: user.id,
+                    email: user.email,
+                    name: user.name,
+                    role: user.role
+                }
+            });
+        } catch (error) {
+            console.error('Login error:', error);
+            res.status(500).json({ success: false, error: error.message });
+        }
+    });
 
     return router;
 };

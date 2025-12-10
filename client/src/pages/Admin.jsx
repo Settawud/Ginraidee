@@ -3,10 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
     FiUsers, FiPieChart, FiTrendingUp,
-    FiEye, FiRefreshCw, FiCalendar
+    FiEye, FiRefreshCw, FiCalendar, FiSettings
 } from 'react-icons/fi';
 import { useAuth } from '../contexts/AuthContext';
 import { api } from '../hooks/useFood';
+import MenuManagement from '../components/MenuManagement';
 import './Admin.css';
 
 const Admin = () => {
@@ -113,6 +114,13 @@ const Admin = () => {
                     >
                         <FiUsers />
                         ผู้ใช้งาน
+                    </button>
+                    <button
+                        className={`tab ${activeTab === 'manage-menus' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('manage-menus')}
+                    >
+                        <FiSettings />
+                        จัดการเมนู
                     </button>
                 </nav>
 
@@ -317,6 +325,18 @@ const Admin = () => {
                                     </div>
                                 )}
                             </div>
+                        </motion.div>
+                    )}
+
+                    {activeTab === 'manage-menus' && (
+                        <motion.div
+                            key="manage-menus"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            className="tab-content"
+                        >
+                            <MenuManagement />
                         </motion.div>
                     )}
                 </AnimatePresence>
