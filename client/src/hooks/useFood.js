@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:3001/api';
+// Use environment variable for production, fallback to localhost for development
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
 
 // Configure axios
 const api = axios.create({
