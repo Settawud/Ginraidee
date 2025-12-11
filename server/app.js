@@ -4,73 +4,66 @@ const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const path = require('path');
-const Database = require('better-sqlite3');
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcryptjs');
+const { pool, query } = require('./config/db');
 
 // Initialize Express
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Initialize Database
-const db = new Database(path.join(__dirname, 'data', 'database.sqlite'));
+// Initialize Database Tables
+async function initDatabase() {
+  try {
+    await query(`
+            CREATE TABLE IF NOT EXISTS users (
+                id TEXT PRIMARY KEY,
+                email TEXT UNIQUE,
+                password_hash TEXT,
+                name TEXT,
+                role TEXT DEFAULT 'user',
+                google_id TEXT UNIQUE,
+                picture TEXT,
+                preferences JSONB DEFAULT '{}',
+                created_at TIMESTAMPTZ DEFAULT NOW(),
+                last_visit TIMESTAMPTZ DEFAULT NOW()
+            );
 
-// Create tables
-db.exec(`
-  CREATE TABLE IF NOT EXISTS users (
-    id TEXT PRIMARY KEY,
-    email TEXT UNIQUE,
-    password_hash TEXT,
-    name TEXT,
-    role TEXT DEFAULT 'user',
-    session_id TEXT,
-    preferences TEXT DEFAULT '{}',
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    last_visit DATETIME DEFAULT CURRENT_TIMESTAMP
-  );
+            CREATE TABLE IF NOT EXISTS admins (
+                id SERIAL PRIMARY KEY,
+                username TEXT UNIQUE NOT NULL,
+                password_hash TEXT NOT NULL,
+                created_at TIMESTAMPTZ DEFAULT NOW()
+            );
 
-  CREATE TABLE IF NOT EXISTS user_selections (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id TEXT,
-    food_id INTEGER,
-    selected_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-  );
+            CREATE TABLE IF NOT EXISTS user_selections (
+                id SERIAL PRIMARY KEY,
+                user_id TEXT REFERENCES users(id) ON DELETE CASCADE,
+                food_id INTEGER,
+                selected_at TIMESTAMPTZ DEFAULT NOW()
+            );
 
-  CREATE TABLE IF NOT EXISTS admins (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT UNIQUE,
-    password_hash TEXT,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-  );
+            CREATE TABLE IF NOT EXISTS page_views (
+                id SERIAL PRIMARY KEY,
+                user_id TEXT,
+                page TEXT,
+                viewed_at TIMESTAMPTZ DEFAULT NOW()
+            );
+        `);
+    console.log('✅ Database tables initialized');
 
-  CREATE TABLE IF NOT EXISTS page_views (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id TEXT,
-    page TEXT,
-    viewed_at DATETIME DEFAULT CURRENT_TIMESTAMP
-  );
-
-  CREATE TABLE IF NOT EXISTS google_users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    google_id TEXT UNIQUE NOT NULL,
-    email TEXT,
-    name TEXT,
-    picture TEXT,
-    role TEXT DEFAULT 'user',
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    last_login DATETIME DEFAULT CURRENT_TIMESTAMP
-  );
-`);
-
-// Create default admin if not exists
-const adminExists = db.prepare('SELECT * FROM admins WHERE username = ?').get('admin');
-if (!adminExists) {
-  const hashedPassword = bcrypt.hashSync('admin123', 10);
-  db.prepare('INSERT INTO admins (username, password_hash) VALUES (?, ?)').run('admin', hashedPassword);
-  console.log('Default admin created: admin / admin123');
+    // Create default admin
+    const adminResult = await query('SELECT * FROM admins WHERE username = $1', ['admin']);
+    if (adminResult.rows.length === 0) {
+      const hashedPassword = bcrypt.hashSync('admin123', 10);
+      await query('INSERT INTO admins (username, password_hash) VALUES ($1, $2)', ['admin', hashedPassword]);
+      console.log('Default admin created: admin / admin123');
+    }
+  } catch (error) {
+    console.error('Database init error:', error.message);
+  }
 }
+initDatabase();
 
 // Middleware
 app.use(cors({
@@ -101,7 +94,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Load auth routes first (to get findOrCreateUser)
-const authRouter = require('./routes/auth')(db);
+const authRouter = require('./routes/auth-pg')(query);
 
 // Configure Google OAuth Strategy
 if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET &&
@@ -110,9 +103,9 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET &&
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: '/api/auth/google/callback'
-  }, (accessToken, refreshToken, profile, done) => {
+  }, async (accessToken, refreshToken, profile, done) => {
     try {
-      const user = authRouter.findOrCreateUser(profile);
+      const user = await authRouter.findOrCreateUser(profile);
       return done(null, user);
     } catch (error) {
       return done(error, null);
@@ -126,21 +119,16 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET &&
 
 // Passport serialization
 passport.serializeUser((user, done) => {
-  done(null, { id: user.id, type: user.google_id ? 'google' : 'admin' });
+  done(null, { id: user.id, type: user.google_id ? 'google' : 'user' });
 });
 
-passport.deserializeUser((serialized, done) => {
+passport.deserializeUser(async (serialized, done) => {
   try {
-    if (serialized.type === 'google') {
-      const user = db.prepare('SELECT * FROM google_users WHERE id = ?').get(serialized.id);
-      done(null, user);
+    const result = await query('SELECT * FROM users WHERE id = $1', [serialized.id]);
+    if (result.rows.length > 0) {
+      done(null, result.rows[0]);
     } else {
-      const admin = db.prepare('SELECT * FROM admins WHERE id = ?').get(serialized.id);
-      if (admin) {
-        done(null, { ...admin, role: 'admin' });
-      } else {
-        done(null, null);
-      }
+      done(null, null);
     }
   } catch (error) {
     done(error, null);
@@ -151,9 +139,9 @@ passport.deserializeUser((serialized, done) => {
 const foods = require('./data/foods.json');
 
 // Routes
-const foodsRouter = require('./routes/foods')(db, foods);
-const usersRouter = require('./routes/users')(db);
-const adminRouter = require('./routes/admin')(db, foods);
+const foodsRouter = require('./routes/foods-pg')(query, foods);
+const usersRouter = require('./routes/users-pg')(query);
+const adminRouter = require('./routes/admin-pg')(query, foods);
 
 app.use('/api/auth', authRouter);
 app.use('/api/foods', foodsRouter);

@@ -1,18 +1,22 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
+import { FiThumbsUp, FiThumbsDown, FiCheck } from 'react-icons/fi';
 import CategoryFilter from '../components/CategoryFilter';
 import PriceFilter from '../components/PriceFilter';
 import FoodCard from '../components/FoodCard';
-import { useFoods, useCategories, useRandomFood } from '../hooks/useFood';
+import { useFoods, useCategories, useRandomFood, api } from '../hooks/useFood';
+import { useAuth } from '../contexts/AuthContext';
 import './Recommend.css';
 
 const Recommend = () => {
+    const { user } = useAuth();
     const { categories } = useCategories();
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [selectedPrice, setSelectedPrice] = useState('all');
     const [priceRange, setPriceRange] = useState({ min: 0, max: 9999 });
     const [showFilters, setShowFilters] = useState(false);
+    const [feedback, setFeedback] = useState(null); // 'like' | 'dislike' | null
 
     const { foods, loading } = useFoods({
         category: selectedCategory,
@@ -42,8 +46,10 @@ const Recommend = () => {
         if (food) {
             // Reset
             setFood(null);
+            setFeedback(null);
         } else {
             // Spin with current filters
+            setFeedback(null);
             await getRandomFood({
                 category: selectedCategory,
                 minPrice: priceRange.min,
@@ -56,6 +62,22 @@ const Recommend = () => {
                 spread: 70,
                 origin: { y: 0.6 }
             });
+        }
+    };
+
+    const handleFeedback = async (type) => {
+        if (feedback || !food) return; // Already given feedback or no food
+
+        setFeedback(type);
+
+        try {
+            await api.post('/foods/feedback', {
+                userId: user?.id,
+                foodId: food.id,
+                feedback: type // 'like' or 'dislike'
+            });
+        } catch (error) {
+            console.error('Feedback error:', error);
         }
     };
 
@@ -140,6 +162,47 @@ const Recommend = () => {
                                         transition={{ type: 'spring', damping: 15 }}
                                     >
                                         <FoodCard food={food} />
+
+                                        {/* Like/Dislike Buttons */}
+                                        <motion.div
+                                            className="feedback-buttons"
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: 0.3 }}
+                                        >
+                                            <p className="feedback-question">เมนูนี้ถูกใจไหม?</p>
+                                            <div className="feedback-actions">
+                                                <motion.button
+                                                    className={`feedback-btn like ${feedback === 'like' ? 'active' : ''}`}
+                                                    onClick={() => handleFeedback('like')}
+                                                    disabled={!!feedback}
+                                                    whileHover={{ scale: feedback ? 1 : 1.1 }}
+                                                    whileTap={{ scale: 0.95 }}
+                                                >
+                                                    {feedback === 'like' ? <FiCheck /> : <FiThumbsUp />}
+                                                    <span>ถูกใจ!</span>
+                                                </motion.button>
+                                                <motion.button
+                                                    className={`feedback-btn dislike ${feedback === 'dislike' ? 'active' : ''}`}
+                                                    onClick={() => handleFeedback('dislike')}
+                                                    disabled={!!feedback}
+                                                    whileHover={{ scale: feedback ? 1 : 1.1 }}
+                                                    whileTap={{ scale: 0.95 }}
+                                                >
+                                                    {feedback === 'dislike' ? <FiCheck /> : <FiThumbsDown />}
+                                                    <span>ไม่ใช่</span>
+                                                </motion.button>
+                                            </div>
+                                            {feedback && (
+                                                <motion.p
+                                                    className="feedback-thanks"
+                                                    initial={{ opacity: 0 }}
+                                                    animate={{ opacity: 1 }}
+                                                >
+                                                    ขอบคุณสำหรับ feedback! 🙏
+                                                </motion.p>
+                                            )}
+                                        </motion.div>
                                     </motion.div>
                                 ) : (
                                     <motion.div

@@ -112,8 +112,15 @@
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .idle-text {
@@ -133,9 +140,20 @@
 }
 
 @keyframes slotSpin {
-  0% { transform: translateY(-5px); opacity: 0.8; }
-  50% { transform: translateY(5px); opacity: 1; }
-  100% { transform: translateY(-5px); opacity: 0.8; }
+  0% {
+    transform: translateY(-5px);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: translateY(5px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-5px);
+    opacity: 0.8;
+  }
 }
 
 .slot-food-image {
@@ -228,7 +246,9 @@
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .empty-state .btn {
@@ -262,4 +282,80 @@
     font-size: 1.1rem;
     padding: var(--space-md) var(--space-lg);
   }
+}
+
+/* Feedback Buttons */
+.feedback-buttons {
+  margin-top: var(--space-xl);
+  text-align: center;
+}
+
+.feedback-question {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.feedback-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+.feedback-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  border-radius: var(--radius-lg);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 2px solid transparent;
+}
+
+.feedback-btn.like {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.feedback-btn.like:hover:not(:disabled) {
+  background: rgba(34, 197, 94, 0.25);
+  border-color: #22c55e;
+}
+
+.feedback-btn.like.active {
+  background: #22c55e;
+  color: white;
+  border-color: #22c55e;
+}
+
+.feedback-btn.dislike {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.feedback-btn.dislike:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: #ef4444;
+}
+
+.feedback-btn.dislike.active {
+  background: #ef4444;
+  color: white;
+  border-color: #ef4444;
+}
+
+.feedback-btn:disabled:not(.active) {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.feedback-thanks {
+  margin-top: var(--space-md);
+  font-size: 0.9rem;
+  color: var(--color-primary);
 }
