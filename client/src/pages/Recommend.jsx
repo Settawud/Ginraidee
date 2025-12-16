@@ -28,6 +28,7 @@ const priceRanges = [
 ];
 
 const Recommend = () => {
+    const { user } = useAuth();
     const { categories } = useCategories();
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [selectedPrice, setSelectedPrice] = useState('all');
