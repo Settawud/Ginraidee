@@ -23,7 +23,10 @@ export function useFoods(initialFilters = {}) {
             const params = new URLSearchParams();
 
             if (filters.category && filters.category !== 'all') {
-                params.append('category', filters.category);
+                const categoryParam = Array.isArray(filters.category)
+                    ? filters.category.join(',')
+                    : filters.category;
+                params.append('category', categoryParam);
             }
             if (filters.minPrice) params.append('minPrice', filters.minPrice);
             if (filters.maxPrice) params.append('maxPrice', filters.maxPrice);
@@ -43,9 +46,9 @@ export function useFoods(initialFilters = {}) {
         fetchFoods();
     }, [fetchFoods]);
 
-    const updateFilters = (newFilters) => {
+    const updateFilters = useCallback((newFilters) => {
         setFilters(prev => ({ ...prev, ...newFilters }));
-    };
+    }, []);
 
     return { foods, loading, error, filters, updateFilters, refetch: fetchFoods };
 }
@@ -81,7 +84,10 @@ export function useRandomFood() {
             // Get actual random food with filters
             const params = new URLSearchParams();
             if (options.category && options.category !== 'all') {
-                params.append('category', options.category);
+                const categoryParam = Array.isArray(options.category)
+                    ? options.category.join(',')
+                    : options.category;
+                params.append('category', categoryParam);
             }
             if (options.minPrice) params.append('minPrice', options.minPrice);
             if (options.maxPrice) params.append('maxPrice', options.maxPrice);
@@ -95,7 +101,7 @@ export function useRandomFood() {
             // Track selection
             try {
                 await api.post('/users/select', { foodId: finalFood.id });
-            } catch (e) {
+            } catch {
                 console.log('Tracking failed, continuing...');
             }
 

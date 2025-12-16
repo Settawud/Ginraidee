@@ -228,12 +228,12 @@
 }
 
 .stat-icon.users {
-    background: rgba(46, 196, 182, 0.15);
+    background: rgba(55, 66, 250, 0.15);
     color: var(--color-accent);
 }
 
 .stat-icon.selections {
-    background: rgba(255, 107, 53, 0.15);
+    background: rgba(255, 71, 87, 0.15);
     color: var(--color-primary);
 }
 

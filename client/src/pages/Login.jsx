@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
-import { FiMail, FiLock, FiArrowLeft, FiLogIn } from 'react-icons/fi';
+import { FiMail, FiLock, FiArrowLeft, FiLogIn, FiEye, FiEyeOff } from 'react-icons/fi';
 import { FcGoogle } from 'react-icons/fc';
 import { useAuth } from '../contexts/AuthContext';
 import './Login.css';
@@ -12,8 +13,12 @@ const Login = () => {
     const { isAuthenticated, isAdmin, loginWithGoogle, loginWithEmail, loading } = useAuth();
 
     const [credentials, setCredentials] = useState({ email: '', password: '' });
-    const [loginError, setLoginError] = useState('');
+    const [loginError, setLoginError] = useState(() => {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('error') ? 'การเข้าสู่ระบบด้วย Google ล้มเหลว กรุณาลองใหม่อีกครั้ง' : '';
+    });
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     // Redirect if already logged in
     useEffect(() => {
@@ -27,14 +32,6 @@ const Login = () => {
             }
         }
     }, [isAuthenticated, isAdmin, loading, navigate, location]);
-
-    // Check for OAuth callback errors
-    useEffect(() => {
-        const params = new URLSearchParams(location.search);
-        if (params.get('error')) {
-            setLoginError('การเข้าสู่ระบบด้วย Google ล้มเหลว กรุณาลองใหม่อีกครั้ง');
-        }
-    }, [location]);
 
     const handleGoogleLogin = () => {
         loginWithGoogle();
@@ -74,20 +71,32 @@ const Login = () => {
 
     return (
         <div className="login-page">
+            {/* Decorative background */}
+            <div className="login-background">
+                <div className="bg-shape bg-shape-1"></div>
+                <div className="bg-shape bg-shape-2"></div>
+                <div className="bg-shape bg-shape-3"></div>
+            </div>
+
             <div className="login-container">
                 <motion.div
-                    className="login-card glass-card"
+                    className="login-card"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                 >
                     {/* Header */}
                     <div className="login-header">
-                        <div className="login-logo">
+                        <motion.div
+                            className="login-logo"
+                            initial={{ scale: 0.5 }}
+                            animate={{ scale: 1 }}
+                            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                        >
                             <span className="logo-emoji">🍜</span>
-                            <h1>Ginraidee</h1>
-                        </div>
-                        <p className="login-subtitle">เข้าสู่ระบบเพื่อใช้งาน</p>
+                        </motion.div>
+                        <h1 className="login-title">ยินดีต้อนรับ</h1>
+                        <p className="login-subtitle">เข้าสู่ระบบเพื่อใช้งาน Ginraidee</p>
                     </div>
 
                     {/* Error Message */}
@@ -97,49 +106,71 @@ const Login = () => {
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                         >
+                            <span className="error-icon">⚠️</span>
                             {loginError}
                         </motion.div>
                     )}
 
+                    {/* Google Login Button - Primary CTA */}
+                    <motion.button
+                        className="google-login-btn"
+                        onClick={handleGoogleLogin}
+                        whileHover={{ scale: 1.02, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                    >
+                        <FcGoogle className="google-icon" />
+                        <span>เข้าสู่ระบบด้วย Google</span>
+                    </motion.button>
+
+                    <div className="login-divider">
+                        <span>หรือใช้อีเมล</span>
+                    </div>
+
                     {/* Email/Password Login Form */}
                     <form onSubmit={handleSubmit} className="login-form">
                         <div className="form-group">
-                            <label htmlFor="email">
-                                <FiMail />
-                                <span>Email</span>
-                            </label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                className="input"
-                                placeholder="your@email.com"
-                                value={credentials.email}
-                                onChange={handleChange}
-                                required
-                            />
+                            <div className="input-wrapper">
+                                <FiMail className="input-icon" />
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    className="input"
+                                    placeholder="อีเมลของคุณ"
+                                    value={credentials.email}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="password">
-                                <FiLock />
-                                <span>รหัสผ่าน</span>
-                            </label>
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                className="input"
-                                placeholder="••••••••"
-                                value={credentials.password}
-                                onChange={handleChange}
-                                required
-                            />
+                            <div className="input-wrapper">
+                                <FiLock className="input-icon" />
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    id="password"
+                                    name="password"
+                                    className="input"
+                                    placeholder="รหัสผ่าน"
+                                    value={credentials.password}
+                                    onChange={handleChange}
+                                    required
+                                />
+                                <button
+                                    type="button"
+                                    className="password-toggle"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    tabIndex={-1}
+                                >
+                                    {showPassword ? <FiEyeOff /> : <FiEye />}
+                                </button>
+                            </div>
                         </div>
 
                         <motion.button
                             type="submit"
-                            className="btn btn-primary login-submit-btn"
+                            className="login-submit-btn"
                             disabled={isSubmitting}
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
@@ -149,31 +180,17 @@ const Login = () => {
                         </motion.button>
                     </form>
 
-                    <div className="login-divider">
-                        <span>หรือ</span>
-                    </div>
-
-                    {/* Google Login Button */}
-                    <motion.button
-                        className="google-login-btn"
-                        onClick={handleGoogleLogin}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                    >
-                        <FcGoogle className="google-icon" />
-                        <span>เข้าสู่ระบบด้วย Google</span>
-                    </motion.button>
-
                     <div className="login-footer">
+                        {/* Register link */}
+                        <p className="register-text">
+                            ยังไม่มีบัญชี?
+                            <Link to="/register" className="register-link">สมัครสมาชิก</Link>
+                        </p>
+
                         {/* Continue without login */}
                         <Link to="/" className="continue-guest">
                             <FiArrowLeft />
                             <span>ใช้งานโดยไม่ต้องเข้าสู่ระบบ</span>
-                        </Link>
-
-                        {/* Register link */}
-                        <Link to="/register" className="register-link">
-                            <span>ยังไม่มีบัญชี? สมัครสมาชิก</span>
                         </Link>
                     </div>
                 </motion.div>

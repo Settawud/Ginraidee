@@ -1,0 +1,142 @@
+[
+    {
+        "id": "static-1",
+        "name": "ก๋วยเตี๋ยวเรือ",
+        "nameEn": "Boat Noodles",
+        "description": "ก๋วยเตี๋ยวเรือรสเด็ด น้ำซุปเข้มข้น หอมเครื่องเทศ",
+        "price": 50,
+        "rating": 4.8,
+        "category": "noodle",
+        "image": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800&q=80",
+        "tags": [
+            "spicy",
+            "popular"
+        ]
+    },
+    {
+        "id": "static-2",
+        "name": "ข้าวมันไก่",
+        "nameEn": "Hainanese Chicken Rice",
+        "description": "ไก่ต้มเนื้อนุ่ม ข้าวหอมมัน น้ำจิ้มรสเด็ด",
+        "price": 55,
+        "rating": 4.7,
+        "category": "rice",
+        "image": "https://images.unsplash.com/photo-1606850780554-b55ea2ce98fa?w=800&q=80",
+        "tags": [
+            "popular",
+            "non-spicy"
+        ]
+    },
+    {
+        "id": "static-3",
+        "name": "ส้มตำไทย",
+        "nameEn": "Som Tum Thai",
+        "description": "ส้มตำไทยรสจัดจ้าน มะละกอกรอบ ถั่วคั่วหอมๆ",
+        "price": 60,
+        "rating": 4.9,
+        "category": "esarn",
+        "image": "https://images.unsplash.com/photo-1574484284008-be9d6e479a92?w=800&q=80",
+        "tags": [
+            "spicy",
+            "healthy"
+        ]
+    },
+    {
+        "id": "static-4",
+        "name": "ผัดกะเพราหมูสับ",
+        "nameEn": "Basil Pork (Kaprao)",
+        "description": "กะเพราหมูสับเผ็ดร้อน หอมใบกะเพราแท้",
+        "price": 50,
+        "rating": 4.9,
+        "category": "rice",
+        "image": "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=800&q=80",
+        "tags": [
+            "spicy",
+            "street-food"
+        ]
+    },
+    {
+        "id": "static-5",
+        "name": "ต้มยำกุ้ง",
+        "nameEn": "Tom Yum Goong",
+        "description": "ต้มยำกุ้งน้ำข้น รสชาติเปรี้ยวเผ็ดถึงใจ",
+        "price": 120,
+        "rating": 4.8,
+        "category": "soup",
+        "image": "https://images.unsplash.com/photo-1548943487-a2e4e43b485c?w=800&q=80",
+        "tags": [
+            "spicy",
+            "soup"
+        ]
+    },
+    {
+        "id": "static-6",
+        "name": "ข้าวผัดปู",
+        "nameEn": "Crab Fried Rice",
+        "description": "ข้าวผัดเม็ดร่วน เนื้อปูแน่นๆ หอมกลิ่นกระทะ",
+        "price": 80,
+        "rating": 4.6,
+        "category": "rice",
+        "image": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=800&q=80",
+        "tags": [
+            "non-spicy",
+            "seafood"
+        ]
+    },
+    {
+        "id": "static-7",
+        "name": "แกงเขียวหวานไก่",
+        "nameEn": "Green Curry Chicken",
+        "description": "แกงเขียวหวานกะทิสด หอมพริกแกง",
+        "price": 70,
+        "rating": 4.7,
+        "category": "curry",
+        "image": "https://images.unsplash.com/photo-1629241640752-6c8a2414777c?w=800&q=80",
+        "tags": [
+            "spicy",
+            "coconut"
+        ]
+    },
+    {
+        "id": "static-8",
+        "name": "หมูกระทะ",
+        "nameEn": "Thai BBQ (Moo Kratha)",
+        "description": "ปิ้งย่างสไตล์ไทย พร้อมน้ำจิ้มสุกี้รสเด็ด",
+        "price": 250,
+        "rating": 5.0,
+        "category": "popular",
+        "image": "https://images.unsplash.com/photo-1595295333158-4742f28fbd85?w=800&q=80",
+        "tags": [
+            "party",
+            "dinner"
+        ]
+    },
+    {
+        "id": "static-9",
+        "name": "ผัดไทยกุ้งสด",
+        "nameEn": "Pad Thai with Prawns",
+        "description": "เส้นจันท์เหนียวนุ่ม ซอสมะขามรสกลมกล่อม",
+        "price": 70,
+        "rating": 4.8,
+        "category": "noodle",
+        "image": "https://images.unsplash.com/photo-1559314809-0d155014e29e?w=800&q=80",
+        "tags": [
+            "popular",
+            "sweet-sour"
+        ]
+    },
+    {
+        "id": "static-10",
+        "name": "หมูปิ้งนมสด",
+        "nameEn": "Grilled Pork Skewers",
+        "description": "หมูปิ้งเนื้อนุ่ม หอมกลิ่นย่างถ่าน",
+        "price": 10,
+        "rating": 4.5,
+        "category": "snack",
+        "image": "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=800&q=80",
+        "tags": [
+            "snack",
+            "breakfast"
+        ]
+    }
+]

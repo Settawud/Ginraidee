@@ -1,5 +1,7 @@
+
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiHome, FiCompass, FiGrid, FiSettings, FiMenu, FiX, FiLogIn, FiLogOut, FiUser } from 'react-icons/fi';
 import { useAuth } from '../contexts/AuthContext';

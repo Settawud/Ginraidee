@@ -1,5 +1,7 @@
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
-import { FiStar, FiDollarSign, FiTag } from 'react-icons/fi';
+import { FiStar, FiTag } from 'react-icons/fi';
+import { TbCurrencyBaht } from 'react-icons/tb';
 import { useState } from 'react';
 import './FoodCard.css';
 
@@ -60,10 +62,10 @@ const FoodCard = ({ food, onClick, isSpinning, delay = 0 }) => {
                         <span className="price-amount">฿{food.price}</span>
                         <span className="price-level">
                             {[...Array(priceLevel)].map((_, i) => (
-                                <FiDollarSign key={i} className="price-icon active" />
+                                <TbCurrencyBaht key={i} className="price-icon active" />
                             ))}
                             {[...Array(3 - priceLevel)].map((_, i) => (
-                                <FiDollarSign key={i} className="price-icon" />
+                                <TbCurrencyBaht key={i} className="price-icon" />
                             ))}
                         </span>
                     </div>

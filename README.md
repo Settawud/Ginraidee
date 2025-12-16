@@ -131,6 +131,43 @@ npm run dev
 - **Username:** `admin`
 - **Password:** `admin123`
 
+## 🚀 Deployment to GitHub
+
+ขั้นตอนการนำโปรเจกต์ขึ้น GitHub และข้อควรระวัง:
+
+1.  **Prepare Repository:**
+    - สร้าง Repository ใหม่บน GitHub
+    - **ห้าม** อัพโหลดไฟล์ `.env` (มีข้อมูลความลับ) และ `node_modules`
+    - ไฟล์ `database.sqlite` จะถูก ignore โดยอัตโนมัติ (ตาม `.gitignore`) เพื่อป้องกันการทับข้อมูลจริง
+
+2.  **Push Code:**
+    ```bash
+    git init
+    git add .
+    git commit -m "First commit: Ginraidee Project"
+    git branch -M main
+    git remote add origin https://github.com/yourusername/ginraidee.git
+    git push -u origin main
+    ```
+
+3.  **Deployment (Optional):**
+    หากต้องการ deploy ขึ้น Server จริง (เช่น Vercel + Render):
+    - **Frontend (Vercel):** เชื่อมต่อกับ GitHub repo, ตั้งค่า Root Directory เป็น `client`, Build Command: `npm run build`, Output: `dist`.
+    - **Backend (Render/Railway):** เชื่อมต่อ GitHub, Root Directory `server`, Command `npm start`. Set Environment Variables เดียวกับใน `.env`.
+    - **Database:** เนื่องจากใช้ SQLite (ไฟล์), ข้อมูลจะไม่ถูก persist หาก Server restart บน Cloud บางเจ้า (เช่น Render Free Tier). แนะนำให้เปลี่ยนไปใช้ PostgreSQL หรือ Supabase สำหรับ Production จริง.
+
+## ⚠️ Important Notes
+
+> [!IMPORTANT]
+> **Database**: โปรเจกต์นี้ใช้ **SQLite** (`server/data/database.sqlite`) ซึ่งเป็นไฟล์ Local.
+> เมื่อ Clone ไปเครื่องใหม่ จะต้องเริ่มระบบใหม่ ข้อมูลเก่าจะไม่ตามไปด้วย
+> (ระบบจะสร้างไฟล์ database ให้อัตโนมัติเมื่อรัน server ครั้งแรก หรือใช้ script seed)
+
+> [!WARNING]
+> **Environment Variables**: ต้องสร้างไฟล์ `.env` ในโฟลเดอร์ `server` และ `client` (ถ้ามี) เสมอ
+> ดูตัวอย่างจาก `.env.example`
+
+
 ## 📷 Screenshots
 
 ### หน้าแรก (Landing Page)

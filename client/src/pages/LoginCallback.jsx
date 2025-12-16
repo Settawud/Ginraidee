@@ -8,7 +8,7 @@ import { useAuth } from '../contexts/AuthContext';
  */
 const LoginCallback = () => {
     const navigate = useNavigate();
-    const { checkAuth, loading } = useAuth();
+    const { checkAuth } = useAuth();
 
     useEffect(() => {
         const handleCallback = async () => {

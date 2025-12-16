@@ -1,6 +1,6 @@
-import { useState } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
-import { FiDollarSign } from 'react-icons/fi';
+import { TbCurrencyBaht } from 'react-icons/tb';
 import './PriceFilter.css';
 
 const PriceFilter = ({ selected, onSelect }) => {
@@ -14,7 +14,7 @@ const PriceFilter = ({ selected, onSelect }) => {
     return (
         <div className="price-filter">
             <h4 className="price-filter-title">
-                <FiDollarSign />
+                <TbCurrencyBaht />
                 ช่วงราคา
             </h4>
             <div className="price-options">
@@ -34,7 +34,7 @@ const PriceFilter = ({ selected, onSelect }) => {
                                 '∞'
                             ) : (
                                 [...Array(range.level)].map((_, i) => (
-                                    <FiDollarSign key={i} className="dollar-icon" />
+                                    <TbCurrencyBaht key={i} className="dollar-icon" />
                                 ))
                             )}
                         </span>

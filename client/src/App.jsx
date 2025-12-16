@@ -13,7 +13,7 @@ import { useUser } from './hooks/useFood';
 import './index.css';
 
 function AppContent() {
-  const { initialized } = useUser();
+  useUser();
 
   return (
     <div className="app">

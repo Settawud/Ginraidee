@@ -11,7 +11,8 @@ module.exports = (db, foods) => {
 
             // Filter by category
             if (category && category !== 'all') {
-                result = result.filter(f => f.category === category);
+                const categories = category.split(',');
+                result = result.filter(f => categories.includes(f.category));
             }
 
             // Filter by price range
@@ -71,7 +72,8 @@ module.exports = (db, foods) => {
 
             // Apply filters
             if (category && category !== 'all') {
-                pool = pool.filter(f => f.category === category);
+                const categories = category.split(',');
+                pool = pool.filter(f => categories.includes(f.category));
             }
             if (minPrice) {
                 pool = pool.filter(f => f.price >= parseInt(minPrice));
