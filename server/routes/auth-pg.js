@@ -41,7 +41,7 @@ module.exports = (query) => {
                         role: req.user.role
                     }
                 });
-            } else if (req.session.isAdmin) {
+            } else if (req.session?.isAdmin) {
                 res.json({
                     success: true,
                     isAuthenticated: true,
@@ -51,7 +51,7 @@ module.exports = (query) => {
                         role: 'admin'
                     }
                 });
-            } else if (req.session.userId) {
+            } else if (req.session?.userId) {
                 const result = await query('SELECT * FROM users WHERE id = $1', [req.session.userId]);
                 if (result.rows.length > 0) {
                     const user = result.rows[0];
