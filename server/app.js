@@ -16,6 +16,39 @@ const PORT = process.env.PORT || 3001;
 // Initialize Database & Routes based on Configuration
 let authRouter, foodsRouter, usersRouter, adminRouter;
 
+// Trust Proxy for Render/Heroku
+app.set('trust proxy', 1);
+
+// Middleware
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'https://ginraidee.onrender.com',
+    process.env.FRONTEND_URL
+  ].filter(Boolean),
+  credentials: true
+}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Session configuration
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'ginraidee-secret-key-2024',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV === 'production',
+    httpOnly: true,
+    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
+  }
+}));
+
+// Initialize Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Load food data (static)
 const foods = require('./data/foods.json');
 
