@@ -21,10 +21,26 @@ module.exports = (query, foods) => {
         }
     });
 
-    // Get random food
-    router.get('/random/one', (req, res) => {
+    // Get random food (Client calls /action/random)
+    router.get('/action/random', (req, res) => {
+        // Filter logic can be added here if needed, or just random
         const randomFood = foods[Math.floor(Math.random() * foods.length)];
         res.json({ success: true, data: randomFood });
+    });
+
+    // Get categories (Client calls /meta/categories)
+    router.get('/meta/categories', (req, res) => {
+        // Extract unique categories from foods
+        const categories = [...new Set(foods.map(f => f.category))].map(cat => ({
+            id: cat,
+            name: cat === 'thai' ? 'อาหารไทย' :
+                cat === 'japanese' ? 'อาหารญี่ปุ่น' :
+                    cat === 'korean' ? 'อาหารเกาหลี' :
+                        cat === 'western' ? 'อาหารตะวันตก' :
+                            cat === 'fastfood' ? 'ฟาสต์ฟู้ด' :
+                                cat === 'dessert' ? 'ของหวาน' : cat
+        }));
+        res.json({ success: true, data: categories });
     });
 
     // Get foods by category

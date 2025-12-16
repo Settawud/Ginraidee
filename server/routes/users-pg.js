@@ -18,6 +18,40 @@ module.exports = (query) => {
         }
     });
 
+    // Initialize user (Client calls /users/init)
+    router.post('/init', (req, res) => {
+        // Return current session user or null
+        // If needed, we can create a temporary session here
+        if (req.user) {
+            res.json({ success: true, data: req.user });
+        } else if (req.session.userId) {
+            // Fetch user from DB if needed, or just return basic info
+            // For now, let's assume session check handled in auth middleware
+            res.json({ success: true, data: { id: req.session.userId } });
+        } else {
+            // Guest or new user
+            res.json({ success: true, data: null });
+        }
+    });
+
+    // Update preferences (Client calls /users/preferences)
+    router.post('/preferences', async (req, res) => {
+        try {
+            const { preferences } = req.body;
+            const userId = req.user?.id || req.session.userId;
+
+            if (userId) {
+                await query('UPDATE users SET preferences = $1 WHERE id = $2', [JSON.stringify(preferences), userId]);
+                res.json({ success: true });
+            } else {
+                res.status(401).json({ success: false, error: 'Not authenticated' });
+            }
+        } catch (error) {
+            console.error('Preferences error:', error);
+            res.status(500).json({ success: false, error: 'Failed' });
+        }
+    });
+
     // Get user history
     router.get('/:userId/history', async (req, res) => {
         try {
