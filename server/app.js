@@ -208,8 +208,8 @@ app.get('/api/health', (req, res) => {
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
   app.use(express.static(path.join(__dirname, '../client/dist')));
 
-  // Handle React routing, return all requests to React app
-  app.get('*', (req, res) => {
+  // Handle React routing (Express 5 compatible wildcard)
+  app.get('/(.*)', (req, res) => {
     // Skip API routes
     if (req.path.startsWith('/api')) {
       return res.status(404).json({ error: 'API endpoint not found' });
