@@ -1,22 +1,39 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from 'framer-motion';
 import { FiArrowRight, FiZap, FiHeart, FiTrendingUp } from 'react-icons/fi';
+import axios from 'axios';
 import './Home.css';
+
+const placeholderImage = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80';
+
+// Helper function to resolve image URL
+const getImageUrl = (imagePath) => {
+    if (!imagePath) return placeholderImage;
+    // If it's already a full URL, return as-is
+    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+        return imagePath;
+    }
+    // If it's a relative path like /images/..., it's from public folder
+    if (imagePath.startsWith('/')) {
+        return imagePath; // Vite serves from public folder
+    }
+    return placeholderImage;
+};
 
 const Home = () => {
     const heroRef = useRef(null);
+    const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
 
-    useEffect(() => {
-        // Track page view
-        const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
-        fetch(`${apiBase}/users/pageview`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ page: 'home' }),
-            credentials: 'include'
-        }).catch(() => { });
-    }, []);
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
+    const [hoveredIndex, setHoveredIndex] = useState(null);
+    const [foods, setFoods] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    // Only use data from database - no fallback to example data
+    const displayFoods = foods;
 
     const features = [
         {
@@ -35,6 +52,328 @@ const Home = () => {
             description: 'ดูว่าคนอื่นชอบกินอะไร'
         }
     ];
+
+    const [isDragging, setIsDragging] = useState(false);
+    const [dragOffset, setDragOffset] = useState(0); // Real-time drag offset in pixels
+    const hoverTimeout = useRef(null);
+
+    const sliderRef = useRef(null);
+    const scrollTimeout = useRef(null);
+
+    useEffect(() => {
+        const slider = sliderRef.current;
+        if (!slider) return;
+
+        const handleWheel = (e) => {
+            // Always prevent horizontal scroll to stop browser back/forward gesture
+            if (Math.abs(e.deltaX) > 2) {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+            }
+
+            // Check if we have meaningful scroll in either direction
+            // Lower threshold = more responsive
+            const hasVerticalScroll = Math.abs(e.deltaY) >= 8;
+            const hasHorizontalScroll = Math.abs(e.deltaX) >= 8;
+
+            // Also prevent vertical scroll on the slider
+            if (hasVerticalScroll) {
+                e.preventDefault();
+            }
+
+            if (scrollTimeout.current) return; // Throttle
+
+            // Determine scroll direction - prioritize horizontal for trackpad
+            let direction = 0;
+
+            if (hasHorizontalScroll) {
+                // Horizontal scroll (MacBook 2-finger swipe left/right)
+                direction = e.deltaX > 0 ? 1 : -1; // Swipe left = next, swipe right = prev
+            } else if (hasVerticalScroll) {
+                // Vertical scroll (mouse wheel or trackpad up/down)
+                direction = e.deltaY > 0 ? 1 : -1; // Scroll down = next, scroll up = prev
+            }
+
+            if (direction !== 0) {
+                if (direction > 0) {
+                    setCurrentSlide((prev) => (prev + 1) % displayFoods.length);
+                } else {
+                    setCurrentSlide((prev) => (prev - 1 + displayFoods.length) % displayFoods.length);
+                }
+
+                // Quick cooldown for snappy feel (100ms)
+                scrollTimeout.current = setTimeout(() => {
+                    scrollTimeout.current = null;
+                }, 100);
+            }
+        };
+
+        // Capture at highest level to prevent browser gestures
+        slider.addEventListener('wheel', handleWheel, { passive: false, capture: true });
+
+        // Additional handler to prevent mousewheel (legacy)
+        const preventScroll = (e) => {
+            if (Math.abs(e.deltaX) > 2 || Math.abs(e.wheelDeltaX) > 2) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        };
+        slider.addEventListener('mousewheel', preventScroll, { passive: false });
+
+        return () => {
+            if (slider) {
+                slider.removeEventListener('wheel', handleWheel, { capture: true });
+                slider.removeEventListener('mousewheel', preventScroll);
+            }
+        };
+    }, [displayFoods]); // Depend on displayFoods to refresh closure
+
+    const handleHover = (index) => {
+        if (isDragging) return;
+        if (index === currentSlide) return;
+
+        if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+
+        // Quick hover response (80ms)
+        hoverTimeout.current = setTimeout(() => {
+            setHoveredIndex(index);
+        }, 80);
+    };
+
+    const handlePanEnd = () => {
+        // Determine which slide to snap to based on drag distance
+        const slideWidth = 220; // Approximate width between slides
+        const slidesToMove = Math.round(-dragOffset / slideWidth);
+
+        if (displayFoods.length > 0 && slidesToMove !== 0) {
+            setCurrentSlide((prev) => {
+                let next = prev + slidesToMove;
+                // Wrap around
+                next = ((next % displayFoods.length) + displayFoods.length) % displayFoods.length;
+                return next;
+            });
+        }
+
+        // Reset drag state
+        setDragOffset(0);
+        setTimeout(() => setIsDragging(false), 50);
+    };
+
+    useEffect(() => {
+        // Track page view
+        fetch(`${apiBase}/users/pageview`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ page: 'home' }),
+            credentials: 'include'
+        }).catch(() => { });
+
+        // Fetch foods from database
+        const fetchFoods = async () => {
+            setIsLoading(true);
+            try {
+                const res = await axios.get(`${apiBase}/foods`);
+                console.log("API Response:", res.data);
+
+                // Handle various response shapes
+                let data = [];
+                if (Array.isArray(res.data)) {
+                    data = res.data;
+                } else if (res.data && Array.isArray(res.data.data)) {
+                    data = res.data.data;
+                }
+
+                if (data.length > 0) {
+                    // Filter out invalid items to prevent crashes
+                    const validFoods = data.filter(item => item && (item.name || item.title));
+                    setFoods(validFoods);
+                }
+            } catch (err) {
+                console.error("Failed to fetch foods for slider", err);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchFoods();
+    }, [apiBase]);
+
+    useEffect(() => {
+        if (isPaused) return;
+        if (displayFoods.length === 0) return;
+
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % displayFoods.length);
+        }, 3000);
+        return () => clearInterval(timer);
+    }, [isPaused, displayFoods.length]);
+
+    const getSlidePosition = (index) => {
+        const total = displayFoods.length;
+        if (total === 0) return 'hidden';
+
+        // Calculate normalized offset (-total/2 to total/2)
+        let offset = (index - currentSlide) % total;
+        if (offset < 0) offset += total;
+        if (offset > total / 2) offset -= total;
+
+        if (offset === 0) return 'center';
+        if (offset === 1) return 'right1';
+        if (offset === 2) return 'right2';
+        if (offset === 3) return 'right3';
+        if (offset === -1) return 'left1';
+        if (offset === -2) return 'left2';
+        if (offset === -3) return 'left3';
+
+        // Determine hidden side for smooth exit
+        return offset > 0 ? 'hiddenRight' : 'hiddenLeft';
+    };
+
+    const getCardStyle = (position, index) => {
+        const isHovered = hoveredIndex === index;
+        const isAnyoneHovered = hoveredIndex !== null;
+
+        // Base hidden style
+        let base = {
+            x: 0,
+            y: 0,
+            scale: 0.6,
+            zIndex: 0,
+            opacity: 0,
+            rotateY: 0,
+            rotateZ: 0,
+            filter: 'blur(8px) brightness(0.5)'
+        };
+
+        // Modern Spread Carousel - Clean & Elegant
+        if (position === 'center') {
+            base = {
+                x: 0,
+                y: 0,
+                scale: 1,
+                zIndex: 50,
+                opacity: 1,
+                rotateY: 0,
+                rotateZ: 0,
+                filter: 'blur(0px) brightness(1.05)'
+            };
+        }
+        else if (position === 'left1') {
+            base = {
+                x: -220,
+                y: 15,
+                scale: 0.82,
+                zIndex: 30,
+                opacity: 0.85,
+                rotateY: 12,
+                rotateZ: -3,
+                filter: 'blur(0.5px) brightness(0.85)'
+            };
+        }
+        else if (position === 'right1') {
+            base = {
+                x: 220,
+                y: 15,
+                scale: 0.82,
+                zIndex: 30,
+                opacity: 0.85,
+                rotateY: -12,
+                rotateZ: 3,
+                filter: 'blur(0.5px) brightness(0.85)'
+            };
+        }
+        else if (position === 'left2') {
+            base = {
+                x: -400,
+                y: 30,
+                scale: 0.65,
+                zIndex: 20,
+                opacity: 0.6,
+                rotateY: 18,
+                rotateZ: -5,
+                filter: 'blur(1.5px) brightness(0.7)'
+            };
+        }
+        else if (position === 'right2') {
+            base = {
+                x: 400,
+                y: 30,
+                scale: 0.65,
+                zIndex: 20,
+                opacity: 0.6,
+                rotateY: -18,
+                rotateZ: 5,
+                filter: 'blur(1.5px) brightness(0.7)'
+            };
+        }
+        else if (position === 'left3') {
+            base = {
+                x: -540,
+                y: 40,
+                scale: 0.5,
+                zIndex: 10,
+                opacity: 0.35,
+                rotateY: 22,
+                rotateZ: -6,
+                filter: 'blur(3px) brightness(0.6)'
+            };
+        }
+        else if (position === 'right3') {
+            base = {
+                x: 540,
+                y: 40,
+                scale: 0.5,
+                zIndex: 10,
+                opacity: 0.35,
+                rotateY: -22,
+                rotateZ: 6,
+                filter: 'blur(3px) brightness(0.6)'
+            };
+        }
+        else if (position === 'hiddenRight') {
+            base = {
+                x: 650,
+                y: 50,
+                scale: 0.4,
+                zIndex: 0,
+                opacity: 0,
+                rotateY: -30,
+                rotateZ: 8,
+                filter: 'blur(8px) brightness(0.5)'
+            };
+        }
+        else if (position === 'hiddenLeft') {
+            base = {
+                x: -650,
+                y: 50,
+                scale: 0.4,
+                zIndex: 0,
+                opacity: 0,
+                rotateY: 30,
+                rotateZ: -8,
+                filter: 'blur(8px) brightness(0.5)'
+            };
+        }
+
+        // Elegant Hover Effect
+        if (isHovered && position !== 'center') {
+            base.scale = base.scale * 1.12;
+            base.y = base.y - 15;
+            base.zIndex = 45;
+            base.opacity = 1;
+            base.filter = 'blur(0px) brightness(1.1)';
+            base.rotateZ = 0;
+        } else if (isAnyoneHovered && !isHovered) {
+            base.opacity = base.opacity * 0.7;
+            base.filter = `${base.filter} saturate(0.6)`;
+        }
+
+        // Apply real-time drag offset for finger-following effect
+        // Drag right = positive offset = cards move right
+        base.x = base.x + dragOffset;
+
+        return base;
+    };
 
     const foodEmojis = ['🍜', '🍣', '🍔', '🍕', '🥗', '🍛', '🍝', '🍰', '🥘', '🌮'];
 
@@ -74,6 +413,7 @@ const Home = () => {
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+                        className="hero-text-wrapper"
                     >
                         <h1 className="hero-title">
                             <span className="title-line">วันนี้</span>
@@ -111,28 +451,73 @@ const Home = () => {
 
                     <motion.div
                         className="hero-visual"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.3 }}
+                        onMouseEnter={() => setIsPaused(true)}
+                        onMouseLeave={() => setIsPaused(false)}
                     >
-                        <div className="hero-card">
-                            <div className="card-glow" />
-                            <div className="card-content">
-                                <span className="card-emoji">🍜</span>
-                                <h3>ก๋วยเตี๋ยวเรือ</h3>
-                                <p>อร่อยถูกปาก</p>
+                        {isLoading ? (
+                            <div className="slider-loading">
+                                <div className="loading-spinner"></div>
+                                <p>กำลังโหลดเมนู...</p>
                             </div>
-                        </div>
-                    </motion.div>
-                </div>
+                        ) : displayFoods.length === 0 ? (
+                            <div className="slider-empty">
+                                <p>ไม่พบข้อมูลเมนู</p>
+                            </div>
+                        ) : (
+                            <motion.div
+                                ref={sliderRef}
+                                className="slider-container"
+                                aria-label="Food Carousel"
+                                onPanStart={() => {
+                                    setIsDragging(true);
+                                    setDragOffset(0);
+                                }}
+                                onPan={(e, info) => {
+                                    // Real-time finger following - update offset directly
+                                    setDragOffset(info.offset.x);
+                                }}
+                                onPanEnd={handlePanEnd}
+                                style={{ cursor: isDragging ? 'grabbing' : 'grab', touchAction: 'none' }}
+                            >
+                                {displayFoods.map((food, index) => {
+                                    if (!food) return null; // Safety check
+                                    const position = getSlidePosition(index);
+                                    const style = getCardStyle(position, index);
 
-                <div className="hero-scroll-indicator">
-                    <motion.div
-                        animate={{ y: [0, 10, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                    >
-                        <span>เลื่อนลง</span>
-                        <div className="scroll-line" />
+                                    return (
+                                        <motion.div
+                                            key={food?.id || index}
+                                            className="hero-card glass-card"
+                                            animate={style}
+                                            transition={
+                                                isDragging
+                                                    ? { type: "tween", duration: 0 } // Instant during drag
+                                                    : { type: "spring", stiffness: 400, damping: 30, mass: 0.8 } // Spring on release
+                                            }
+                                            onClick={() => {
+                                                if (!isDragging) setCurrentSlide(index);
+                                            }}
+                                            onMouseEnter={() => handleHover(index)}
+                                            onMouseLeave={() => {
+                                                if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+                                                setHoveredIndex(null);
+                                            }}
+                                            style={{ position: 'absolute' }}
+                                        >
+                                            <img src={getImageUrl(food?.image || food?.img)} alt={food?.name || 'Food'} className="card-bg-image" />
+                                            <div className="card-overlay" />
+                                            <div className="card-content">
+                                                <h3>{food?.name}</h3>
+                                                <p>{food?.description || food?.desc}</p>
+                                            </div>
+                                        </motion.div>
+                                    );
+                                })}
+                            </motion.div>
+                        )}
                     </motion.div>
                 </div>
             </section>

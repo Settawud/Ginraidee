@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import { FiStar, FiDollarSign, FiTag } from 'react-icons/fi';
 import { useState } from 'react';

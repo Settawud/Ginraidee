@@ -1,5 +1,7 @@
+
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
     FiUsers, FiPieChart, FiTrendingUp,
@@ -95,28 +97,28 @@ const Admin = () => {
 
                 <nav className="admin-tabs">
                     <button
-                        className={`tab ${activeTab === 'overview' ? 'active' : ''}`}
+                        className={`tab ${activeTab === 'overview' ? 'active' : ''} `}
                         onClick={() => setActiveTab('overview')}
                     >
                         <FiPieChart />
                         ภาพรวม
                     </button>
                     <button
-                        className={`tab ${activeTab === 'menus' ? 'active' : ''}`}
+                        className={`tab ${activeTab === 'menus' ? 'active' : ''} `}
                         onClick={() => setActiveTab('menus')}
                     >
                         <FiTrendingUp />
                         เมนูยอดนิยม
                     </button>
                     <button
-                        className={`tab ${activeTab === 'users' ? 'active' : ''}`}
+                        className={`tab ${activeTab === 'users' ? 'active' : ''} `}
                         onClick={() => setActiveTab('users')}
                     >
                         <FiUsers />
                         ผู้ใช้งาน
                     </button>
                     <button
-                        className={`tab ${activeTab === 'manage-menus' ? 'active' : ''}`}
+                        className={`tab ${activeTab === 'manage-menus' ? 'active' : ''} `}
                         onClick={() => setActiveTab('manage-menus')}
                     >
                         <FiSettings />
@@ -191,7 +193,7 @@ const Admin = () => {
                                                         <motion.div
                                                             className="category-bar-fill"
                                                             initial={{ width: 0 }}
-                                                            animate={{ width: `${percentage}%` }}
+                                                            animate={{ width: `${percentage}% ` }}
                                                             transition={{ delay: index * 0.1 + 0.3, duration: 0.5 }}
                                                         />
                                                     </div>
@@ -233,9 +235,9 @@ const Admin = () => {
                                                 <div
                                                     className="popular-image"
                                                     style={{
-                                                        background: `linear-gradient(135deg, 
-                              hsl(${(item.food.id * 30) % 360}, 70%, 50%) 0%, 
-                              hsl(${(item.food.id * 30 + 40) % 360}, 80%, 60%) 100%)`
+                                                        background: `linear - gradient(135deg,
+    hsl(${(item.food.id * 30) % 360}, 70 %, 50 %) 0 %,
+    hsl(${(item.food.id * 30 + 40) % 360}, 80 %, 60 %) 100 %)`
                                                     }}
                                                 >
                                                     🍽️
@@ -278,7 +280,7 @@ const Admin = () => {
                                                     key={day.date}
                                                     className="chart-bar"
                                                     initial={{ height: 0 }}
-                                                    animate={{ height: `${Math.max(height, 5)}%` }}
+                                                    animate={{ height: `${Math.max(height, 5)}% ` }}
                                                     transition={{ delay: index * 0.1 }}
                                                 >
                                                     <span className="bar-value">{day.count}</span>
@@ -309,7 +311,7 @@ const Admin = () => {
                                                     key={day.date}
                                                     className="chart-bar selections"
                                                     initial={{ height: 0 }}
-                                                    animate={{ height: `${Math.max(height, 5)}%` }}
+                                                    animate={{ height: `${Math.max(height, 5)}% ` }}
                                                     transition={{ delay: index * 0.1 }}
                                                 >
                                                     <span className="bar-value">{day.count}</span>

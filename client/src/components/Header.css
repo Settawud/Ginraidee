@@ -4,7 +4,7 @@
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(15, 15, 15, 0.8);
+    background: rgba(9, 12, 20, 0.8);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -155,7 +155,7 @@
     }
 
     .nav-link.active {
-        background: rgba(255, 107, 53, 0.1);
+        background: rgba(255, 71, 87, 0.1);
         color: var(--color-primary);
     }
 
@@ -220,7 +220,7 @@
 
 .admin-badge {
     padding: 2px 8px;
-    background: linear-gradient(135deg, #f97316, #fb923c);
+    background: var(--gradient-primary);
     border-radius: var(--radius-full);
     font-size: 0.7rem;
     font-weight: 600;
@@ -256,7 +256,7 @@
     padding: var(--space-sm) var(--space-md);
     background: var(--gradient-primary);
     border-radius: var(--radius-md);
-    color: white;
+    color: white !important;
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 500;
@@ -264,8 +264,10 @@
 }
 
 .login-link:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
+    color: white !important;
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 71, 87, 0.4);
 }
 
 /* Hide/Show utilities */

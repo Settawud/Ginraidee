@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiRefreshCw, FiCheck, FiX } from 'react-icons/fi';
 import confetti from 'canvas-confetti';
@@ -8,7 +9,7 @@ const RandomPicker = ({ foods, onResult, filters }) => {
     const [isSpinning, setIsSpinning] = useState(false);
     const [currentFood, setCurrentFood] = useState(null);
     const [showResult, setShowResult] = useState(false);
-    const [slotItems, setSlotItems] = useState([]);
+
     const spinInterval = useRef(null);
 
     // Filter foods based on current filters
@@ -72,11 +73,10 @@ const RandomPicker = ({ foods, onResult, filters }) => {
         const finalFood = filteredFoods[Math.floor(Math.random() * filteredFoods.length)];
         items.push(finalFood);
 
-        setSlotItems(items);
+        // setSlotItems(items);
 
         // Animate through items
         let index = 0;
-        const spinDuration = 3000;
         const baseInterval = 50;
 
         const animateSlot = () => {

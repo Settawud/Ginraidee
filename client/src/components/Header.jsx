@@ -1,5 +1,7 @@
+
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiHome, FiCompass, FiGrid, FiSettings, FiMenu, FiX, FiLogIn, FiLogOut, FiUser } from 'react-icons/fi';
 import { useAuth } from '../contexts/AuthContext';
@@ -36,12 +38,12 @@ const Header = () => {
                     <span className="logo-text">Ginraidee</span>
                 </Link>
 
-                <nav className={`header-nav ${mobileMenuOpen ? 'open' : ''}`}>
+                <nav className={`header - nav ${mobileMenuOpen ? 'open' : ''} `}>
                     {navItems.map((item) => (
                         <Link
                             key={item.path}
                             to={item.path}
-                            className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
+                            className={`nav - link ${location.pathname === item.path ? 'active' : ''} `}
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             <item.icon className="nav-icon" />
@@ -60,7 +62,7 @@ const Header = () => {
                     {isAdmin && (
                         <Link
                             to="/admin"
-                            className={`nav-link ${location.pathname === '/admin' ? 'active' : ''}`}
+                            className={`nav - link ${location.pathname === '/admin' ? 'active' : ''} `}
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             <FiSettings className="nav-icon" />

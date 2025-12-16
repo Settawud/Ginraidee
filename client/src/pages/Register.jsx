@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import { FiMail, FiLock, FiUser, FiArrowLeft } from 'react-icons/fi';
 import { api } from '../hooks/useFood';
