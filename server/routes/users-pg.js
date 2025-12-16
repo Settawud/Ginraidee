@@ -24,7 +24,7 @@ module.exports = (query) => {
         // If needed, we can create a temporary session here
         if (req.user) {
             res.json({ success: true, data: req.user });
-        } else if (req.session.userId) {
+        } else if (req.session?.userId) {
             // Fetch user from DB if needed, or just return basic info
             // For now, let's assume session check handled in auth middleware
             res.json({ success: true, data: { id: req.session.userId } });

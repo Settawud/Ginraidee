@@ -13,7 +13,61 @@ const { pool, query } = require('./config/db');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// =============================================
+// Middleware Setup
+// =============================================
+
+// CORS - allow frontend to make requests
+app.use(cors({
+  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  credentials: true
+}));
+
+// Body parsers
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Serve static images
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
+
+// Session
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'ginraidee-secret-key-2024',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV === 'production',
+    httpOnly: true,
+    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
+  }
+}));
+
+// Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Google OAuth Strategy
+if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
+  passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: process.env.GOOGLE_CALLBACK_URL || 'http://localhost:3001/api/auth/google/callback'
+  }, async (accessToken, refreshToken, profile, done) => {
+    try {
+      // Will be handled by authRouter.findOrCreateUser after router is loaded
+      const user = await app.locals.findOrCreateUser(profile);
+      done(null, user);
+    } catch (error) {
+      done(error, null);
+    }
+  }));
+}
+
+// =============================================
 // Initialize Database & Routes based on Configuration
+// =============================================
+
 let authRouter, foodsRouter, usersRouter, adminRouter;
 
 // Load food data (static)
@@ -193,6 +247,11 @@ if (process.env.DATABASE_URL) {
 }
 
 function mountRoutes() {
+  // Set findOrCreateUser for Google OAuth strategy
+  if (authRouter && authRouter.findOrCreateUser) {
+    app.locals.findOrCreateUser = authRouter.findOrCreateUser;
+  }
+
   app.use('/api/auth', authRouter);
   app.use('/api/foods', foodsRouter);
   app.use('/api/users', usersRouter);
