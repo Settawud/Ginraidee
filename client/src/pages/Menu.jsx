@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiSearch, FiX, FiDollarSign } from 'react-icons/fi';
+import { FiSearch, FiX } from 'react-icons/fi';
 import FoodCard from '../components/FoodCard';
 import { useFoods, useCategories } from '../hooks/useFood';
 import './Menu.css';
