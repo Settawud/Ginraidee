@@ -263,18 +263,25 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString(), mode: process.env.DATABASE_URL ? 'postgres' : 'sqlite' });
 });
 
-// Serve static files from React app (production)
+// Serve static files from React app (production) - only if client/dist exists
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
-  app.use(express.static(path.join(__dirname, '../client/dist')));
+  const clientDistPath = path.join(__dirname, '../client/dist');
+  const fs = require('fs');
 
-  // Handle React routing (Express 5 compatible wildcard)
-  app.get('/{*path}', (req, res) => {
-    // Skip API routes
-    if (req.path.startsWith('/api')) {
-      return res.status(404).json({ error: 'API endpoint not found' });
-    }
-    res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
-  });
+  if (fs.existsSync(clientDistPath)) {
+    app.use(express.static(clientDistPath));
+
+    // Handle React routing (Express 5 compatible wildcard)
+    app.get('/{*path}', (req, res) => {
+      // Skip API routes
+      if (req.path.startsWith('/api')) {
+        return res.status(404).json({ error: 'API endpoint not found' });
+      }
+      res.sendFile(path.join(clientDistPath, 'index.html'));
+    });
+  } else {
+    console.log('📝 Note: client/dist not found - running as API-only server');
+  }
 }
 
 // Start server
