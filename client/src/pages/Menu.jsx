@@ -37,7 +37,7 @@ const Menu = () => {
     const [sortBy, setSortBy] = useState('name');
     const [showMobileFilters, setShowMobileFilters] = useState(false);
 
-    const { foods, loading, updateFilters } = useFoods({
+    const { foods, loading, updateFilters, pagination } = useFoods({
         category: selectedCategories.length > 0 ? selectedCategories : 'all',
         minPrice: priceRange.min,
         maxPrice: priceRange.max,
