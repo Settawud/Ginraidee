@@ -3,12 +3,84 @@ const express = require('express');
 module.exports = (query, foods) => {
     const router = express.Router();
 
-    // Get all foods
+    // Get all foods with optional filters
     router.get('/', (req, res) => {
-        res.json({
-            success: true,
-            data: foods
-        });
+        try {
+            let result = [...foods];
+            const { category, minPrice, maxPrice, search, tags } = req.query;
+
+            // Filter by category
+            if (category && category !== 'all') {
+                const categories = category.split(',');
+                result = result.filter(f => categories.includes(f.category));
+            }
+
+            // Filter by price range
+            if (minPrice) {
+                result = result.filter(f => f.price >= parseInt(minPrice));
+            }
+            if (maxPrice) {
+                result = result.filter(f => f.price <= parseInt(maxPrice));
+            }
+
+            // Filter by search term
+            if (search) {
+                const searchLower = search.toLowerCase();
+                result = result.filter(f =>
+                    f.name.toLowerCase().includes(searchLower) ||
+                    f.nameEn.toLowerCase().includes(searchLower) ||
+                    f.description.toLowerCase().includes(searchLower)
+                );
+            }
+
+            // Filter by tags
+            if (tags) {
+                const tagList = tags.split(',');
+                result = result.filter(f =>
+                    tagList.some(tag => f.tags.includes(tag))
+                );
+            }
+
+            // Sorting
+            const sort = req.query.sort || 'name';
+            result.sort((a, b) => {
+                switch (sort) {
+                    case 'price-low':
+                        return a.price - b.price;
+                    case 'price-high':
+                        return b.price - a.price;
+                    case 'rating':
+                        return b.rating - a.rating;
+                    case 'name':
+                    default:
+                        return a.name.localeCompare(b.name, 'th');
+                }
+            });
+
+            // Pagination
+            const page = parseInt(req.query.page) || 1;
+            const limit = parseInt(req.query.limit) || 12;
+            const startIndex = (page - 1) * limit;
+            const endIndex = page * limit;
+
+            const total = result.length;
+            const totalPages = Math.ceil(total / limit);
+            const paginatedResults = result.slice(startIndex, endIndex);
+
+            res.json({
+                success: true,
+                count: paginatedResults.length,
+                pagination: {
+                    page,
+                    limit,
+                    total,
+                    totalPages
+                },
+                data: paginatedResults
+            });
+        } catch (error) {
+            res.status(500).json({ success: false, error: error.message });
+        }
     });
 
     // Get food by ID
@@ -23,24 +95,85 @@ module.exports = (query, foods) => {
 
     // Get random food (Client calls /action/random)
     router.get('/action/random', (req, res) => {
-        // Filter logic can be added here if needed, or just random
-        const randomFood = foods[Math.floor(Math.random() * foods.length)];
-        res.json({ success: true, data: randomFood });
+        try {
+            let pool = [...foods];
+            const { category, minPrice, maxPrice, exclude } = req.query;
+
+            // Apply filters
+            if (category && category !== 'all') {
+                const categories = category.split(',');
+                pool = pool.filter(f => categories.includes(f.category));
+            }
+            if (minPrice) {
+                pool = pool.filter(f => f.price >= parseInt(minPrice));
+            }
+            if (maxPrice) {
+                pool = pool.filter(f => f.price <= parseInt(maxPrice));
+            }
+            if (exclude) {
+                const excludeIds = exclude.split(',').map(id => parseInt(id));
+                pool = pool.filter(f => !excludeIds.includes(f.id));
+            }
+
+            if (pool.length === 0) {
+                return res.status(404).json({
+                    success: false,
+                    error: 'No food matches your criteria'
+                });
+            }
+
+            const randomFood = pool[Math.floor(Math.random() * pool.length)];
+            res.json({ success: true, data: randomFood });
+        } catch (error) {
+            res.status(500).json({ success: false, error: error.message });
+        }
     });
 
     // Get categories (Client calls /meta/categories)
     router.get('/meta/categories', (req, res) => {
-        // Extract unique categories from foods
-        const categories = [...new Set(foods.map(f => f.category))].map(cat => ({
-            id: cat,
-            name: cat === 'thai' ? 'อาหารไทย' :
-                cat === 'japanese' ? 'อาหารญี่ปุ่น' :
-                    cat === 'korean' ? 'อาหารเกาหลี' :
-                        cat === 'western' ? 'อาหารตะวันตก' :
-                            cat === 'fastfood' ? 'ฟาสต์ฟู้ด' :
-                                cat === 'dessert' ? 'ของหวาน' : cat
-        }));
-        res.json({ success: true, data: categories });
+        try {
+            const categories = [...new Set(foods.map(f => ({
+                id: f.category,
+                name: f.categoryName || (f.category === 'thai' ? 'อาหารไทย' :
+                    f.category === 'japanese' ? 'อาหารญี่ปุ่น' :
+                        f.category === 'korean' ? 'อาหารเกาหลี' :
+                            f.category === 'western' ? 'อาหารตะวันตก' :
+                                f.category === 'fastfood' ? 'ฟาสต์ฟู้ด' :
+                                    f.category === 'dessert' ? 'ของหวาน' : f.category)
+            })))];
+
+            // Remove duplicates by id
+            const uniqueCategories = Array.from(
+                new Map(categories.map(c => [c.id, c])).values()
+            );
+
+            res.json({ success: true, data: uniqueCategories });
+        } catch (error) {
+            res.status(500).json({ success: false, error: error.message });
+        }
+    });
+
+    // Get price ranges
+    router.get('/meta/price-ranges', (req, res) => {
+        try {
+            const prices = foods.map(f => f.price);
+            const min = Math.min(...prices);
+            const max = Math.max(...prices);
+
+            const ranges = [
+                { id: 'cheap', name: 'ราคาถูก', label: '< 50 บาท', min: 0, max: 50 },
+                { id: 'medium', name: 'ราคากลาง', label: '50-150 บาท', min: 50, max: 150 },
+                { id: 'expensive', name: 'ราคาสูง', label: '> 150 บาท', min: 150, max: 9999 }
+            ];
+
+            res.json({
+                success: true,
+                data: ranges,
+                stats: { min, max }
+            });
+        } catch (error) {
+            res.status(500).json({ success: false, error: error.message });
+        }
     });
 
     // Get foods by category
