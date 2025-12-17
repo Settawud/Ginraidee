@@ -246,6 +246,9 @@
     align-items: center;
     gap: var(--space-sm);
     margin-bottom: 4px;
+    line-height: 1.5;
+    padding-top: 0.2em;
+    padding-bottom: 0.1em;
 }
 
 .title-icon {

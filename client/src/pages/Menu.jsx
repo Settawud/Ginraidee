@@ -44,16 +44,7 @@ const Menu = () => {
         search: searchTerm
     });
 
-    // Sync filters
-    useEffect(() => {
-        updateFilters({
-            category: selectedCategories.length > 0 ? selectedCategories : 'all',
-            minPrice: priceRange.min,
-            maxPrice: priceRange.max,
-            search: searchTerm
-        });
-    }, [selectedCategories, priceRange, searchTerm, updateFilters]);
-
+    // Initial page view tracking
     useEffect(() => {
         const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
         fetch(`${apiBase}/users/pageview`, {
@@ -92,20 +83,19 @@ const Menu = () => {
 
     const activeFiltersCount = (selectedCategories.length > 0 ? selectedCategories.length : 0) + (selectedPrice !== 'all' ? 1 : 0);
 
-    // Sort foods
-    const sortedFoods = [...foods].sort((a, b) => {
-        switch (sortBy) {
-            case 'price-low':
-                return a.price - b.price;
-            case 'price-high':
-                return b.price - a.price;
-            case 'rating':
-                return b.rating - a.rating;
-            case 'name':
-            default:
-                return a.name.localeCompare(b.name, 'th');
-        }
-    });
+    // Sync filters
+    useEffect(() => {
+        updateFilters({
+            category: selectedCategories.length > 0 ? selectedCategories : 'all',
+            minPrice: priceRange.min,
+            maxPrice: priceRange.max,
+            search: searchTerm,
+            sort: sortBy // Send sort to server
+        });
+    }, [selectedCategories, priceRange, searchTerm, sortBy, updateFilters]);
+
+    // Use foods directly (already sorted by server)
+    const sortedFoods = foods;
 
     return (
         <div className="menu-page">
@@ -256,9 +246,34 @@ const Menu = () => {
                             </AnimatePresence>
                         </motion.div>
                     )}
+
+                    {/* Pagination Controls */}
+                    {!loading && foods.length > 0 && pagination.totalPages > 1 && (
+                        <div className="pagination-container">
+                            <button
+                                className="pagination-btn"
+                                onClick={() => updateFilters({ page: pagination.page - 1 })}
+                                disabled={pagination.page === 1}
+                            >
+                                &lt;
+                            </button>
+
+                            <span className="pagination-info">
+                                หน้า {pagination.page} จาก {pagination.totalPages}
+                            </span>
+
+                            <button
+                                className="pagination-btn"
+                                onClick={() => updateFilters({ page: pagination.page + 1 })}
+                                disabled={pagination.page === pagination.totalPages}
+                            >
+                                &gt;
+                            </button>
+                        </div>
+                    )}
                 </main>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };
 

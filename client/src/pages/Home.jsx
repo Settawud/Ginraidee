@@ -60,74 +60,8 @@ const Home = () => {
     const sliderRef = useRef(null);
     const scrollTimeout = useRef(null);
 
-    useEffect(() => {
-        const slider = sliderRef.current;
-        if (!slider) return;
-
-        const handleWheel = (e) => {
-            // Always prevent horizontal scroll to stop browser back/forward gesture
-            if (Math.abs(e.deltaX) > 2) {
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation();
-            }
-
-            // Check if we have meaningful scroll in either direction
-            // Lower threshold = more responsive
-            const hasVerticalScroll = Math.abs(e.deltaY) >= 8;
-            const hasHorizontalScroll = Math.abs(e.deltaX) >= 8;
-
-            // Also prevent vertical scroll on the slider
-            if (hasVerticalScroll) {
-                e.preventDefault();
-            }
-
-            if (scrollTimeout.current) return; // Throttle
-
-            // Determine scroll direction - prioritize horizontal for trackpad
-            let direction = 0;
-
-            if (hasHorizontalScroll) {
-                // Horizontal scroll (MacBook 2-finger swipe left/right)
-                direction = e.deltaX > 0 ? 1 : -1; // Swipe left = next, swipe right = prev
-            } else if (hasVerticalScroll) {
-                // Vertical scroll (mouse wheel or trackpad up/down)
-                direction = e.deltaY > 0 ? 1 : -1; // Scroll down = next, scroll up = prev
-            }
-
-            if (direction !== 0) {
-                if (direction > 0) {
-                    setCurrentSlide((prev) => (prev + 1) % displayFoods.length);
-                } else {
-                    setCurrentSlide((prev) => (prev - 1 + displayFoods.length) % displayFoods.length);
-                }
-
-                // Quick cooldown for snappy feel (100ms)
-                scrollTimeout.current = setTimeout(() => {
-                    scrollTimeout.current = null;
-                }, 100);
-            }
-        };
-
-        // Capture at highest level to prevent browser gestures
-        slider.addEventListener('wheel', handleWheel, { passive: false, capture: true });
-
-        // Additional handler to prevent mousewheel (legacy)
-        const preventScroll = (e) => {
-            if (Math.abs(e.deltaX) > 2 || Math.abs(e.wheelDeltaX) > 2) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-        };
-        slider.addEventListener('mousewheel', preventScroll, { passive: false });
-
-        return () => {
-            if (slider) {
-                slider.removeEventListener('wheel', handleWheel, { capture: true });
-                slider.removeEventListener('mousewheel', preventScroll);
-            }
-        };
-    }, [displayFoods]); // Depend on displayFoods to refresh closure
+    // Scroll hijacking removed to restore native scrolling performance
+    // The carousel can still be navigated via drag/swipe gestures handled by the container (not shown here but retained in state)
 
     const handleHover = (index) => {
         if (isDragging) return;
@@ -187,6 +121,26 @@ const Home = () => {
                 if (data.length > 0) {
                     // Filter out invalid items to prevent crashes
                     const validFoods = data.filter(item => item && (item.name || item.title));
+
+                    // Preload images to prevent lag/freezing during carousel animation
+                    const preloadImages = validFoods.map(food => {
+                        return new Promise((resolve) => {
+                            const img = new Image();
+                            img.src = getImageUrl(food.image || food.img);
+                            img.onload = resolve;
+                            img.onerror = resolve; // Continue even if error
+                        });
+                    });
+
+                    // Wait for images with a timeout (max 3 seconds to avoid blocking too long)
+                    // If images are slow, we show what we have so far or just rely on progressive loading after timeout
+                    const timeoutPromise = new Promise(resolve => setTimeout(resolve, 3000));
+
+                    await Promise.race([
+                        Promise.all(preloadImages),
+                        timeoutPromise
+                    ]);
+
                     setFoods(validFoods);
                 }
             } catch (err) {
@@ -229,9 +183,29 @@ const Home = () => {
         return offset > 0 ? 'hiddenRight' : 'hiddenLeft';
     };
 
+    // State for responsive card positioning
+    const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+
+    useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     const getCardStyle = (position, index) => {
         const isHovered = hoveredIndex === index;
         const isAnyoneHovered = hoveredIndex !== null;
+
+        // Dynamic spacing based on screen width
+        const isMobile = windowWidth < 768;
+        const isTablet = windowWidth >= 768 && windowWidth < 1024;
+
+        let spacing = {
+            l1: isMobile ? 140 : isTablet ? 180 : 220,
+            l2: isMobile ? 260 : isTablet ? 320 : 400,
+            l3: isMobile ? 360 : isTablet ? 450 : 540,
+            hidden: isMobile ? 420 : 650
+        };
 
         // Base hidden style
         let base = {
@@ -260,7 +234,7 @@ const Home = () => {
         }
         else if (position === 'left1') {
             base = {
-                x: -220,
+                x: -spacing.l1,
                 y: 15,
                 scale: 0.82,
                 zIndex: 30,
@@ -272,7 +246,7 @@ const Home = () => {
         }
         else if (position === 'right1') {
             base = {
-                x: 220,
+                x: spacing.l1,
                 y: 15,
                 scale: 0.82,
                 zIndex: 30,
@@ -284,7 +258,7 @@ const Home = () => {
         }
         else if (position === 'left2') {
             base = {
-                x: -400,
+                x: -spacing.l2,
                 y: 30,
                 scale: 0.65,
                 zIndex: 20,
@@ -296,7 +270,7 @@ const Home = () => {
         }
         else if (position === 'right2') {
             base = {
-                x: 400,
+                x: spacing.l2,
                 y: 30,
                 scale: 0.65,
                 zIndex: 20,
@@ -308,7 +282,7 @@ const Home = () => {
         }
         else if (position === 'left3') {
             base = {
-                x: -540,
+                x: -spacing.l3,
                 y: 40,
                 scale: 0.5,
                 zIndex: 10,
@@ -320,7 +294,7 @@ const Home = () => {
         }
         else if (position === 'right3') {
             base = {
-                x: 540,
+                x: spacing.l3,
                 y: 40,
                 scale: 0.5,
                 zIndex: 10,
@@ -332,7 +306,7 @@ const Home = () => {
         }
         else if (position === 'hiddenRight') {
             base = {
-                x: 650,
+                x: spacing.hidden,
                 y: 50,
                 scale: 0.4,
                 zIndex: 0,
@@ -344,7 +318,7 @@ const Home = () => {
         }
         else if (position === 'hiddenLeft') {
             base = {
-                x: -650,
+                x: -spacing.hidden,
                 y: 50,
                 scale: 0.4,
                 zIndex: 0,
@@ -509,7 +483,14 @@ const Home = () => {
                                         >
                                             <img src={getImageUrl(food?.image || food?.img)} alt={food?.name || 'Food'} className="card-bg-image" />
                                             <div className="card-overlay" />
-                                            <div className="card-content">
+                                            <div
+                                                className="card-content"
+                                                style={{
+                                                    opacity: position === 'center' ? 1 : 0,
+                                                    pointerEvents: position === 'center' ? 'auto' : 'none',
+                                                    transition: 'opacity 0.3s ease'
+                                                }}
+                                            >
                                                 <h3>{food?.name}</h3>
                                                 <p>{food?.description || food?.desc}</p>
                                             </div>

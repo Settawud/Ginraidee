@@ -132,11 +132,11 @@ const Login = () => {
                             <div className="input-wrapper">
                                 <FiMail className="input-icon" />
                                 <input
-                                    type="email"
+                                    type="text"
                                     id="email"
                                     name="email"
                                     className="input"
-                                    placeholder="อีเมลของคุณ"
+                                    placeholder="อีเมล หรือ ชื่อผู้ใช้ (Admin)"
                                     value={credentials.email}
                                     onChange={handleChange}
                                     required

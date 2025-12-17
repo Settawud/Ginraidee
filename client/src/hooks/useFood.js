@@ -17,6 +17,8 @@ export function useFoods(initialFilters = {}) {
     const [error, setError] = useState(null);
     const [filters, setFilters] = useState(initialFilters);
 
+    const [pagination, setPagination] = useState({ page: 1, limit: 12, total: 0, totalPages: 1 });
+
     const fetchFoods = useCallback(async () => {
         try {
             setLoading(true);
@@ -31,9 +33,19 @@ export function useFoods(initialFilters = {}) {
             if (filters.minPrice) params.append('minPrice', filters.minPrice);
             if (filters.maxPrice) params.append('maxPrice', filters.maxPrice);
             if (filters.search) params.append('search', filters.search);
+            if (filters.sort) params.append('sort', filters.sort);
+
+            // Pagination params
+            params.append('page', filters.page || 1);
+            params.append('limit', filters.limit || 12);
 
             const response = await api.get(`/foods?${params.toString()}`);
             setFoods(response.data.data);
+
+            if (response.data.pagination) {
+                setPagination(response.data.pagination);
+            }
+
             setError(null);
         } catch (err) {
             setError(err.message);
@@ -50,7 +62,7 @@ export function useFoods(initialFilters = {}) {
         setFilters(prev => ({ ...prev, ...newFilters }));
     }, []);
 
-    return { foods, loading, error, filters, updateFilters, refetch: fetchFoods };
+    return { foods, loading, error, filters, updateFilters, refetch: fetchFoods, pagination };
 }
 
 // Random Food Hook

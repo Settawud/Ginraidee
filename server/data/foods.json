@@ -254,5 +254,1372 @@
             "chicken"
         ],
         "rating": 4.6
+    },
+    {
+        "id": 17,
+        "name": "ข้าวผัดปู",
+        "nameEn": "Crab Fried Rice",
+        "description": "ข้าวผัดเนื้อปูเน้นๆ หอมกระทะ",
+        "price": 80,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1596792614917-74f762635951?w=800&q=80",
+        "tags": [
+            "rice",
+            "seafood"
+        ],
+        "rating": 4.5
+    },
+    {
+        "id": 18,
+        "name": "แกงส้มชะอมกุ้ง",
+        "nameEn": "Sour Curry with Shrimp",
+        "description": "แกงส้มรสเข้มข้น ไข่ชะอมทอดและกุ้งสด",
+        "price": 120,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1626804475510-97cce8653bb3?w=800&q=80",
+        "tags": [
+            "spicy",
+            "soup",
+            "seafood"
+        ],
+        "rating": 4.7
+    },
+    {
+        "id": 19,
+        "name": "หมูสะเต๊ะ",
+        "nameEn": "Pork Satay",
+        "description": "หมูหมักเครื่องเทศย่าง หอมกะทิ พร้อมน้ำจิ้มถั่ว",
+        "price": 60,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1625938145244-2395d82729a0?w=800&q=80",
+        "tags": [
+            "pork",
+            "appetizer"
+        ],
+        "rating": 4.6
+    },
+    {
+        "id": 20,
+        "name": "ลาบหมู",
+        "nameEn": "Spicy Minced Pork Salad",
+        "description": "ลาบหมูรสแซ่บ ข้าวคั่วหอม พริกป่น มะนาว",
+        "price": 60,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80",
+        "tags": [
+            "spicy",
+            "salad",
+            "pork"
+        ],
+        "rating": 4.8
+    },
+    {
+        "id": 21,
+        "name": "คอหมูย่าง",
+        "nameEn": "Grilled Pork Neck",
+        "description": "คอหมูหมักย่างถ่าน น้ำจิ้มแจ่วรสเด็ด",
+        "price": 80,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1625938145244-2395d82729a0?w=800&q=80",
+        "tags": [
+            "pork",
+            "grilled"
+        ],
+        "rating": 4.9
+    },
+    {
+        "id": 22,
+        "name": "ต้มข่าไก่",
+        "nameEn": "Chicken Galangal Soup",
+        "description": "ต้มข่าไก่ใส่กะทิ หอมข่า ตะไคร้ รสกลมกล่อม",
+        "price": 100,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=800&q=80",
+        "tags": [
+            "soup",
+            "chicken",
+            "coconut"
+        ],
+        "rating": 4.7
+    },
+    {
+        "id": 23,
+        "name": "ปลากะพงทอดน้ำปลา",
+        "nameEn": "Fried Seabass with Fish Sauce",
+        "description": "ปลากะพงทอดกรอบ ราดซอสน้ำปลาเค็มหวาน ยำมะม่วง",
+        "price": 350,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=80",
+        "tags": [
+            "seafood",
+            "fried",
+            "sharing"
+        ],
+        "rating": 4.8
+    },
+    {
+        "id": 24,
+        "name": "ทอดมันกุ้ง",
+        "nameEn": "Shrimp Cakes",
+        "description": "เนื้อกุ้งบดชุบเกล็ดขนมปังทอด กรอบนอกนุ่มใน",
+        "price": 120,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80",
+        "tags": [
+            "appetizer",
+            "seafood",
+            "fried"
+        ],
+        "rating": 4.6
+    },
+    {
+        "id": 25,
+        "name": "ยำวุ้นเส้น",
+        "nameEn": "Spicy Glass Noodle Salad",
+        "description": "ยำวุ้นเส้นใส่หมูสับ กุ้ง รสจัดจ้าน",
+        "price": 70,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80",
+        "tags": [
+            "spicy",
+            "salad",
+            "noodle"
+        ],
+        "rating": 4.5
+    },
+    {
+        "id": 26,
+        "name": "ข้าวซอยไก่",
+        "nameEn": "Khao Soi Chicken",
+        "description": "บะหมี่แกงกะหรี่ไก่ สไตล์เหนือ หอมเครื่องเทศ",
+        "price": 60,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1628205240209-15632d431057?w=800&q=80",
+        "tags": [
+            "noodle",
+            "curry",
+            "chicken"
+        ],
+        "rating": 4.8
+    },
+    {
+        "id": 27,
+        "name": "ผัดซีอิ๊ว",
+        "nameEn": "Pad See Ew",
+        "description": "เส้นใหญ่ผัดซีอิ๊วหมู หอมกลิ่นกระทะ",
+        "price": 55,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://plus.unsplash.com/premium_photo-1664478291780-0c66f5c927e8?w=800&q=80",
+        "tags": [
+            "noodle",
+            "pork"
+        ],
+        "rating": 4.6
+    },
+    {
+        "id": 28,
+        "name": "ราดหน้าหมูหมัก",
+        "nameEn": "Rad Na Pork",
+        "description": "เส้นใหญ่ราดหน้าหมูหมัก ยอดคะน้ากรอบ",
+        "price": 55,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1625938145244-2395d82729a0?w=800&q=80",
+        "tags": [
+            "noodle",
+            "pork",
+            "gravy"
+        ],
+        "rating": 4.5
+    },
+    {
+        "id": 29,
+        "name": "แกงมัสมั่นไก่",
+        "nameEn": "Massaman Curry",
+        "description": "แกงมัสมั่นไก่ รสหวานมัน หอมเครื่องเทศ ถั่วลิสง",
+        "price": 120,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1626804475510-97cce8653bb3?w=800&q=80",
+        "tags": [
+            "curry",
+            "chicken",
+            "popular"
+        ],
+        "rating": 4.9
+    },
+    {
+        "id": 30,
+        "name": "ปูผัดผงกะหรี่",
+        "nameEn": "Stir-fried Crab Curry",
+        "description": "เนื้อปูผัดผงกะหรี่ ไข่ข้น หอมมัน",
+        "price": 250,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1626804475510-97cce8653bb3?w=800&q=80",
+        "tags": [
+            "seafood",
+            "curry"
+        ],
+        "rating": 4.8
+    },
+    {
+        "id": 31,
+        "name": "ซาชิมิแซลมอน",
+        "nameEn": "Salmon Sashimi",
+        "description": "แซลมอนสดจากนอร์เวย์ หั่นชิ้นหนา",
+        "price": 180,
+        "category": "japanese",
+        "categoryName": "อาหารญี่ปุ่น",
+        "image": "https://images.unsplash.com/photo-1534482421-64566f976cfa?w=800&q=80",
+        "tags": [
+            "seafood",
+            "raw",
+            "premium"
+        ],
+        "rating": 4.8
+    },
+    {
+        "id": 32,
+        "name": "เทมปุระรวม",
+        "nameEn": "Mixed Tempura",
+        "description": "กุ้งและผักชุบแป้งทอดกรอบ พร้อมน้ำจิ้ม",
+        "price": 120,
+        "category": "japanese",
+        "categoryName": "อาหารญี่ปุ่น",
+        "image": "https://images.unsplash.com/photo-1615764648719-272cb25055b8?w=800&q=80",
+        "tags": [
+            "fried",
+            "seafood"
+        ],
+        "rating": 4.6
+    },
+    {
+        "id": 33,
+        "name": "ข้าวหน้าแกงกะหรี่",
+        "nameEn": "Curry Rice",
+        "description": "ข้าวหน้าแกงกะหรี่หมูทอด รสเข้มข้น",
+        "price": 150,
+        "category": "japanese",
+        "categoryName": "อาหารญี่ปุ่น",
+        "image": "https://images.unsplash.com/photo-1596792614917-74f762635951?w=800&q=80",
+        "tags": [
+            "curry",
+            "rice",
+            "fried"
+        ],
+        "rating": 4.7
+    },
+    {
+        "id": 34,
+        "name": "ทาโกยากิ",
+        "nameEn": "Takoyaki",
+        "description": "ขนมครกญี่ปุ่นไส้ปลาหมึก ราดซอสและมายองเนส",
+        "price": 60,
+        "category": "japanese",
+        "categoryName": "อาหารญี่ปุ่น",
+        "image": "https://images.unsplash.com/photo-1629854441460-14e475f85022?w=800&q=80",
+        "tags": [
+            "appetizer",
+            "seafood"
+        ],
+        "rating": 4.5
+    },
+    {
+        "id": 35,
+        "name": "ข้าวหน้าเนื้อ",
+        "nameEn": "Gyudon",
+        "description": "ข้าวหน้าเนื้อตุ๋นหัวหอม รสหวานเค็ม",
+        "price": 120,
+        "category": "japanese",
+        "categoryName": "อาหารญี่ปุ่น",
+        "image": "https://images.unsplash.com/photo-1552611052-33e04de081de?w=800&q=80",
+        "tags": [
+            "beef",
+            "rice"
+        ],
+        "rating": 4.6
+    },
+    {
+        "id": 36,
+        "name": "อูด้ง",
+        "nameEn": "Udon",
+        "description": "เส้นอูด้งเหนียวนุ่ม ในน้ำซุปดาชิ",
+        "price": 90,
+        "category": "japanese",
+        "categoryName": "อาหารญี่ปุ่น",
+        "image": "https://images.unsplash.com/photo-1552611052-33e04de081de?w=800&q=80",
+        "tags": [
+            "noodle",
+            "soup"
+        ],
+        "rating": 4.4
+    },
+    {
+        "id": 37,
+        "name": "ยากิโซบะ",
+        "nameEn": "Yakisoba",
+        "description": "เส้นโซบะผัดซอสญี่ปุ่น ใส่หมูและกะหล่ำปลี",
+        "price": 80,
+        "category": "japanese",
+        "categoryName": "อาหารญี่ปุ่น",
+        "image": "https://images.unsplash.com/photo-1616782522037-ce94689b14c3?w=800&q=80",
+        "tags": [
+            "noodle",
+            "fried"
+        ],
+        "rating": 4.5
+    },
+    {
+        "id": 38,
+        "name": "ไก่คาราเกะ",
+        "nameEn": "Chicken Karaage",
+        "description": "ไก่ทอดสไตล์ญี่ปุ่น กรอบนอกนุ่มใน",
+        "price": 70,
+        "category": "japanese",
+        "categoryName": "อาหารญี่ปุ่น",
+        "image": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=800&q=80",
+        "tags": [
+            "chicken",
+            "fried",
+            "appetizer"
+        ],
+        "rating": 4.7
+    },
+    {
+        "id": 39,
+        "name": "ซุปมิโซะ",
+        "nameEn": "Miso Soup",
+        "description": "ซุปเต้าเจี้ยวญี่ปุ่น ใส่เต้าหู้และสาหร่าย",
+        "price": 30,
+        "category": "japanese",
+        "categoryName": "อาหารญี่ปุ่น",
+        "image": "https://images.unsplash.com/photo-1548811802-763462b4859f?w=800&q=80",
+        "tags": [
+            "soup",
+            "tofu"
+        ],
+        "rating": 4.2
+    },
+    {
+        "id": 40,
+        "name": "ข้าวปั้นโอนิกิริ",
+        "nameEn": "Onigiri",
+        "description": "ข้าวปั้นห่อสาหร่าย ไส้แซลมอนย่าง",
+        "price": 35,
+        "category": "japanese",
+        "categoryName": "อาหารญี่ปุ่น",
+        "image": "https://images.unsplash.com/photo-1580822184713-fc5400e7fe10?w=800&q=80",
+        "tags": [
+            "rice",
+            "appetizer"
+        ],
+        "rating": 4.3
+    },
+    {
+        "id": 41,
+        "name": "ต็อกบกกี",
+        "nameEn": "Tteokbokki",
+        "description": "แป้งต็อกผัดซอสเผ็ด ใส่ลูกชิ้นปลา",
+        "price": 120,
+        "category": "korean",
+        "categoryName": "อาหารเกาหลี",
+        "image": "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&q=80",
+        "tags": [
+            "spicy",
+            "rice cake"
+        ],
+        "rating": 4.6
+    },
+    {
+        "id": 42,
+        "name": "กิมจิชีเก",
+        "nameEn": "Kimchi Stew",
+        "description": "ซุปกิมจิเต้าหู้หมูสามชั้น รสเปรี้ยวเผ็ด",
+        "price": 150,
+        "category": "korean",
+        "categoryName": "อาหารเกาหลี",
+        "image": "https://images.unsplash.com/photo-1583224964978-2257b96070d3?w=800&q=80",
+        "tags": [
+            "soup",
+            "spicy"
+        ],
+        "rating": 4.7
+    },
+    {
+        "id": 43,
+        "name": "จาจังมยอน",
+        "nameEn": "Jajangmyeon",
+        "description": "บะหมี่ซอสดำเกาหลี หมูและหัวหอม",
+        "price": 140,
+        "category": "korean",
+        "categoryName": "อาหารเกาหลี",
+        "image": "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?w=800&q=80",
+        "tags": [
+            "noodle",
+            "popular"
+        ],
+        "rating": 4.5
+    },
+    {
+        "id": 44,
+        "name": "ไก่ทอดเกาหลี",
+        "nameEn": "Korean Fried Chicken",
+        "description": "ไก่ทอดเคลือบซอสเผ็ดหวาน กรอบอร่อย",
+        "price": 180,
+        "category": "korean",
+        "categoryName": "อาหารเกาหลี",
+        "image": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=800&q=80",
+        "tags": [
+            "chicken",
+            "fried",
+            "spicy"
+        ],
+        "rating": 4.8
+    },
+    {
+        "id": 45,
+        "name": "คิมบับ",
+        "nameEn": "Gimbap",
+        "description": "ข้าวห่อสาหร่ายสไตล์เกาหลี ไส้ผักรวม",
+        "price": 60,
+        "category": "korean",
+        "categoryName": "อาหารเกาหลี",
+        "image": "https://images.unsplash.com/photo-1574484284002-952d92456975?w=800&q=80",
+        "tags": [
+            "rice",
+            "roll"
+        ],
+        "rating": 4.4
+    },
+    {
+        "id": 46,
+        "name": "สปาเก็ตตี้คาโบนาร่า",
+        "nameEn": "Spaghetti Carbonara",
+        "description": "สปาเก็ตตี้ครีมซอส เบคอน ไข่แดง ชีส",
+        "price": 150,
+        "category": "western",
+        "categoryName": "อาหารตะวันตก",
+        "image": "https://images.unsplash.com/photo-1626844131082-256783844137?w=800&q=80",
+        "tags": [
+            "pasta",
+            "cheese",
+            "cream"
+        ],
+        "rating": 4.6
+    },
+    {
+        "id": 47,
+        "name": "ซีซาร์สลัด",
+        "nameEn": "Caesar Salad",
+        "description": "ผักคอส เบคอน ขนมปังกรอบ ชีสพาร์เมซาน",
+        "price": 120,
+        "category": "western",
+        "categoryName": "อาหารตะวันตก",
+        "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80",
+        "tags": [
+            "salad",
+            "healthy"
+        ],
+        "rating": 4.5
+    },
+    {
+        "id": 48,
+        "name": "เฟรนช์ฟรายส์",
+        "nameEn": "French Fries",
+        "description": "มันฝรั่งทอดกรอบ โรยเกลือ",
+        "price": 50,
+        "category": "fastfood",
+        "categoryName": "ฟาสต์ฟู้ด",
+        "image": "https://images.unsplash.com/photo-1630384060421-2c08d517cbf4?w=800&q=80",
+        "tags": [
+            "fried",
+            "snack"
+        ],
+        "rating": 4.3
+    },
+    {
+        "id": 49,
+        "name": "ฮอทดอก",
+        "nameEn": "Hot Dog",
+        "description": "ขนมปังไส้ไส้กรอก ราดซอสมะเขือเทศและมัสตาร์ด",
+        "price": 60,
+        "category": "fastfood",
+        "categoryName": "ฟาสต์ฟู้ด",
+        "image": "https://images.unsplash.com/photo-1612392062631-94dd858cba88?w=800&q=80",
+        "tags": [
+            "bread",
+            "sausage"
+        ],
+        "rating": 4.2
+    },
+    {
+        "id": 50,
+        "name": "นักเก็ตไก่",
+        "nameEn": "Chicken Nuggets",
+        "description": "ไก่บดชุบแป้งทอด กรอบอร่อย",
+        "price": 60,
+        "category": "fastfood",
+        "categoryName": "ฟาสต์ฟู้ด",
+        "image": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=800&q=80",
+        "tags": [
+            "chicken",
+            "fried"
+        ],
+        "rating": 4.4
+    },
+    {
+        "id": 51,
+        "name": "ไอศกรีมวานิลลา",
+        "nameEn": "Vanilla Ice Cream",
+        "description": "ไอศกรีมรสวานิลลาหอมหวาน",
+        "price": 40,
+        "category": "dessert",
+        "categoryName": "ของหวาน",
+        "image": "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=800&q=80",
+        "tags": [
+            "cold",
+            "sweet"
+        ],
+        "rating": 4.5
+    },
+    {
+        "id": 52,
+        "name": "บราวนี่",
+        "nameEn": "Brownie",
+        "description": "เค้กช็อกโกแลตเนื้อแน่น หวานเข้มข้น",
+        "price": 55,
+        "category": "dessert",
+        "categoryName": "ของหวาน",
+        "image": "https://images.unsplash.com/photo-1563729768-ffae2b6ca035?w=800&q=80",
+        "tags": [
+            "chocolate",
+            "cake"
+        ],
+        "rating": 4.7
+    },
+    {
+        "id": 53,
+        "name": "เครปเย็น",
+        "nameEn": "Cold Crepe",
+        "description": "เครปแป้งนุ่ม ไส้วิปครีมและผลไม้",
+        "price": 60,
+        "category": "dessert",
+        "categoryName": "ของหวาน",
+        "image": "https://images.unsplash.com/photo-1563729768-ffae2b6ca035?w=800&q=80",
+        "tags": [
+            "sweet",
+            "fruit"
+        ],
+        "rating": 4.6
+    },
+    {
+        "id": 54,
+        "name": "เฉาก๊วยนมสด",
+        "nameEn": "Grass Jelly Milk",
+        "description": "เฉาก๊วยหนึบในนมสดเย็นชื่นใจ",
+        "price": 35,
+        "category": "dessert",
+        "categoryName": "ของหวาน",
+        "image": "https://images.unsplash.com/photo-1563729768-ffae2b6ca035?w=800&q=80",
+        "tags": [
+            "cold",
+            "sweet"
+        ],
+        "rating": 4.4
+    },
+    {
+        "id": 55,
+        "name": "ทับทิมกรอบ",
+        "nameEn": "Tub Tim Krob",
+        "description": "แห้วหุ้มแป้งในกะทิสด หอมเทียนอบ",
+        "price": 40,
+        "category": "dessert",
+        "categoryName": "ของหวาน",
+        "image": "https://images.unsplash.com/photo-1563729768-ffae2b6ca035?w=800&q=80",
+        "tags": [
+            "thai",
+            "sweet",
+            "coconut"
+        ],
+        "rating": 4.7
+    },
+    {
+        "id": 56,
+        "name": "ขนมครก",
+        "nameEn": "Khanom Krok",
+        "description": "ขนมครกหน้ากะทิสด หวานมัน",
+        "price": 30,
+        "category": "dessert",
+        "categoryName": "ของหวาน",
+        "image": "https://images.unsplash.com/photo-1563729768-ffae2b6ca035?w=800&q=80",
+        "tags": [
+            "thai",
+            "coconut"
+        ],
+        "rating": 4.6
+    },
+    {
+        "id": 57,
+        "name": "ลูกชิ้นปิ้ง",
+        "nameEn": "Grilled Meatballs",
+        "description": "ลูกชิ้นหมูอย่างดีปิ้ง ราดน้ำจิ้มมะขาม",
+        "price": 40,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1596792614917-74f762635951?w=800&q=80",
+        "tags": [
+            "pork",
+            "streetfood"
+        ],
+        "rating": 4.5
+    },
+    {
+        "id": 58,
+        "name": "ไส้กรอกอีสาน",
+        "nameEn": "Isan Sausage",
+        "description": "ไส้กรอกเปรี้ยว ย่างหอมๆ พร้อมขิงดอง",
+        "price": 50,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1559314809-0d155014e29e?w=800&q=80",
+        "tags": [
+            "pork",
+            "sausage",
+            "popular"
+        ],
+        "rating": 4.7
+    },
+    {
+        "id": 59,
+        "name": "หมูปิ้งนมสด",
+        "nameEn": "Grilled Pork Skewers",
+        "description": "หมูหมักนมสดเสียบไม้ย่าง หอมหวาน",
+        "price": 10,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1625938145244-2395d82729a0?w=800&q=80",
+        "tags": [
+            "pork",
+            "streetfood"
+        ],
+        "rating": 4.8
+    },
+    {
+        "id": 60,
+        "name": "ปลาเผาเกลือ",
+        "nameEn": "Salt Grilled Fish",
+        "description": "ปลาทับทิมเผาเกลือ พร้อมผักและน้ำจิ้ม",
+        "price": 250,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=80",
+        "tags": [
+            "seafood",
+            "grilled",
+            "healthy"
+        ],
+        "rating": 4.6
+    },
+    {
+        "id": 61,
+        "name": "สปาเก็ตตี้พริกแห้ง",
+        "nameEn": "Spaghetti Aglio e Olio",
+        "description": "สปาเก็ตตี้ผัดพริกแห้งกระเทียม ใส่เบคอน",
+        "price": 120,
+        "category": "western",
+        "categoryName": "อาหารตะวันตก",
+        "image": "https://images.unsplash.com/photo-1626844131082-256783844137?w=800&q=80",
+        "tags": [
+            "pasta",
+            "spicy"
+        ],
+        "rating": 4.5
+    },
+    {
+        "id": 62,
+        "name": "ซุปเห็ดทรัฟเฟิล",
+        "nameEn": "Truffle Mushroom Soup",
+        "description": "ซุปครีมเห็ดหอมกลิ่นทรัฟเฟิล พร้อมขนมปัง",
+        "price": 160,
+        "category": "western",
+        "categoryName": "อาหารตะวันตก",
+        "image": "https://images.unsplash.com/photo-1548811802-763462b4859f?w=800&q=80",
+        "tags": [
+            "soup",
+            "premium"
+        ],
+        "rating": 4.8
+    },
+    {
+        "id": 63,
+        "name": "ฟิชแอนด์ชิปส์",
+        "nameEn": "Fish and Chips",
+        "description": "ปลาชุบแป้งทอดกรอบ เสิร์ฟพร้อมมันฝรั่งทอด",
+        "price": 180,
+        "category": "western",
+        "categoryName": "อาหารตะวันตก",
+        "image": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=80",
+        "tags": [
+            "seafood",
+            "fried"
+        ],
+        "rating": 4.4
+    },
+    {
+        "id": 64,
+        "name": "ลาซานญ่า",
+        "nameEn": "Lasagna",
+        "description": "พาสต้าอบชีส ซอสเนื้อเข้มข้น",
+        "price": 200,
+        "category": "western",
+        "categoryName": "อาหารตะวันตก",
+        "image": "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=800&q=80",
+        "tags": [
+            "pasta",
+            "cheese",
+            "beef"
+        ],
+        "rating": 4.7
+    },
+    {
+        "id": 65,
+        "name": "ยำปลาดุกฟู",
+        "nameEn": "Crispy Catfish Salad",
+        "description": "ปลาดุกย่างทอดกรอบ ราดน้ำยำมะม่วง",
+        "price": 120,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80",
+        "tags": [
+            "salad",
+            "fish",
+            "crispy"
+        ],
+        "rating": 4.6
+    },
+    {
+        "id": 66,
+        "name": "ไข่เจียวหมูสับ",
+        "nameEn": "Minced Pork Omelet",
+        "description": "ไข่เจียวทอดกรอบนุ่ม ใส่หมูสับ",
+        "price": 40,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1625938145244-2395d82729a0?w=800&q=80",
+        "tags": [
+            "egg",
+            "popular",
+            "simple"
+        ],
+        "rating": 4.5
+    },
+    {
+        "id": 67,
+        "name": "น้ำพริกกะปิ",
+        "nameEn": "Shrimp Paste Dip",
+        "description": "น้ำพริกกะปิรสเด็ด เสิร์ฟพร้อมผักทอด ปลาทู",
+        "price": 100,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1626509539828-091a91e56b46?w=800&q=80",
+        "tags": [
+            "spicy",
+            "dip",
+            "vegetable"
+        ],
+        "rating": 4.8
+    },
+    {
+        "id": 68,
+        "name": "ข้าวคลุกกะปิ",
+        "nameEn": "Shrimp Paste Fried Rice",
+        "description": "ข้าวผัดกะปิ เครื่องเคียงครบ หมูหวาน กุ้งแห้ง",
+        "price": 65,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1596792614917-74f762635951?w=800&q=80",
+        "tags": [
+            "rice",
+            "popular"
+        ],
+        "rating": 4.7
+    },
+    {
+        "id": 69,
+        "name": "ขนมจีนน้ำยาปู",
+        "nameEn": "Crab Curry Noodles",
+        "description": "ขนมจีนราดน้ำยาปู กรรเชียงปูเน้นๆ",
+        "price": 120,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1626804475510-97cce8653bb3?w=800&q=80",
+        "tags": [
+            "noodle",
+            "curry",
+            "seafood"
+        ],
+        "rating": 4.9
+    },
+    {
+        "id": 70,
+        "name": "หอยทอด",
+        "nameEn": "Crispy Mussel Pancake",
+        "description": "แป้งทอดกรอบใส่หอยแมลงภู่ น้ำจิ้มซอสพริก",
+        "price": 60,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80",
+        "tags": [
+            "fried",
+            "seafood"
+        ],
+        "rating": 4.5
+    },
+    {
+        "id": 71,
+        "name": "ก๋วยเตี๋ยวเรือ",
+        "nameEn": "Boat Noodles",
+        "description": "ก๋วยเตี๋ยวน้ำตกเข้มข้น หมูตุ๋น ตับ ลูกชิ้น",
+        "price": 20,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1555126634-323283e090fa?w=800&q=80",
+        "tags": [
+            "noodle",
+            "soup",
+            "spicy"
+        ],
+        "rating": 4.7
+    },
+    {
+        "id": 72,
+        "name": "เย็นตาโฟ",
+        "nameEn": "Yentafo",
+        "description": "ก๋วยเตี๋ยวซอสเต้าหู้ยี้ สีชมพู รสกลมกล่อม",
+        "price": 50,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1559314809-0d155014e29e?w=800&q=80",
+        "tags": [
+            "noodle",
+            "soup"
+        ],
+        "rating": 4.4
+    },
+    {
+        "id": 73,
+        "name": "เกี๊ยวกุ้ง",
+        "nameEn": "Shrimp Wonton",
+        "description": "เกี๊ยวกุ้งเต็มคำ น้ำซุปหอมหวาน",
+        "price": 60,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1626509539828-091a91e56b46?w=800&q=80",
+        "tags": [
+            "soup",
+            "shrimp"
+        ],
+        "rating": 4.6
+    },
+    {
+        "id": 74,
+        "name": "หมูกระทะ",
+        "nameEn": "Thai BBQ Buffet",
+        "description": "บุฟเฟต์ปิ้งย่างสไตล์ไทย พร้อมน้ำจิ้มสุกี้",
+        "price": 299,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1584966656829-19fc22a5506a?w=800&q=80",
+        "tags": [
+            "bbq",
+            "buffet",
+            "popular"
+        ],
+        "rating": 4.9
+    },
+    {
+        "id": 75,
+        "name": "จิ้มจุ่ม",
+        "nameEn": "Jim Jum",
+        "description": "หม้อไฟสมุนไพรไทย หมูหมัก ผักสด",
+        "price": 199,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1559314809-0d155014e29e?w=800&q=80",
+        "tags": [
+            "soup",
+            "hotpot",
+            "sharing"
+        ],
+        "rating": 4.7
+    },
+    {
+        "id": 76,
+        "name": "โรตี",
+        "nameEn": "Roti",
+        "description": "โรตีกรอบราดนมข้นหวาน น้ำตาล",
+        "price": 20,
+        "category": "dessert",
+        "categoryName": "ของหวาน",
+        "image": "https://images.unsplash.com/photo-1563729768-ffae2b6ca035?w=800&q=80",
+        "tags": [
+            "sweet",
+            "snack"
+        ],
+        "rating": 4.6
+    },
+    {
+        "id": 77,
+        "name": "ชาไทย",
+        "nameEn": "Thai Tea",
+        "description": "ชาไทยสีส้ม หอมหวานมัน",
+        "price": 40,
+        "category": "dessert",
+        "categoryName": "ของหวาน",
+        "image": "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=800&q=80",
+        "tags": [
+            "drink",
+            "sweet"
+        ],
+        "rating": 4.8
+    },
+    {
+        "id": 78,
+        "name": "กาแฟโบราณ",
+        "nameEn": "Traditional Coffee",
+        "description": "กาแฟคั่วบดชงถุงผ้า เข้มข้น",
+        "price": 30,
+        "category": "dessert",
+        "categoryName": "ของหวาน",
+        "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80",
+        "tags": [
+            "drink",
+            "coffee"
+        ],
+        "rating": 4.5
+    },
+    {
+        "id": 79,
+        "name": "ขนมโตเกียว",
+        "nameEn": "Tokyo Pancake",
+        "description": "ขนมแผ่นบางม้วนไส้ครีม หรือไส้เค็ม",
+        "price": 20,
+        "category": "dessert",
+        "categoryName": "ของหวาน",
+        "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80",
+        "tags": [
+            "snack",
+            "sweet"
+        ],
+        "rating": 4.4
+    },
+    {
+        "id": 80,
+        "name": "กล้วยแขก",
+        "nameEn": "Fried Banana",
+        "description": "กล้วยทอดกรอบ โรยงา",
+        "price": 20,
+        "category": "dessert",
+        "categoryName": "ของหวาน",
+        "image": "https://images.unsplash.com/photo-1563729768-ffae2b6ca035?w=800&q=80",
+        "tags": [
+            "fried",
+            "snack"
+        ],
+        "rating": 4.3
+    },
+    {
+        "id": 81,
+        "name": "ทาร์ตไข่",
+        "nameEn": "Egg Tart",
+        "description": "ทาร์ตไข่หน้าเนียน แป้งพัฟกรอบ",
+        "price": 30,
+        "category": "dessert",
+        "categoryName": "ของหวาน",
+        "image": "https://images.unsplash.com/photo-1563729768-ffae2b6ca035?w=800&q=80",
+        "tags": [
+            "sweet",
+            "bakery"
+        ],
+        "rating": 4.6
+    },
+    {
+        "id": 82,
+        "name": "โดนัท",
+        "nameEn": "Donut",
+        "description": "โดนัทเคลือบน้ำตาล หรือช็อกโกแลต",
+        "price": 25,
+        "category": "dessert",
+        "categoryName": "ของหวาน",
+        "image": "https://images.unsplash.com/photo-1552010099-5dc758d5438d?w=800&q=80",
+        "tags": [
+            "sweet",
+            "bakery"
+        ],
+        "rating": 4.5
+    },
+    {
+        "id": 83,
+        "name": "ขนมปังปิ้ง",
+        "nameEn": "Toast",
+        "description": "ขนมปังปิ้งเนยนม สังขยา",
+        "price": 30,
+        "category": "dessert",
+        "categoryName": "ของหวาน",
+        "image": "https://images.unsplash.com/photo-1563729768-ffae2b6ca035?w=800&q=80",
+        "tags": [
+            "sweet",
+            "snack"
+        ],
+        "rating": 4.4
+    },
+    {
+        "id": 84,
+        "name": "ปอเปี๊ยะทอด",
+        "nameEn": "Spring Rolls",
+        "description": "แผ่นแป้งห่อไส้วุ้นเส้นหมูสับทอดกรอบ",
+        "price": 50,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1559314809-0d155014e29e?w=800&q=80",
+        "tags": [
+            "fried",
+            "appetizer"
+        ],
+        "rating": 4.5
+    },
+    {
+        "id": 85,
+        "name": "กุ้งแช่น้ำปลา",
+        "nameEn": "Raw Shrimp in Fish Sauce",
+        "description": "กุ้งสดแช่น้ำปลา ราดน้ำจิ้มซีฟู้ด",
+        "price": 120,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1626509539828-091a91e56b46?w=800&q=80",
+        "tags": [
+            "spicy",
+            "seafood",
+            "raw"
+        ],
+        "rating": 4.8
+    },
+    {
+        "id": 86,
+        "name": "ยำรวมมิตร",
+        "nameEn": "Mixed Spicy Salad",
+        "description": "ยำรสเด็ด เครื่องแน่น หมูยอ กุ้ง ปลาหมึก",
+        "price": 100,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80",
+        "tags": [
+            "spicy",
+            "salad"
+        ],
+        "rating": 4.6
+    },
+    {
+        "id": 87,
+        "name": "ปูอัดวาซาบิ",
+        "nameEn": "Crab Stick Wasabi",
+        "description": "ปูอัดเกรดพรีเมียม จิ้มวาซาบิ",
+        "price": 80,
+        "category": "japanese",
+        "categoryName": "อาหารญี่ปุ่น",
+        "image": "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80",
+        "tags": [
+            "appetizer",
+            "seafood"
+        ],
+        "rating": 4.4
+    },
+    {
+        "id": 88,
+        "name": "ยำสาหร่าย",
+        "nameEn": "Seaweed Salad",
+        "description": "ยำสาหร่ายญี่ปุ่น กรุบกรอบ",
+        "price": 60,
+        "category": "japanese",
+        "categoryName": "อาหารญี่ปุ่น",
+        "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80",
+        "tags": [
+            "appetizer",
+            "healthy"
+        ],
+        "rating": 4.5
+    },
+    {
+        "id": 89,
+        "name": "ไข่ตุ๋น",
+        "nameEn": "Steamed Egg",
+        "description": "ไข่ตุ๋นเนื้อเนียน หอมน้ำซุป",
+        "price": 40,
+        "category": "japanese",
+        "categoryName": "อาหารญี่ปุ่น",
+        "image": "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=800&q=80",
+        "tags": [
+            "egg",
+            "soft"
+        ],
+        "rating": 4.6
+    },
+    {
+        "id": 90,
+        "name": "ปลาย่างซีอิ๊ว",
+        "nameEn": "Grilled Fish Soy Sauce",
+        "description": "ปลาซาบะหรือแซลมอนย่างซีอิ๊วญี่ปุ่น",
+        "price": 120,
+        "category": "japanese",
+        "categoryName": "อาหารญี่ปุ่น",
+        "image": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=80",
+        "tags": [
+            "fish",
+            "grilled"
+        ],
+        "rating": 4.7
+    },
+    {
+        "id": 91,
+        "name": "แพนเค้ก",
+        "nameEn": "Pancake",
+        "description": "แพนเค้กนุ่ม ราดน้ำผึ้งและเนย",
+        "price": 80,
+        "category": "dessert",
+        "categoryName": "ของหวาน",
+        "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80",
+        "tags": [
+            "sweet",
+            "breakfast"
+        ],
+        "rating": 4.5
+    },
+    {
+        "id": 92,
+        "name": "วาฟเฟิล",
+        "nameEn": "Waffle",
+        "description": "วาฟเฟิลกรอบนอกนุ่มใน ท็อปปิ้งผลไม้",
+        "price": 80,
+        "category": "dessert",
+        "categoryName": "ของหวาน",
+        "image": "https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=800&q=80",
+        "tags": [
+            "sweet",
+            "bakery"
+        ],
+        "rating": 4.5
+    },
+    {
+        "id": 93,
+        "name": "ครัวซองต์",
+        "nameEn": "Croissant",
+        "description": "ครัวซองต์เนยสด หอมกรุ่น",
+        "price": 60,
+        "category": "dessert",
+        "categoryName": "ของหวาน",
+        "image": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=800&q=80",
+        "tags": [
+            "bakery",
+            "butter"
+        ],
+        "rating": 4.6
+    },
+    {
+        "id": 94,
+        "name": "สลัดโรล",
+        "nameEn": "Salad Roll",
+        "description": "ผักสลัดห่อแป้ง พร้อมน้ำจิ้มซีฟู้ดครีม",
+        "price": 50,
+        "category": "western",
+        "categoryName": "อาหารตะวันตก",
+        "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80",
+        "tags": [
+            "healthy",
+            "salad"
+        ],
+        "rating": 4.5
+    },
+    {
+        "id": 95,
+        "name": "ซุปข้าวโพด",
+        "nameEn": "Corn Soup",
+        "description": "ซุปครีมข้าวโพด หวานมัน",
+        "price": 60,
+        "category": "western",
+        "categoryName": "อาหารตะวันตก",
+        "image": "https://images.unsplash.com/photo-1548811802-763462b4859f?w=800&q=80",
+        "tags": [
+            "soup",
+            "corn"
+        ],
+        "rating": 4.4
+    },
+    {
+        "id": 96,
+        "name": "ขนมปังกระเทียม",
+        "nameEn": "Garlic Bread",
+        "description": "ขนมปังอบเนยกระเทียม กรอบหอม",
+        "price": 40,
+        "category": "western",
+        "categoryName": "อาหารตะวันตก",
+        "image": "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=800&q=80",
+        "tags": [
+            "bread",
+            "appetizer"
+        ],
+        "rating": 4.5
+    },
+    {
+        "id": 97,
+        "name": "มาม่าผัดขี้เมา",
+        "nameEn": "Spicy Stir-fried Instant Noodles",
+        "description": "บะหมี่กึ่งสำเร็จรูปผัดขี้เมา รสจัดจ้าน",
+        "price": 50,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1555126634-323283e090fa?w=800&q=80",
+        "tags": [
+            "noodle",
+            "spicy"
+        ],
+        "rating": 4.6
+    },
+    {
+        "id": 98,
+        "name": "ข้าวไข่เจียว",
+        "nameEn": "Rice with Omelet",
+        "description": "ข้าวสวยร้อนๆ โปะไข่เจียว เมนูง่ายๆ แต่อร่อย",
+        "price": 35,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1596792614917-74f762635951?w=800&q=80",
+        "tags": [
+            "rice",
+            "egg",
+            "simple"
+        ],
+        "rating": 4.7
+    },
+    {
+        "id": 99,
+        "name": "น้ำแข็งไส",
+        "nameEn": "Shaved Ice",
+        "description": "น้ำแข็งไสราดน้ำแดง นมข้น เครื่องแน่น",
+        "price": 30,
+        "category": "dessert",
+        "categoryName": "ของหวาน",
+        "image": "https://images.unsplash.com/photo-1563729768-ffae2b6ca035?w=800&q=80",
+        "tags": [
+            "cold",
+            "sweet"
+        ],
+        "rating": 4.6
+    },
+    {
+        "id": 100,
+        "name": "เฉาก๊วยชากังราว",
+        "nameEn": "Chakangrao Grass Jelly",
+        "description": "เฉาก๊วยเนื้อหนึบ ในน้ำเชื่อมใบเตย",
+        "price": 25,
+        "category": "dessert",
+        "categoryName": "ของหวาน",
+        "image": "https://images.unsplash.com/photo-1563729768-ffae2b6ca035?w=800&q=80",
+        "tags": [
+            "sweet",
+            "cold"
+        ],
+        "rating": 4.7
+    },
+    {
+        "id": 101,
+        "name": "สาคูไส้หมู",
+        "nameEn": "Tapioca Pork Balls",
+        "description": "สาคูเหนียวนุ่ม ไส้หมูผัดเครื่องเทศ หอมกรุ่น",
+        "price": 40,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1625938145244-2395d82729a0?w=800&q=80",
+        "tags": [
+            "appetizer",
+            "thai",
+            "snack"
+        ],
+        "rating": 4.6
+    },
+    {
+        "id": 102,
+        "name": "ข้าวต้มมัด",
+        "nameEn": "Bananas with Sticky Rice",
+        "description": "ข้าวเหนียวผัดกะทิสอดไส้กล้วย ห่อใบตองนึ่ง",
+        "price": 10,
+        "category": "dessert",
+        "categoryName": "ของหวาน",
+        "image": "https://images.unsplash.com/photo-1596792614917-74f762635951?w=800&q=80",
+        "tags": [
+            "thai",
+            "sweet",
+            "traditional"
+        ],
+        "rating": 4.8
+    },
+    {
+        "id": 103,
+        "name": "กุ้งอบวุ้นเส้น",
+        "nameEn": "Baked Shrimp with Glass Noodles",
+        "description": "กุ้งอบหม้อดินพร้อมวุ้นเส้นเหนียวนุ่ม หอมขิงและพริกไทย",
+        "price": 280,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1626509539828-091a91e56b46?w=800&q=80",
+        "tags": [
+            "seafood",
+            "noodle",
+            "chinese-thai"
+        ],
+        "rating": 4.8
+    },
+    {
+        "id": 104,
+        "name": "ปลาหมึกย่าง",
+        "nameEn": "Grilled Squid",
+        "description": "ปลาหมึกย่างหอมๆ พร้อมน้ำจิ้มซีฟู้ดรสเด็ด",
+        "price": 120,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=800&q=80",
+        "tags": [
+            "seafood",
+            "grilled",
+            "streetfood"
+        ],
+        "rating": 4.7
+    },
+    {
+        "id": 105,
+        "name": "ข้าวหมูแดง",
+        "nameEn": "Red Pork Rice",
+        "description": "ข้าวหมูแดง หมูกรอบ กุนเชียง ราดน้ำซอสสีแดง",
+        "price": 50,
+        "category": "thai",
+        "categoryName": "อาหารไทย",
+        "image": "https://images.unsplash.com/photo-1596792614917-74f762635951?w=800&q=80",
+        "tags": [
+            "pork",
+            "rice",
+            "popular"
+        ],
+        "rating": 4.5
     }
 ]

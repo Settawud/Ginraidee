@@ -41,10 +41,42 @@ module.exports = (db, foods) => {
                 );
             }
 
+            // Sorting
+            const sort = req.query.sort || 'name';
+            result.sort((a, b) => {
+                switch (sort) {
+                    case 'price-low':
+                        return a.price - b.price;
+                    case 'price-high':
+                        return b.price - a.price;
+                    case 'rating':
+                        return b.rating - a.rating;
+                    case 'name':
+                    default:
+                        return a.name.localeCompare(b.name, 'th');
+                }
+            });
+
+            // Pagination
+            const page = parseInt(req.query.page) || 1;
+            const limit = parseInt(req.query.limit) || 12;
+            const startIndex = (page - 1) * limit;
+            const endIndex = page * limit;
+
+            const total = result.length;
+            const totalPages = Math.ceil(total / limit);
+            const paginatedResults = result.slice(startIndex, endIndex);
+
             res.json({
                 success: true,
-                count: result.length,
-                data: result
+                count: paginatedResults.length,
+                pagination: {
+                    page,
+                    limit,
+                    total,
+                    totalPages
+                },
+                data: paginatedResults
             });
         } catch (error) {
             res.status(500).json({ success: false, error: error.message });

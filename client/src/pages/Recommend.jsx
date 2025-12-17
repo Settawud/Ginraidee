@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion'; // eslint-disable-line no-unused-vars
 import confetti from 'canvas-confetti';
-import { FiStar } from 'react-icons/fi';
+import { FiStar, FiX } from 'react-icons/fi';
 import { useFoods, useCategories, useRandomFood } from '../hooks/useFood';
 import './Recommend.css';
 
@@ -178,11 +178,16 @@ const Recommend = () => {
                         >
                             <div className="sidebar-header">
                                 <h2 className="sidebar-title">🎛️ ตัวกรอง</h2>
-                                {activeFilters > 0 && (
-                                    <button className="clear-btn" onClick={clearFilters}>
-                                        ล้าง ({activeFilters})
+                                <div className="header-actions">
+                                    {activeFilters > 0 && (
+                                        <button className="clear-btn" onClick={clearFilters}>
+                                            ล้าง ({activeFilters})
+                                        </button>
+                                    )}
+                                    <button className="sidebar-close-btn" onClick={() => setShowFilters(false)}>
+                                        <FiX />
                                     </button>
-                                )}
+                                </div>
                             </div>
 
                             {/* Category Filter */}
