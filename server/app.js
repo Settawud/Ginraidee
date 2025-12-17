@@ -77,8 +77,6 @@ let authRouter, foodsRouter, usersRouter, adminRouter;
 // (Duplicates removed)
 
 // Load food data (static)
-const foods = require('./data/foods.json');
-
 // Load food data (static)
 const foods = require('./data/foods.json');
 
