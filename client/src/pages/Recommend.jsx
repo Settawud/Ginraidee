@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion'; // eslint-disable-line no-unused-vars
+import { motion, AnimatePresence, useMotionValue, useTransform, animate } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { FiStar, FiX } from 'react-icons/fi';
+import { FiStar, FiX, FiThumbsUp, FiThumbsDown, FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 import { useFoods, useCategories, useRandomFood } from '../hooks/useFood';
 import './Recommend.css';
 
@@ -32,7 +32,7 @@ const Recommend = () => {
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [selectedPrice, setSelectedPrice] = useState('all');
     const [priceRange, setPriceRange] = useState({ min: 0, max: 9999 });
-    const [showFilters, setShowFilters] = useState(false); // Default to collapsed
+    const [showFilters, setShowFilters] = useState(false);
 
     const { foods, loading, updateFilters } = useFoods({
         category: selectedCategories.length > 0 ? selectedCategories : 'all',
@@ -40,12 +40,27 @@ const Recommend = () => {
         maxPrice: priceRange.max
     });
 
-    const { food, getRandomFood, setFood } = useRandomFood();
+    const { food, getRandomFood, setFood, sendFeedback, getStats } = useRandomFood();
 
     // Animation states
     const [animationState, setAnimationState] = useState('idle'); // idle, shuffling, slowing, result
     const [shuffleFood, setShuffleFood] = useState(null);
     const shuffleInterval = useRef(null);
+
+    // Feedback & Stats Logic
+    const [userId, setUserId] = useState(null);
+    const [stats, setStats] = useState({ likes: 0, dislikes: 0 });
+    const [showStats, setShowStats] = useState(false);
+
+    // Initialize User ID
+    useEffect(() => {
+        let storedId = localStorage.getItem('ginraidee_uid');
+        if (!storedId) {
+            storedId = 'user_' + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('ginraidee_uid', storedId);
+        }
+        setUserId(storedId);
+    }, []);
 
     // Sync filters when category or price changes
     useEffect(() => {
@@ -76,55 +91,47 @@ const Recommend = () => {
     };
 
     const runShuffleAnimation = () => {
-        // Fast shuffle phase
         const pool = foods.length > 0 ? foods : [{ image: null, name: '...' }];
-
-        // Immediate set
         setShuffleFood(pool[Math.floor(Math.random() * pool.length)]);
-
         shuffleInterval.current = setInterval(() => {
             const randomItem = pool[Math.floor(Math.random() * pool.length)];
             setShuffleFood(randomItem);
-        }, 80); // Very fast updates
+        }, 80);
     };
 
     const handleSpin = async () => {
         if (foods.length === 0) return;
 
-        // Reset if already showing result
         if (animationState === 'result') {
             setAnimationState('idle');
             setFood(null);
             setShuffleFood(null);
-            // Small delay before starting next spin if needed, or just proceed
+            setShowStats(false);
         }
 
-        // 1. Start Shuffling
         setAnimationState('shuffling');
         runShuffleAnimation();
 
         try {
-            // 2. Fetch Result (while shuffling)
-            // We use a minimum time to ensure the animation plays long enough
             await Promise.all([
                 getRandomFood({
                     category: selectedCategories.length > 0 ? selectedCategories : 'all',
                     minPrice: priceRange.min,
-                    maxPrice: priceRange.max
+                    maxPrice: priceRange.max,
+                    userId // Pass userId for exclusion
                 }),
-                new Promise(resolve => setTimeout(resolve, 2000)) // Min shuffle time 2s
+                new Promise(resolve => setTimeout(resolve, 2000))
             ]);
 
-            // 3. Stop and Reveal (Skipping complex slow down for now)
             if (shuffleInterval.current) clearInterval(shuffleInterval.current);
 
             setAnimationState('result');
+            // Confetti is now triggered on "Like" or just reveal? 
+            // Let's keep confetti for the "Got a Match" moment
             confetti({
-                particleCount: 150,
-                spread: 100,
-                origin: { y: 0.7 },
-                gravity: 0.8,
-                scalar: 1.2
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
             });
 
         } catch (error) {
@@ -134,12 +141,39 @@ const Recommend = () => {
         }
     };
 
+    const handleSwipe = async (direction) => {
+        if (!food || !userId) return;
+
+        const action = direction === 'right' ? 'like' : 'dislike';
+
+        // Optimistic UI update
+        if (action === 'like') {
+            confetti({
+                particleCount: 150,
+                spread: 100,
+                origin: { y: 0.7 },
+                colors: ['#EF4444', '#10B981'] // Red/Green for fun
+            });
+        }
+
+        // Send feedback
+        await sendFeedback(food.id, action, userId);
+
+        // Reset to idle state after swipe animation
+        setTimeout(() => {
+            setFood(null);
+            setShuffleFood(null);
+            setAnimationState('idle');
+        }, 200);
+    };
+
     const clearFilters = () => {
         setSelectedCategories([]);
         setSelectedPrice('all');
         setPriceRange({ min: 0, max: 9999 });
-        setAnimationState('idle'); // Reset state
+        setAnimationState('idle');
         setFood(null);
+        setShowStats(false);
     };
 
     const toggleCategory = (id) => {
@@ -292,49 +326,11 @@ const Recommend = () => {
                                     <p className="spin-name">{shuffleFood.name}</p>
                                 </motion.div>
                             ) : animationState === 'result' && food ? (
-                                <motion.div
-                                    key="result"
-                                    className="result-display"
-                                    initial={{ opacity: 0, scale: 0.5, y: 50 }}
-                                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                                    transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                                >
-                                    {/* Hero Image */}
-                                    <div className="result-image">
-                                        {food.image ? (
-                                            <img src={food.image} alt={food.name} />
-                                        ) : (
-                                            <div className="result-placeholder">
-                                                <span>🍽️</span>
-                                            </div>
-                                        )}
-                                        <span className="result-category">{food.categoryName}</span>
-                                        <div className="result-flash" />
-                                    </div>
-
-                                    {/* Food Info */}
-                                    <div className="result-info">
-                                        <motion.h2
-                                            className="result-name"
-                                            initial={{ scale: 0.8, opacity: 0 }}
-                                            animate={{ scale: 1, opacity: 1 }}
-                                            transition={{ delay: 0.2 }}
-                                        >
-                                            {food.name}
-                                        </motion.h2>
-
-                                        {food.nameEn && <p className="result-name-en">{food.nameEn}</p>}
-                                        {food.description && <p className="result-desc">{food.description}</p>}
-
-                                        <div className="result-meta">
-                                            <span className="result-price">฿{food.price}</span>
-                                            <span className="result-rating">
-                                                <FiStar className="star-icon" />
-                                                {food.rating}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </motion.div>
+                                <SwipeableCard
+                                    key="swipe-card"
+                                    food={food}
+                                    onSwipe={handleSwipe}
+                                />
                             ) : (
                                 <motion.div
                                     key="idle"
@@ -350,22 +346,22 @@ const Recommend = () => {
                         </AnimatePresence>
                     </div>
 
-                    {/* Spin Button */}
-                    <motion.button
-                        className={`spin-button ${animationState === 'shuffling' || animationState === 'slowing' ? 'spinning' : ''} ${animationState === 'result' ? 'reset' : ''}`}
-                        onClick={handleSpin}
-                        disabled={animationState === 'shuffling' || animationState === 'slowing' || foods.length === 0}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                    >
-                        {animationState === 'shuffling' || animationState === 'slowing' ? (
-                            <>⏳ กำลังสุ่ม...</>
-                        ) : animationState === 'result' ? (
-                            <>🔄 สุ่มใหม่</>
-                        ) : (
-                            <>🎲 สุ่มเลย!</>
-                        )}
-                    </motion.button>
+                    {/* Spin Button - Hide when in result/swipe mode until stats show */}
+                    {animationState !== 'result' && (
+                        <motion.button
+                            className={`spin-button ${animationState === 'shuffling' || animationState === 'slowing' ? 'spinning' : ''}`}
+                            onClick={handleSpin}
+                            disabled={animationState === 'shuffling' || animationState === 'slowing' || foods.length === 0}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                        >
+                            {animationState === 'shuffling' || animationState === 'slowing' ? (
+                                <>⏳ กำลังสุ่ม...</>
+                            ) : (
+                                <>🎲 สุ่มเลย!</>
+                            )}
+                        </motion.button>
+                    )}
 
                     {/* Loading / Empty State */}
                     {loading && (
@@ -389,5 +385,152 @@ const Recommend = () => {
         </div>
     );
 };
+
+// Sub-components for better organization
+const SwipeableCard = ({ food, onSwipe }) => {
+    const x = useMotionValue(0);
+    const rotate = useTransform(x, [-200, 200], [-30, 30]);
+    const opacity = useTransform(x, [-200, -150, 0, 150, 200], [0, 1, 1, 1, 0]);
+
+    // Convert x to color/opacity for overlays
+    const likeOpacity = useTransform(x, [0, 150], [0, 1]);
+    const dislikeOpacity = useTransform(x, [0, -150], [0, 1]);
+
+    // Hint opacity - fade out when dragging starts
+    const hintOpacity = useTransform(x, [-50, 0, 50], [0, 1, 0]);
+
+    const handleDragEnd = (e, { offset, velocity }) => {
+        const swipeThreshold = 100;
+        if (offset.x > swipeThreshold) {
+            onSwipe('right');
+        } else if (offset.x < -swipeThreshold) {
+            onSwipe('left');
+        }
+    };
+
+    const handleButtonClick = async (direction) => {
+        const targetX = direction === 'right' ? 300 : -300;
+        // Animate card off screen
+        await animate(x, targetX, { duration: 0.3 });
+        onSwipe(direction);
+    };
+
+    return (
+        <motion.div
+            className="swipe-card-container"
+            style={{ x, rotate, opacity }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.7}
+            onDragEnd={handleDragEnd}
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{
+                scale: 1,
+                opacity: 1,
+                rotate: [0, -2, 2, -2, 2, 0], // Wiggle to hint swipe
+                transition: {
+                    scale: { duration: 0.3 },
+                    opacity: { duration: 0.3 },
+                    rotate: { delay: 0.6, duration: 0.5, ease: "easeInOut" }
+                }
+            }}
+            exit={{ scale: 0.5, opacity: 0, transition: { duration: 0.2 } }}
+        >
+            {/* Overlays */}
+            <motion.div className="swipe-overlay like" style={{ opacity: likeOpacity }}>
+                <FiThumbsUp /> ชอบ
+            </motion.div>
+            <motion.div className="swipe-overlay dislike" style={{ opacity: dislikeOpacity }}>
+                <FiThumbsDown /> ไม่ชอบ
+            </motion.div>
+
+            {/* Side Hints - Clickable */}
+            <motion.div
+                className="swipe-hint-side left"
+                style={{ opacity: hintOpacity }}
+                onClick={(e) => { e.stopPropagation(); handleButtonClick('left'); }}
+            >
+                <div className="hint-icon dislike"><FiThumbsDown /></div>
+                <span className="hint-label">ไม่ชอบ</span>
+            </motion.div>
+            <motion.div
+                className="swipe-hint-side right"
+                style={{ opacity: hintOpacity }}
+                onClick={(e) => { e.stopPropagation(); handleButtonClick('right'); }}
+            >
+                <span className="hint-label">ชอบ</span>
+                <div className="hint-icon like"><FiThumbsUp /></div>
+            </motion.div>
+
+            <div className="result-display swipable">
+                <div className="result-image">
+                    {food.image ? (
+                        <img src={food.image} alt={food.name} draggable="false" />
+                    ) : (
+                        <div className="result-placeholder">
+                            <span>🍽️</span>
+                        </div>
+                    )}
+                    <span className="result-category">{food.categoryName}</span>
+                </div>
+
+                <div className="result-info">
+                    <h2 className="result-name">{food.name}</h2>
+                    <div className="result-meta">
+                        <span className="result-price">฿{food.price}</span>
+                        <span className="result-rating">★ {food.rating}</span>
+                    </div>
+                </div>
+
+                <div className="swipe-instruction">
+                    <FiArrowLeft /> ปัดซ้าย "ไม่ชอบ" | ปัดขวา "ชอบ" <FiArrowRight />
+                </div>
+            </div>
+        </motion.div>
+    );
+};
+
+const StatsView = ({ food, stats, onRestart }) => {
+    // Determine sentiment
+    const total = stats.likes + stats.dislikes;
+    const likePercent = total > 0 ? Math.round((stats.likes / total) * 100) : 0;
+
+    return (
+        <motion.div
+            className="stats-view"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+        >
+            <h3>สถิติวันนี้สำหรับ "{food.name}"</h3>
+
+            <div className="stats-bar-container">
+                <div className="stats-numbers">
+                    <span className="stat-like"><FiThumbsUp /> {stats.likes} คนชอบ</span>
+                    <span className="stat-dislike"><FiThumbsDown /> {stats.dislikes} ไม่ชอบ</span>
+                </div>
+                <div className="progress-bar">
+                    <motion.div
+                        className="progress-fill"
+                        initial={{ width: 0 }}
+                        animate={{ width: `${likePercent}%` }}
+                        transition={{ duration: 1, ease: "easeOut" }}
+                    />
+                </div>
+                <p className="stats-summary">
+                    {total === 0 ? "คุณเป็นคนแรกที่ให้คะแนนวันนี้!" :
+                        likePercent >= 80 ? "🔥 เมนูนี้ฮอตมาก ใครๆ ก็กิน!" :
+                            likePercent >= 50 ? "👍 เมนูยอดนิยม อร่อยแน่นอน" :
+                                "🤔 เมนูนี้คนเสียงแตก ลองพิสูจน์ด้วยตัวเอง!"}
+                </p>
+            </div>
+
+            <button className="btn btn-primary btn-lg mt-4" onClick={onRestart}>
+                🔄 สุ่มเมนูอื่น
+            </button>
+        </motion.div>
+    );
+};
+
+
 
 export default Recommend;

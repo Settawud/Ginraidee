@@ -94,10 +94,20 @@ module.exports = (query, foods) => {
     });
 
     // Get random food (Client calls /action/random)
-    router.get('/action/random', (req, res) => {
+    router.get('/action/random', async (req, res) => {
         try {
             let pool = [...foods];
-            const { category, minPrice, maxPrice, exclude } = req.query;
+            const { category, minPrice, maxPrice, exclude, userId } = req.query;
+
+            // Exclude foods disliked today by this user
+            if (userId) {
+                const { rows } = await query(
+                    "SELECT food_id FROM food_feedback WHERE user_id = $1 AND action = 'dislike' AND created_at >= CURRENT_DATE",
+                    [userId]
+                );
+                const dislikedIds = rows.map(r => r.food_id);
+                pool = pool.filter(f => !dislikedIds.includes(f.id));
+            }
 
             // Apply filters
             if (category && category !== 'all') {
@@ -118,12 +128,57 @@ module.exports = (query, foods) => {
             if (pool.length === 0) {
                 return res.status(404).json({
                     success: false,
-                    error: 'No food matches your criteria'
+                    error: 'ไม่พบเมนูที่ตรงกับเงื่อนไข (หรือคุณอาจกดไม่ชอบจนหมดแล้ว)'
                 });
             }
 
             const randomFood = pool[Math.floor(Math.random() * pool.length)];
             res.json({ success: true, data: randomFood });
+        } catch (error) {
+            res.status(500).json({ success: false, error: error.message });
+        }
+    });
+
+    // Save feedback
+    router.post('/:id/feedback', async (req, res) => {
+        try {
+            const { userId, action } = req.body;
+            const foodId = parseInt(req.params.id);
+
+            if (!['like', 'dislike'].includes(action)) {
+                return res.status(400).json({ success: false, error: 'Invalid action' });
+            }
+
+            await query(
+                'INSERT INTO food_feedback (user_id, food_id, action) VALUES ($1, $2, $3)',
+                [userId || 'anonymous', foodId, action]
+            );
+
+            res.json({ success: true });
+        } catch (error) {
+            res.status(500).json({ success: false, error: error.message });
+        }
+    });
+
+    // Get daily stats
+    router.get('/:id/stats', async (req, res) => {
+        try {
+            const foodId = parseInt(req.params.id);
+            const { rows } = await query(`
+                SELECT 
+                    count(*) filter (where action = 'like') as likes,
+                    count(*) filter (where action = 'dislike') as dislikes
+                FROM food_feedback
+                WHERE food_id = $1 AND created_at >= CURRENT_DATE
+            `, [foodId]);
+
+            res.json({
+                success: true,
+                data: {
+                    likes: parseInt(rows[0].likes || 0),
+                    dislikes: parseInt(rows[0].dislikes || 0)
+                }
+            });
         } catch (error) {
             res.status(500).json({ success: false, error: error.message });
         }

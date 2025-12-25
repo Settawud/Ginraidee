@@ -12,11 +12,11 @@ const imageMap = {
     'fried rice': 'https://images.unsplash.com/photo-1626804475297-411dbe6ab72a?w=800&q=80', // Better fried rice
     'crab fried rice': 'https://images.unsplash.com/photo-1603064755736-ec8787f61c33?w=800&q=80',
     'curry': 'https://images.unsplash.com/photo-1626804475510-97cce8653bb3?w=800&q=80',
-    'green curry': 'https://images.unsplash.com/photo-1623594639908-1cc67523ba78?w=800&q=80',
+    'green curry': '/images/green_curry_1765343785737.png',
     'massaman': 'https://images.unsplash.com/photo-1626804475297-411dbe6ab72a?w=800&q=80', // Curry placeholder if specific not found
-    'tom yum': 'https://images.unsplash.com/photo-1548811802-763462b4859f?w=800&q=80', // Real Tom Yum
-    'som tum': 'https://images.unsplash.com/photo-1601618213600-47b749d2906b?w=800&q=80', // Papaya Salad
-    'pad thai': 'https://images.unsplash.com/photo-1559314809-0d155014e29e?w=800&q=80',
+    'tom yum': '/images/tom_yum_goong_1765343536083.png', // Real Tom Yum
+    'som tum': '/images/somtam_thai_1765343550476.png', // Papaya Salad
+    'pad thai': '/images/pad_thai_1765343768945.png',
     'pad see ew': 'https://plus.unsplash.com/premium_photo-1664478291780-0c66f5c927e8?w=800&q=80', // Noodle
     'boat noodle': 'https://images.unsplash.com/photo-1555126634-323283e090fa?w=800&q=80',
     'khao soi': 'https://images.unsplash.com/photo-1628205240209-15632d431057?w=800&q=80',
@@ -24,13 +24,23 @@ const imageMap = {
     'moo yang': 'https://images.unsplash.com/photo-1595295333158-4742f28fbd85?w=800&q=80', // Grilled pork
     'larb': 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=800&q=80',
     'sticky rice': 'https://images.unsplash.com/photo-1626020120286-621350615bdd?w=800&q=80', // Dessert or side
-    'mango sticky rice': 'https://images.unsplash.com/photo-1626020120286-621350615bdd?w=800&q=80', // Mango sticky rice
+    'mango sticky rice': '/images/mango_sticky_rice_1765343754900.png', // Mango sticky rice
     'chicken rice': '/images/khao_man_kai_1765343520453.png',
 
+    // New Thai Specifics
+    'khanom krok': 'https://images.unsplash.com/photo-1528647039535-77987ec9e011?w=800&q=80', // Coconut pancakes (general dessert style)
+    'tub tim krob': 'https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=800&q=80', // Red dessert style
+    'grass jelly': 'https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=800&q=80', // Black jelly dessert style
+    'roti': 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=800&q=80', // Crispy pancake
+    'moo ping': 'https://images.unsplash.com/photo-1625938145244-2395d82729a0?w=800&q=80', // Grilled pork skewers
+    'yentafo': 'https://images.unsplash.com/photo-1555126634-323283e090fa?w=800&q=80', // Pink soup fallback
+    'hoi tod': 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80', // Fried mussel/oyster pancake
+    'fish maw': 'https://images.unsplash.com/photo-1548811802-763462b4859f?w=800&q=80', // Soup style
+
     // JAPANESE
-    'sushi': 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800&q=80',
+    'sushi': '/images/sushi_platter_1765343601010.png',
     'sashimi': 'https://images.unsplash.com/photo-1534482421-64566f976cfa?w=800&q=80',
-    'ramen': 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800&q=80',
+    'ramen': '/images/ramen_tonkotsu_1765343583916.png',
     'udon': 'https://images.unsplash.com/photo-1552611052-33e04de081de?w=800&q=80',
     'tempura': 'https://images.unsplash.com/photo-1615764648719-272cb25055b8?w=800&q=80',
     'takoyaki': 'https://images.unsplash.com/photo-1629854441460-14e475f85022?w=800&q=80',
@@ -40,17 +50,17 @@ const imageMap = {
     'yakisoba': 'https://images.unsplash.com/photo-1616782522037-ce94689b14c3?w=800&q=80',
 
     // KOREAN
-    'bibimbap': 'https://images.unsplash.com/photo-1512485800893-b08ec1ea59b1?w=800&q=80',
+    'bibimbap': '/images/bibimbap_korean_1765343618871.png',
     'kimchi': 'https://images.unsplash.com/photo-1583224964978-2257b96070d3?w=800&q=80',
     'tteokbokki': 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&q=80',
-    'fried chicken': 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=800&q=80',
+    'fried chicken': '/images/fried_chicken_1765343711239.png',
     'gimbap': 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=800&q=80',
-    'bbq': 'https://images.unsplash.com/photo-1584966656829-19fc22a5506a?w=800&q=80', // Grilled meat
+    'bbq': '/images/samgyeopsal_bbq_1765343636088.png', // Grilled meat
 
     // WESTERN / FAST FOOD
-    'burger': 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80',
-    'steak': 'https://images.unsplash.com/photo-1600891964092-4316c288032e?w=800&q=80',
-    'pizza': 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=800&q=80',
+    'burger': '/images/beef_burger_1765343695735.png',
+    'steak': '/images/beef_steak_1765343679603.png',
+    'pizza': '/images/pizza_margherita_1765343663620.png',
     'pasta': 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=800&q=80',
     'spaghetti': 'https://images.unsplash.com/photo-1626844131082-256783844137?w=800&q=80',
     'salad': 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80',
@@ -61,7 +71,7 @@ const imageMap = {
     // DESSERT
     'ice cream': 'https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=800&q=80',
     'cake': 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80',
-    'bingsu': 'https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=800&q=80',
+    'bingsu': '/images/strawberry_bingsu_1765343738506.png',
     'pancake': 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&q=80',
     'waffle': 'https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=800&q=80',
     'donut': 'https://images.unsplash.com/photo-1552010099-5dc758d5438d?w=800&q=80',
@@ -89,35 +99,44 @@ const imageMap = {
 };
 
 const updatedFoods = foods.map(food => {
-    // If it's one of the first 16 that have local images (mostly), keep them if valid
-    if (food.id <= 16 && food.image.startsWith('/images/')) {
+    // 1. If it's a local image (starting with /images/) and the ID is small (manual seed), try to keep it.
+    // However, if the user complains it's wrong, we might need to override it if name is mismatched.
+    // For now, let's assume local images are correct-ish if they exist.
+    if (food.image && food.image.startsWith('/images/')) {
         return food;
     }
 
     const nameLower = food.name.toLowerCase();
     const nameEnLower = food.nameEn.toLowerCase();
-    const descLower = food.description.toLowerCase();
 
     // Find best matching image key
     let bestMatch = null;
 
-    // Check specific English names first
+    // Check specific keys first (e.g. 'khanom krok', 'hainan', etc)
     for (const [key, url] of Object.entries(imageMap)) {
-        if (nameEnLower.includes(key)) {
+        if (nameEnLower.includes(key) || nameLower.includes(key)) {
+            // Prioritize longer keys (more specific) if we wanted to be fancy, but order in map matters.
+            // Let's iterate and find the first match.
             bestMatch = url;
             break;
         }
     }
 
-    // Check specific Thai names
+    // Specific Thai fallback checks
     if (!bestMatch) {
-        // Add manual thai mappings if needed, but english nameUsually covers it
         if (nameLower.includes('กะเพรา')) bestMatch = imageMap['kaprao'];
         else if (nameLower.includes('ข้าวผัด')) bestMatch = imageMap['fried rice'];
         else if (nameLower.includes('ต้มยำ')) bestMatch = imageMap['tom yum'];
         else if (nameLower.includes('ส้มตำ')) bestMatch = imageMap['som tum'];
         else if (nameLower.includes('แกง')) bestMatch = imageMap['curry'];
         else if (nameLower.includes('ก๋วยเตี๋ยว')) bestMatch = imageMap['boat noodle'];
+        else if (nameLower.includes('ขนมครก')) bestMatch = imageMap['khanom krok'];
+        else if (nameLower.includes('ทับทิมกรอบ')) bestMatch = imageMap['tub tim krob'];
+        else if (nameLower.includes('เฉาก๊วย')) bestMatch = imageMap['grass jelly'];
+        else if (nameLower.includes('โรตี')) bestMatch = imageMap['roti'];
+        else if (nameLower.includes('หมูปิ้ง')) bestMatch = imageMap['moo ping'];
+        else if (nameLower.includes('เย็นตาโฟ')) bestMatch = imageMap['yentafo'];
+        else if (nameLower.includes('หอยทอด')) bestMatch = imageMap['hoi tod'];
     }
 
     // Category fallbacks

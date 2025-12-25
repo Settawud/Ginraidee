@@ -20,6 +20,7 @@ module.exports = (db) => {
         }),
         (req, res) => {
             // Successful authentication
+            console.log('Login Success. Redirecting to:', `${process.env.FRONTEND_URL || 'http://localhost:5173'}/login/callback`);
             res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/login/callback`);
         }
     );

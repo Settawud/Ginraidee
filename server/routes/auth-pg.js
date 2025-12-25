@@ -11,7 +11,8 @@ module.exports = (query) => {
     // ========================================
 
     router.get('/google', passport.authenticate('google', {
-        scope: ['profile', 'email']
+        scope: ['profile', 'email'],
+        prompt: 'select_account' // Force Google to ask for account
     }));
 
     router.get('/google/callback',
@@ -19,6 +20,7 @@ module.exports = (query) => {
             failureRedirect: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/login?error=auth_failed`
         }),
         (req, res) => {
+            console.log('Login Success. Redirecting to:', `${process.env.FRONTEND_URL || 'http://localhost:5173'}/login/callback`);
             res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/login/callback`);
         }
     );
@@ -79,18 +81,23 @@ module.exports = (query) => {
 
     // Logout
     router.post('/logout', (req, res) => {
+        // Safe logout sequence
+        const doLogout = () => {
+            req.session.destroy((err) => {
+                if (err) console.error('Session destroy error:', err);
+                res.clearCookie('connect.sid');
+                res.json({ success: true, message: 'Logged out successfully' });
+            });
+        };
+
         if (req.logout) {
             req.logout((err) => {
-                if (err) console.error('Logout error:', err);
+                if (err) console.error('Passport logout error:', err);
+                doLogout();
             });
+        } else {
+            doLogout();
         }
-        req.session.isAdmin = false;
-        req.session.adminId = null;
-        req.session.userId = null;
-        req.session.destroy((err) => {
-            res.clearCookie('connect.sid');
-            res.json({ success: true, message: 'Logged out successfully' });
-        });
     });
 
     // ========================================

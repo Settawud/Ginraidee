@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "node --watch app.js"
+    "dev": "node --watch app.js",
+    "generate-images": "node scripts/generate_ai_images.js"
   },
   "keywords": [
     "food",

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiSearch, FiX } from 'react-icons/fi';
+import { FiSearch, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import FoodCard from '../components/FoodCard';
 import { useFoods, useCategories } from '../hooks/useFood';
 import './Menu.css';
@@ -248,29 +248,27 @@ const Menu = () => {
                     )}
 
                     {/* Pagination Controls */}
-                    {!loading && foods.length > 0 && pagination.totalPages > 1 && (
-                        <div className="pagination-container">
-                            <button
-                                className="pagination-btn"
-                                onClick={() => updateFilters({ page: pagination.page - 1 })}
-                                disabled={pagination.page === 1}
-                            >
-                                &lt;
-                            </button>
+                    <div className="pagination-container">
+                        <button
+                            className="pagination-btn"
+                            onClick={() => updateFilters({ page: pagination.page - 1 })}
+                            disabled={pagination.page === 1}
+                        >
+                            <FiChevronLeft />
+                        </button>
 
-                            <span className="pagination-info">
-                                หน้า {pagination.page} จาก {pagination.totalPages}
-                            </span>
+                        <span className="pagination-info">
+                            หน้า {pagination.page} จาก {pagination.totalPages}
+                        </span>
 
-                            <button
-                                className="pagination-btn"
-                                onClick={() => updateFilters({ page: pagination.page + 1 })}
-                                disabled={pagination.page === pagination.totalPages}
-                            >
-                                &gt;
-                            </button>
-                        </div>
-                    )}
+                        <button
+                            className="pagination-btn"
+                            onClick={() => updateFilters({ page: pagination.page + 1 })}
+                            disabled={pagination.page === pagination.totalPages}
+                        >
+                            <FiChevronRight />
+                        </button>
+                    </div>
                 </main>
             </div >
         </div >

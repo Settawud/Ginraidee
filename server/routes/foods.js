@@ -100,7 +100,20 @@ module.exports = (db, foods) => {
     router.get('/action/random', (req, res) => {
         try {
             let pool = [...foods];
-            const { category, minPrice, maxPrice, exclude } = req.query;
+            const { category, minPrice, maxPrice, exclude, userId } = req.query;
+
+            // Exclude foods disliked today by this user
+            if (userId) {
+                const today = new Date().toISOString().split('T')[0];
+                const dislikes = db.prepare(`
+                    SELECT food_id FROM food_feedback 
+                    WHERE user_id = ? AND action = 'dislike' 
+                    AND date(created_at) = ?
+                `).all(userId, today);
+
+                const dislikedIds = dislikes.map(d => d.food_id);
+                pool = pool.filter(f => !dislikedIds.includes(f.id));
+            }
 
             // Apply filters
             if (category && category !== 'all') {
@@ -121,12 +134,57 @@ module.exports = (db, foods) => {
             if (pool.length === 0) {
                 return res.status(404).json({
                     success: false,
-                    error: 'No food matches your criteria'
+                    error: 'ไม่พบเมนูที่ตรงกับเงื่อนไข (หรือคุณอาจกดไม่ชอบจนหมดแล้ว)'
                 });
             }
 
             const randomFood = pool[Math.floor(Math.random() * pool.length)];
             res.json({ success: true, data: randomFood });
+        } catch (error) {
+            res.status(500).json({ success: false, error: error.message });
+        }
+    });
+
+    // Save feedback
+    router.post('/:id/feedback', (req, res) => {
+        try {
+            const { userId, action } = req.body;
+            const foodId = parseInt(req.params.id);
+
+            if (!['like', 'dislike'].includes(action)) {
+                return res.status(400).json({ success: false, error: 'Invalid action' });
+            }
+
+            const stmt = db.prepare('INSERT INTO food_feedback (user_id, food_id, action) VALUES (?, ?, ?)');
+            stmt.run(userId || 'anonymous', foodId, action);
+
+            res.json({ success: true });
+        } catch (error) {
+            res.status(500).json({ success: false, error: error.message });
+        }
+    });
+
+    // Get daily stats for a food
+    router.get('/:id/stats', (req, res) => {
+        try {
+            const foodId = parseInt(req.params.id);
+            const today = new Date().toISOString().split('T')[0];
+
+            const stats = db.prepare(`
+                SELECT 
+                    SUM(CASE WHEN action = 'like' THEN 1 ELSE 0 END) as likes,
+                    SUM(CASE WHEN action = 'dislike' THEN 1 ELSE 0 END) as dislikes
+                FROM food_feedback
+                WHERE food_id = ? AND date(created_at) = ?
+            `).get(foodId, today);
+
+            res.json({
+                success: true,
+                data: {
+                    likes: stats.likes || 0,
+                    dislikes: stats.dislikes || 0
+                }
+            });
         } catch (error) {
             res.status(500).json({ success: false, error: error.message });
         }

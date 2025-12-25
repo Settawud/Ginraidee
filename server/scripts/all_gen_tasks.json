@@ -1,0 +1,464 @@
+[
+    {
+        "id": 13,
+        "name": "Strawberry Bingsu",
+        "filename": "strawberry_bingsu_ai.png",
+        "prompt": "Delicious Strawberry Bingsu (บิงซูสตรอว์เบอร์รี่), น้ำแข็งไสเนียนนุ่ม ท็อปสตรอว์เบอร์รี่สด นมข้นหวาน. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 14,
+        "name": "Mango Sticky Rice",
+        "filename": "mango_sticky_rice_ai.png",
+        "prompt": "Delicious Mango Sticky Rice (ข้าวเหนียวมะม่วง), ข้าวเหนียวมูนกะทิ มะม่วงน้ำดอกไม้หวานหอม. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 15,
+        "name": "Pad Thai",
+        "filename": "pad_thai_ai.png",
+        "prompt": "Delicious Pad Thai (ผัดไทย), ผัดไทยกุ้งสด ไข่ ถั่วงอก ใบกุยช่าย ถั่วลิสง. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 16,
+        "name": "Green Curry Chicken",
+        "filename": "green_curry_chicken_ai.png",
+        "prompt": "Delicious Green Curry Chicken (แกงเขียวหวานไก่), แกงเขียวหวานไก่ มะเขือ พริกชี้ฟ้า ใบโหระพา. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 17,
+        "name": "Crab Fried Rice",
+        "filename": "crab_fried_rice_ai.png",
+        "prompt": "Delicious Crab Fried Rice (ข้าวผัดปู), ข้าวผัดเนื้อปูเน้นๆ หอมกระทะ. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 18,
+        "name": "Sour Curry with Shrimp",
+        "filename": "sour_curry_with_shrimp_ai.png",
+        "prompt": "Delicious Sour Curry with Shrimp (แกงส้มชะอมกุ้ง), แกงส้มรสเข้มข้น ไข่ชะอมทอดและกุ้งสด. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 19,
+        "name": "Pork Satay",
+        "filename": "pork_satay_ai.png",
+        "prompt": "Delicious Pork Satay (หมูสะเต๊ะ), หมูหมักเครื่องเทศย่าง หอมกะทิ พร้อมน้ำจิ้มถั่ว. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 20,
+        "name": "Spicy Minced Pork Salad",
+        "filename": "spicy_minced_pork_salad_ai.png",
+        "prompt": "Delicious Spicy Minced Pork Salad (ลาบหมู), ลาบหมูรสแซ่บ ข้าวคั่วหอม พริกป่น มะนาว. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 21,
+        "name": "Grilled Pork Neck",
+        "filename": "grilled_pork_neck_ai.png",
+        "prompt": "Delicious Grilled Pork Neck (คอหมูย่าง), คอหมูหมักย่างถ่าน น้ำจิ้มแจ่วรสเด็ด. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 22,
+        "name": "Chicken Galangal Soup",
+        "filename": "chicken_galangal_soup_ai.png",
+        "prompt": "Delicious Chicken Galangal Soup (ต้มข่าไก่), ต้มข่าไก่ใส่กะทิ หอมข่า ตะไคร้ รสกลมกล่อม. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 23,
+        "name": "Fried Seabass with Fish Sauce",
+        "filename": "fried_seabass_with_fish_sauce_ai.png",
+        "prompt": "Delicious Fried Seabass with Fish Sauce (ปลากะพงทอดน้ำปลา), ปลากะพงทอดกรอบ ราดซอสน้ำปลาเค็มหวาน ยำมะม่วง. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 24,
+        "name": "Shrimp Cakes",
+        "filename": "shrimp_cakes_ai.png",
+        "prompt": "Delicious Shrimp Cakes (ทอดมันกุ้ง), เนื้อกุ้งบดชุบเกล็ดขนมปังทอด กรอบนอกนุ่มใน. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 25,
+        "name": "Spicy Glass Noodle Salad",
+        "filename": "spicy_glass_noodle_salad_ai.png",
+        "prompt": "Delicious Spicy Glass Noodle Salad (ยำวุ้นเส้น), ยำวุ้นเส้นใส่หมูสับ กุ้ง รสจัดจ้าน. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 26,
+        "name": "Khao Soi Chicken",
+        "filename": "khao_soi_chicken_ai.png",
+        "prompt": "Delicious Khao Soi Chicken (ข้าวซอยไก่), บะหมี่แกงกะหรี่ไก่ สไตล์เหนือ หอมเครื่องเทศ. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 27,
+        "name": "Pad See Ew",
+        "filename": "pad_see_ew_ai.png",
+        "prompt": "Delicious Pad See Ew (ผัดซีอิ๊ว), เส้นใหญ่ผัดซีอิ๊วหมู หอมกลิ่นกระทะ. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 28,
+        "name": "Rad Na Pork",
+        "filename": "rad_na_pork_ai.png",
+        "prompt": "Delicious Rad Na Pork (ราดหน้าหมูหมัก), เส้นใหญ่ราดหน้าหมูหมัก ยอดคะน้ากรอบ. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 29,
+        "name": "Massaman Curry",
+        "filename": "massaman_curry_ai.png",
+        "prompt": "Delicious Massaman Curry (แกงมัสมั่นไก่), แกงมัสมั่นไก่ รสหวานมัน หอมเครื่องเทศ ถั่วลิสง. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 30,
+        "name": "Stir-fried Crab Curry",
+        "filename": "stir_fried_crab_curry_ai.png",
+        "prompt": "Delicious Stir-fried Crab Curry (ปูผัดผงกะหรี่), เนื้อปูผัดผงกะหรี่ ไข่ข้น หอมมัน. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 31,
+        "name": "Salmon Sashimi",
+        "filename": "salmon_sashimi_ai.png",
+        "prompt": "Delicious Salmon Sashimi (ซาชิมิแซลมอน), แซลมอนสดจากนอร์เวย์ หั่นชิ้นหนา. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 32,
+        "name": "Mixed Tempura",
+        "filename": "mixed_tempura_ai.png",
+        "prompt": "Delicious Mixed Tempura (เทมปุระรวม), กุ้งและผักชุบแป้งทอดกรอบ พร้อมน้ำจิ้ม. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 33,
+        "name": "Curry Rice",
+        "filename": "curry_rice_ai.png",
+        "prompt": "Delicious Curry Rice (ข้าวหน้าแกงกะหรี่), ข้าวหน้าแกงกะหรี่หมูทอด รสเข้มข้น. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 39,
+        "name": "Miso Soup",
+        "filename": "miso_soup_ai.png",
+        "prompt": "Delicious Miso Soup (ซุปมิโซะ), ซุปเต้าเจี้ยวญี่ปุ่น ใส่เต้าหู้และสาหร่าย. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 41,
+        "name": "Tteokbokki",
+        "filename": "tteokbokki_ai.png",
+        "prompt": "Delicious Tteokbokki (ต็อกบกกี), แป้งต็อกผัดซอสเผ็ด ใส่ลูกชิ้นปลา. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 42,
+        "name": "Kimchi Stew",
+        "filename": "kimchi_stew_ai.png",
+        "prompt": "Delicious Kimchi Stew (กิมจิชีเก), ซุปกิมจิเต้าหู้หมูสามชั้น รสเปรี้ยวเผ็ด. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 43,
+        "name": "Jajangmyeon",
+        "filename": "jajangmyeon_ai.png",
+        "prompt": "Delicious Jajangmyeon (จาจังมยอน), บะหมี่ซอสดำเกาหลี หมูและหัวหอม. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 44,
+        "name": "Korean Fried Chicken",
+        "filename": "korean_fried_chicken_ai.png",
+        "prompt": "Delicious Korean Fried Chicken (ไก่ทอดเกาหลี), ไก่ทอดเคลือบซอสเผ็ดหวาน กรอบอร่อย. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 45,
+        "name": "Gimbap",
+        "filename": "gimbap_ai.png",
+        "prompt": "Delicious Gimbap (คิมบับ), ข้าวห่อสาหร่ายสไตล์เกาหลี ไส้ผักรวม. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 46,
+        "name": "Spaghetti Carbonara",
+        "filename": "spaghetti_carbonara_ai.png",
+        "prompt": "Delicious Spaghetti Carbonara (สปาเก็ตตี้คาโบนาร่า), สปาเก็ตตี้ครีมซอส เบคอน ไข่แดง ชีส. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 47,
+        "name": "Caesar Salad",
+        "filename": "caesar_salad_ai.png",
+        "prompt": "Delicious Caesar Salad (ซีซาร์สลัด), ผักคอส เบคอน ขนมปังกรอบ ชีสพาร์เมซาน. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 48,
+        "name": "French Fries",
+        "filename": "french_fries_ai.png",
+        "prompt": "Delicious French Fries (เฟรนช์ฟรายส์), มันฝรั่งทอดกรอบ โรยเกลือ. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 49,
+        "name": "Hot Dog",
+        "filename": "hot_dog_ai.png",
+        "prompt": "Delicious Hot Dog (ฮอทดอก), ขนมปังไส้ไส้กรอก ราดซอสมะเขือเทศและมัสตาร์ด. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 50,
+        "name": "Chicken Nuggets",
+        "filename": "chicken_nuggets_ai.png",
+        "prompt": "Delicious Chicken Nuggets (นักเก็ตไก่), ไก่บดชุบแป้งทอด กรอบอร่อย. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 51,
+        "name": "Vanilla Ice Cream",
+        "filename": "vanilla_ice_cream_ai.png",
+        "prompt": "Delicious Vanilla Ice Cream (ไอศกรีมวานิลลา), ไอศกรีมรสวานิลลาหอมหวาน. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 52,
+        "name": "Brownie",
+        "filename": "brownie_ai.png",
+        "prompt": "Delicious Brownie (บราวนี่), เค้กช็อกโกแลตเนื้อแน่น หวานเข้มข้น. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 53,
+        "name": "Cold Crepe",
+        "filename": "cold_crepe_ai.png",
+        "prompt": "Delicious Cold Crepe (เครปเย็น), เครปแป้งนุ่ม ไส้วิปครีมและผลไม้. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 54,
+        "name": "Grass Jelly Milk",
+        "filename": "grass_jelly_milk_ai.png",
+        "prompt": "Delicious Grass Jelly Milk (เฉาก๊วยนมสด), เฉาก๊วยหนึบในนมสดเย็นชื่นใจ. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 55,
+        "name": "Tub Tim Krob",
+        "filename": "tub_tim_krob_ai.png",
+        "prompt": "Delicious Tub Tim Krob (ทับทิมกรอบ), แห้วหุ้มแป้งในกะทิสด หอมเทียนอบ. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 56,
+        "name": "Khanom Krok",
+        "filename": "khanom_krok_ai.png",
+        "prompt": "Delicious Khanom Krok (ขนมครก), ขนมครกหน้ากะทิสด หวานมัน. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 57,
+        "name": "Grilled Meatballs",
+        "filename": "grilled_meatballs_ai.png",
+        "prompt": "Delicious Grilled Meatballs (ลูกชิ้นปิ้ง), ลูกชิ้นหมูอย่างดีปิ้ง ราดน้ำจิ้มมะขาม. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 58,
+        "name": "Isan Sausage",
+        "filename": "isan_sausage_ai.png",
+        "prompt": "Delicious Isan Sausage (ไส้กรอกอีสาน), ไส้กรอกเปรี้ยว ย่างหอมๆ พร้อมขิงดอง. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 59,
+        "name": "Grilled Pork Skewers",
+        "filename": "grilled_pork_skewers_ai.png",
+        "prompt": "Delicious Grilled Pork Skewers (หมูปิ้งนมสด), หมูหมักนมสดเสียบไม้ย่าง หอมหวาน. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 60,
+        "name": "Salt Grilled Fish",
+        "filename": "salt_grilled_fish_ai.png",
+        "prompt": "Delicious Salt Grilled Fish (ปลาเผาเกลือ), ปลาทับทิมเผาเกลือ พร้อมผักและน้ำจิ้ม. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 61,
+        "name": "Spaghetti Aglio e Olio",
+        "filename": "spaghetti_aglio_e_olio_ai.png",
+        "prompt": "Delicious Spaghetti Aglio e Olio (สปาเก็ตตี้พริกแห้ง), สปาเก็ตตี้ผัดพริกแห้งกระเทียม ใส่เบคอน. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 62,
+        "name": "Truffle Mushroom Soup",
+        "filename": "truffle_mushroom_soup_ai.png",
+        "prompt": "Delicious Truffle Mushroom Soup (ซุปเห็ดทรัฟเฟิล), ซุปครีมเห็ดหอมกลิ่นทรัฟเฟิล พร้อมขนมปัง. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 63,
+        "name": "Fish and Chips",
+        "filename": "fish_and_chips_ai.png",
+        "prompt": "Delicious Fish and Chips (ฟิชแอนด์ชิปส์), ปลาชุบแป้งทอดกรอบ เสิร์ฟพร้อมมันฝรั่งทอด. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 64,
+        "name": "Lasagna",
+        "filename": "lasagna_ai.png",
+        "prompt": "Delicious Lasagna (ลาซานญ่า), พาสต้าอบชีส ซอสเนื้อเข้มข้น. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 65,
+        "name": "Crispy Catfish Salad",
+        "filename": "crispy_catfish_salad_ai.png",
+        "prompt": "Delicious Crispy Catfish Salad (ยำปลาดุกฟู), ปลาดุกย่างทอดกรอบ ราดน้ำยำมะม่วง. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 66,
+        "name": "Minced Pork Omelet",
+        "filename": "minced_pork_omelet_ai.png",
+        "prompt": "Delicious Minced Pork Omelet (ไข่เจียวหมูสับ), ไข่เจียวทอดกรอบนุ่ม ใส่หมูสับ. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 67,
+        "name": "Shrimp Paste Dip",
+        "filename": "shrimp_paste_dip_ai.png",
+        "prompt": "Delicious Shrimp Paste Dip (น้ำพริกกะปิ), น้ำพริกกะปิรสเด็ด เสิร์ฟพร้อมผักทอด ปลาทู. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 68,
+        "name": "Shrimp Paste Fried Rice",
+        "filename": "shrimp_paste_fried_rice_ai.png",
+        "prompt": "Delicious Shrimp Paste Fried Rice (ข้าวคลุกกะปิ), ข้าวผัดกะปิ เครื่องเคียงครบ หมูหวาน กุ้งแห้ง. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 69,
+        "name": "Crab Curry Noodles",
+        "filename": "crab_curry_noodles_ai.png",
+        "prompt": "Delicious Crab Curry Noodles (ขนมจีนน้ำยาปู), ขนมจีนราดน้ำยาปู กรรเชียงปูเน้นๆ. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 70,
+        "name": "Crispy Mussel Pancake",
+        "filename": "crispy_mussel_pancake_ai.png",
+        "prompt": "Delicious Crispy Mussel Pancake (หอยทอด), แป้งทอดกรอบใส่หอยแมลงภู่ น้ำจิ้มซอสพริก. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 71,
+        "name": "Boat Noodles",
+        "filename": "boat_noodles_ai.png",
+        "prompt": "Delicious Boat Noodles (ก๋วยเตี๋ยวเรือ), ก๋วยเตี๋ยวน้ำตกเข้มข้น หมูตุ๋น ตับ ลูกชิ้น. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 72,
+        "name": "Yentafo",
+        "filename": "yentafo_ai.png",
+        "prompt": "Delicious Yentafo (เย็นตาโฟ), ก๋วยเตี๋ยวซอสเต้าหู้ยี้ สีชมพู รสกลมกล่อม. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 73,
+        "name": "Shrimp Wonton",
+        "filename": "shrimp_wonton_ai.png",
+        "prompt": "Delicious Shrimp Wonton (เกี๊ยวกุ้ง), เกี๊ยวกุ้งเต็มคำ น้ำซุปหอมหวาน. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 74,
+        "name": "Thai BBQ Buffet",
+        "filename": "thai_bbq_buffet_ai.png",
+        "prompt": "Delicious Thai BBQ Buffet (หมูกระทะ), บุฟเฟต์ปิ้งย่างสไตล์ไทย พร้อมน้ำจิ้มสุกี้. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 75,
+        "name": "Jim Jum",
+        "filename": "jim_jum_ai.png",
+        "prompt": "Delicious Jim Jum (จิ้มจุ่ม), หม้อไฟสมุนไพรไทย หมูหมัก ผักสด. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 78,
+        "name": "Traditional Coffee",
+        "filename": "traditional_coffee_ai.png",
+        "prompt": "Delicious Traditional Coffee (กาแฟโบราณ), กาแฟคั่วบดชงถุงผ้า เข้มข้น. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 79,
+        "name": "Tokyo Pancake",
+        "filename": "tokyo_pancake_ai.png",
+        "prompt": "Delicious Tokyo Pancake (ขนมโตเกียว), ขนมแผ่นบางม้วนไส้ครีม หรือไส้เค็ม. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 81,
+        "name": "Egg Tart",
+        "filename": "egg_tart_ai.png",
+        "prompt": "Delicious Egg Tart (ทาร์ตไข่), ทาร์ตไข่หน้าเนียน แป้งพัฟกรอบ. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 84,
+        "name": "Spring Rolls",
+        "filename": "spring_rolls_ai.png",
+        "prompt": "Delicious Spring Rolls (ปอเปี๊ยะทอด), แผ่นแป้งห่อไส้วุ้นเส้นหมูสับทอดกรอบ. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 85,
+        "name": "Raw Shrimp in Fish Sauce",
+        "filename": "raw_shrimp_in_fish_sauce_ai.png",
+        "prompt": "Delicious Raw Shrimp in Fish Sauce (กุ้งแช่น้ำปลา), กุ้งสดแช่น้ำปลา ราดน้ำจิ้มซีฟู้ด. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 86,
+        "name": "Mixed Spicy Salad",
+        "filename": "mixed_spicy_salad_ai.png",
+        "prompt": "Delicious Mixed Spicy Salad (ยำรวมมิตร), ยำรสเด็ด เครื่องแน่น หมูยอ กุ้ง ปลาหมึก. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 87,
+        "name": "Crab Stick Wasabi",
+        "filename": "crab_stick_wasabi_ai.png",
+        "prompt": "Delicious Crab Stick Wasabi (ปูอัดวาซาบิ), ปูอัดเกรดพรีเมียม จิ้มวาซาบิ. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 88,
+        "name": "Seaweed Salad",
+        "filename": "seaweed_salad_ai.png",
+        "prompt": "Delicious Seaweed Salad (ยำสาหร่าย), ยำสาหร่ายญี่ปุ่น กรุบกรอบ. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 90,
+        "name": "Grilled Fish Soy Sauce",
+        "filename": "grilled_fish_soy_sauce_ai.png",
+        "prompt": "Delicious Grilled Fish Soy Sauce (ปลาย่างซีอิ๊ว), ปลาซาบะหรือแซลมอนย่างซีอิ๊วญี่ปุ่น. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 94,
+        "name": "Salad Roll",
+        "filename": "salad_roll_ai.png",
+        "prompt": "Delicious Salad Roll (สลัดโรล), ผักสลัดห่อแป้ง พร้อมน้ำจิ้มซีฟู้ดครีม. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 96,
+        "name": "Garlic Bread",
+        "filename": "garlic_bread_ai.png",
+        "prompt": "Delicious Garlic Bread (ขนมปังกระเทียม), ขนมปังอบเนยกระเทียม กรอบหอม. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 97,
+        "name": "Spicy Stir-fried Instant Noodles",
+        "filename": "spicy_stir_fried_instant_noodles_ai.png",
+        "prompt": "Delicious Spicy Stir-fried Instant Noodles (มาม่าผัดขี้เมา), บะหมี่กึ่งสำเร็จรูปผัดขี้เมา รสจัดจ้าน. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 98,
+        "name": "Rice with Omelet",
+        "filename": "rice_with_omelet_ai.png",
+        "prompt": "Delicious Rice with Omelet (ข้าวไข่เจียว), ข้าวสวยร้อนๆ โปะไข่เจียว เมนูง่ายๆ แต่อร่อย. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 99,
+        "name": "Shaved Ice",
+        "filename": "shaved_ice_ai.png",
+        "prompt": "Delicious Shaved Ice (น้ำแข็งไส), น้ำแข็งไสราดน้ำแดง นมข้น เครื่องแน่น. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 100,
+        "name": "Chakangrao Grass Jelly",
+        "filename": "chakangrao_grass_jelly_ai.png",
+        "prompt": "Delicious Chakangrao Grass Jelly (เฉาก๊วยชากังราว), เฉาก๊วยเนื้อหนึบ ในน้ำเชื่อมใบเตย. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 101,
+        "name": "Tapioca Pork Balls",
+        "filename": "tapioca_pork_balls_ai.png",
+        "prompt": "Delicious Tapioca Pork Balls (สาคูไส้หมู), สาคูเหนียวนุ่ม ไส้หมูผัดเครื่องเทศ หอมกรุ่น. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 102,
+        "name": "Bananas with Sticky Rice",
+        "filename": "bananas_with_sticky_rice_ai.png",
+        "prompt": "Delicious Bananas with Sticky Rice (ข้าวต้มมัด), ข้าวเหนียวผัดกะทิสอดไส้กล้วย ห่อใบตองนึ่ง. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 103,
+        "name": "Baked Shrimp with Glass Noodles",
+        "filename": "baked_shrimp_with_glass_noodles_ai.png",
+        "prompt": "Delicious Baked Shrimp with Glass Noodles (กุ้งอบวุ้นเส้น), กุ้งอบหม้อดินพร้อมวุ้นเส้นเหนียวนุ่ม หอมขิงและพริกไทย. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 104,
+        "name": "Grilled Squid",
+        "filename": "grilled_squid_ai.png",
+        "prompt": "Delicious Grilled Squid (ปลาหมึกย่าง), ปลาหมึกย่างหอมๆ พร้อมน้ำจิ้มซีฟู้ดรสเด็ด. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    },
+    {
+        "id": 105,
+        "name": "Red Pork Rice",
+        "filename": "red_pork_rice_ai.png",
+        "prompt": "Delicious Red Pork Rice (ข้าวหมูแดง), ข้าวหมูแดง หมูกรอบ กุนเชียง ราดน้ำซอสสีแดง. High quality food photography, 4k, appetizing, restaurant style, vibrant colors."
+    }
+]

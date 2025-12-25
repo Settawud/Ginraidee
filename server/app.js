@@ -34,6 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
 // Session
+// Session
 app.use(session({
   secret: process.env.SESSION_SECRET || 'ginraidee-secret-key-2024',
   resave: false,
@@ -45,6 +46,13 @@ app.use(session({
     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
   }
 }));
+
+// Debug Session
+app.use((req, res, next) => {
+  console.log(`[Session Check] ${req.method} ${req.url}`);
+  console.log(`> Env: ${process.env.NODE_ENV}, Secure: ${req.secure}, Session: ${!!req.session}`);
+  next();
+});
 
 // Passport
 app.use(passport.initialize());
@@ -116,6 +124,14 @@ function initSQLite() {
       user_id TEXT,
       page TEXT,
       viewed_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+    CREATE TABLE IF NOT EXISTS food_feedback (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id TEXT,
+      food_id INTEGER,
+      action TEXT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (user_id) REFERENCES users(id)
     );
      CREATE TABLE IF NOT EXISTS google_users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -206,6 +222,13 @@ async function initPostgres() {
                 user_id TEXT,
                 page TEXT,
                 viewed_at TIMESTAMPTZ DEFAULT NOW()
+            );
+            CREATE TABLE IF NOT EXISTS food_feedback (
+                id SERIAL PRIMARY KEY,
+                user_id TEXT REFERENCES users(id) ON DELETE CASCADE,
+                food_id INTEGER,
+                action TEXT CHECK (action IN ('like', 'dislike')),
+                created_at TIMESTAMPTZ DEFAULT NOW()
             );
         `);
     // Default Admin

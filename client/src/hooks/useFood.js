@@ -103,12 +103,23 @@ export function useRandomFood() {
             }
             if (options.minPrice) params.append('minPrice', options.minPrice);
             if (options.maxPrice) params.append('maxPrice', options.maxPrice);
+            if (options.userId) params.append('userId', options.userId);
+
+            // Exclude recently viewed foods to prevent duplicates
+            if (history.length > 0) {
+                const excludeIds = history.map(f => f.id).join(',');
+                params.append('exclude', excludeIds);
+            }
 
             const response = await api.get(`/foods/action/random?${params.toString()}`);
             const finalFood = response.data.data;
 
             setFood(finalFood);
-            setHistory(prev => [finalFood, ...prev].slice(0, 10));
+            setHistory(prev => {
+                // Keep only last 10 items to prevent URL becoming too long
+                const newHistory = [finalFood, ...prev];
+                return newHistory.slice(0, 10);
+            });
 
             // Track selection
             try {
@@ -119,13 +130,36 @@ export function useRandomFood() {
 
         } catch (err) {
             console.error('Random food error:', err);
+            // Handle specific case where all foods are disliked
+            if (err.response && err.response.status === 404) {
+                setFood(null);
+                alert(err.response.data.error || 'ไม่พบเมนู');
+            }
         } finally {
             setLoading(false);
             setSpinning(false);
         }
     };
 
-    return { food, loading, spinning, history, getRandomFood, setFood };
+    const sendFeedback = async (foodId, action, userId) => {
+        try {
+            await api.post(`/foods/${foodId}/feedback`, { action, userId });
+        } catch (err) {
+            console.error('Feedback error:', err);
+        }
+    };
+
+    const getStats = async (foodId) => {
+        try {
+            const response = await api.get(`/foods/${foodId}/stats`);
+            return response.data.data;
+        } catch (err) {
+            console.error('Stats error:', err);
+            return { likes: 0, dislikes: 0 };
+        }
+    };
+
+    return { food, loading, spinning, history, getRandomFood, setFood, sendFeedback, getStats };
 }
 
 // Categories Hook
