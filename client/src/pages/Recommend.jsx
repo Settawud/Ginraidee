@@ -159,11 +159,15 @@ const Recommend = () => {
         // Send feedback
         await sendFeedback(food.id, action, userId);
 
-        // Reset to idle state after swipe animation
+        // Reset to idle state or auto-spin after swipe animation
         setTimeout(() => {
-            setFood(null);
-            setShuffleFood(null);
-            setAnimationState('idle');
+            if (action === 'dislike') {
+                handleSpin();
+            } else {
+                setFood(null);
+                setShuffleFood(null);
+                setAnimationState('idle');
+            }
         }, 200);
     };
 
