@@ -16,7 +16,7 @@
 - กรองตามหมวดหมู่และช่วงราคา
 
 ### 🍽️ เมนูอาหาร
-- 16 เมนูอาหารหลากหลาย (ไทย, ญี่ปุ่น, เกาหลี, ตะวันตก, ฟาสต์ฟู้ด, ของหวาน)
+- 105 เมนูอาหารหลากหลาย (ไทย, ญี่ปุ่น, เกาหลี, ตะวันตก, ฟาสต์ฟู้ด, ของหวาน)
 - รูปภาพ AI-generated สวยงาม
 - ค้นหาและกรองเมนู
 
@@ -85,7 +85,8 @@ ginraidee/
 │   │   │   ├── LoginCallback.jsx    # Google OAuth callback
 │   │   │   ├── Menu.jsx             # Full menu page
 │   │   │   ├── Admin.jsx            # Admin dashboard
-│   │   │   └── Recommend.jsx        # Recommendation page
+│   │   │   ├── Recommend.jsx        # Recommendation page
+│   │   │   └── Register.jsx         # User registration page
 │   │   ├── contexts/
 │   │   │   └── AuthContext.jsx      # Authentication state
 │   │   ├── hooks/
