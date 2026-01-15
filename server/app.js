@@ -288,9 +288,139 @@ function mountRoutes() {
   app.use('/api/admin', adminRouter);
 }
 
-// Health check
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString(), mode: process.env.DATABASE_URL ? 'postgres' : 'sqlite' });
+// Health check with beautiful UI
+app.get('/api', (req, res) => {
+  const mode = process.env.DATABASE_URL ? 'PostgreSQL' : 'SQLite';
+  const uptime = process.uptime();
+  const hours = Math.floor(uptime / 3600);
+  const minutes = Math.floor((uptime % 3600) / 60);
+  const seconds = Math.floor(uptime % 60);
+
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Ginraidee API</title>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+      <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+          font-family: 'Inter', sans-serif;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+          color: white;
+        }
+        .container {
+          text-align: center;
+          padding: 3rem;
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 24px;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+          max-width: 450px;
+          width: 90%;
+        }
+        .emoji { font-size: 4rem; margin-bottom: 1rem; }
+        h1 {
+          font-size: 2rem;
+          font-weight: 700;
+          margin-bottom: 0.5rem;
+          background: linear-gradient(90deg, #f97316, #fb923c);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+        .subtitle {
+          color: rgba(255, 255, 255, 0.7);
+          font-size: 1rem;
+          margin-bottom: 2rem;
+        }
+        .status-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: rgba(34, 197, 94, 0.2);
+          border: 1px solid rgba(34, 197, 94, 0.4);
+          padding: 0.75rem 1.5rem;
+          border-radius: 50px;
+          margin-bottom: 2rem;
+        }
+        .status-dot {
+          width: 12px;
+          height: 12px;
+          background: #22c55e;
+          border-radius: 50%;
+          animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.7; transform: scale(1.1); }
+        }
+        .status-text { color: #22c55e; font-weight: 600; }
+        .info-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1rem;
+          margin-top: 1.5rem;
+        }
+        .info-card {
+          background: rgba(255, 255, 255, 0.05);
+          padding: 1rem;
+          border-radius: 12px;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .info-label {
+          font-size: 0.75rem;
+          color: rgba(255, 255, 255, 0.5);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          margin-bottom: 0.25rem;
+        }
+        .info-value {
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: white;
+        }
+        .footer {
+          margin-top: 2rem;
+          font-size: 0.8rem;
+          color: rgba(255, 255, 255, 0.4);
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="emoji">🍜</div>
+        <h1>Ginraidee API</h1>
+        <p class="subtitle">Food Recommendation Service</p>
+        
+        <div class="status-badge">
+          <div class="status-dot"></div>
+          <span class="status-text">Server is Running</span>
+        </div>
+        
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-label">Database</div>
+            <div class="info-value">${mode}</div>
+          </div>
+          <div class="info-card">
+            <div class="info-label">Uptime</div>
+            <div class="info-value">${hours}h ${minutes}m ${seconds}s</div>
+          </div>
+        </div>
+        
+        <p class="footer">Ready to serve delicious recommendations ✨</p>
+      </div>
+    </body>
+    </html>
+  `);
 });
 
 // Serve static files from React app (production) - only if client/dist exists
