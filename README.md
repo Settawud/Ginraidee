@@ -215,20 +215,26 @@ npm run dev
 - `SESSION_SECRET` - Random session secret
 - `NODE_ENV` - production / development
 
-### Frontend Deployment (Vercel)
-1. Connect GitHub repository to Vercel
-2. Set Root Directory: `client`
-3. Build Command: `npm run build`
-4. Output Directory: `dist`
-5. Add Environment Variables (if needed for frontend)
+### Deployment on Render
 
-### Backend Deployment (Render / Railway)
-1. Connect GitHub repository
-2. Set Root Directory: `server`
-3. Build Command: `npm install`
-4. Start Command: `npm start`
-5. Add all environment variables above
-6. Database: Uses Supabase (no local SQLite)
+#### Frontend (Static Site)
+1. Create new Static Site on Render
+2. Connect GitHub repository
+3. Set Root Directory: `client`
+4. Build Command: `npm run build`
+5. Publish Directory: `dist`
+
+#### Backend (Web Service)
+1. Create new Web Service on Render
+2. Connect GitHub repository
+3. Set Root Directory: `server`
+4. Build Command: `npm install`
+5. Start Command: `npm start`
+6. Add all environment variables above
+7. Database: Uses Supabase PostgreSQL (no local database needed)
+
+**Note:** Both frontend and backend are hosted on Render.
+Backend is on free tier so may take 5 minutes to wake up after inactivity.
 
 ## ⚠️ Important Notes
 
