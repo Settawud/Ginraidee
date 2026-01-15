@@ -1,10 +1,11 @@
 # 🍜 Ginraidee - วันนี้กินอะไรดี?
 
-> ระบบแนะนำอาหารอัจฉริยะ พร้อม Random Picker แบบ Slot Machine และ Admin Dashboard
+> ระบบแนะนำอาหารอัจฉริยะ พร้อม Random Picker แบบ Slot Machine, Admin Dashboard และ Cloud Database
 
 ![React](https://img.shields.io/badge/React-18-61DAFB?logo=react)
-![Express.js](https://img.shields.io/badge/Express.js-5-000000?logo=express)
-![SQLite](https://img.shields.io/badge/SQLite-3-003B57?logo=sqlite)
+![Express.js](https://img.shields.io/badge/Express.js-4-000000?logo=express)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Cloud-336791?logo=postgresql)
+![Supabase](https://img.shields.io/badge/Supabase-Auth%20%26%20DB-3ECF8E?logo=supabase)
 ![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite)
 
 ## ✨ Features
@@ -34,15 +35,18 @@
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **React 18** + **Vite**
-- **Framer Motion** - Animations
-- **React Router v6** - Navigation
-- **Axios** - HTTP Client
+- **React 18** + **Vite** - Modern UI framework & bundler
+- **Framer Motion** - Smooth animations
+- **React Router v6** - Client-side routing
+- **Axios** - HTTP client
 - **Canvas Confetti** - Celebration effects
+- **Context API** - State management
 
 ### Backend
-- **Express.js 5**
-- **SQLite** (better-sqlite3)
+- **Express.js 4** - REST API server
+- **PostgreSQL** (via Supabase) - Cloud database
+- **Supabase Auth SDK** - Authentication & database client
+- **better-sqlite3 / Node-pg** - Database drivers
 - **bcryptjs** - Password hashing
 - **express-session** - Session management
 ## 🚀 Live Demo
@@ -60,21 +64,60 @@ Please allow **up to 5 minutes** for the server to wake up on the first visit.
 
 ```
 ginraidee/
-├── client/                 # Frontend (React + Vite)
-│   ├── public/images/      # AI-generated food images
+├── client/                          # Frontend (React + Vite)
+│   ├── public/
+│   │   ├── images/                  # AI-generated food images
+│   │   └── _redirects               # Netlify routing config
 │   ├── src/
-│   │   ├── components/     # Reusable components
-│   │   ├── pages/          # Page components
-│   │   ├── hooks/          # Custom React hooks
-│   │   └── styles/         # CSS files
-│   └── index.html
+│   │   ├── components/
+│   │   │   ├── CategoryFilter.jsx   # Filter by food category
+│   │   │   ├── FoodCard.jsx         # Food display card
+│   │   │   ├── Header.jsx           # Navigation header
+│   │   │   ├── MenuManagement.jsx   # Admin menu editor
+│   │   │   ├── PriceFilter.jsx      # Filter by price range
+│   │   │   ├── ProtectedRoute.jsx   # Auth-protected routes
+│   │   │   └── RandomPicker.jsx     # Slot machine picker
+│   │   ├── pages/
+│   │   │   ├── Home.jsx             # Landing page
+│   │   │   ├── Login.jsx            # Admin login page
+│   │   │   ├── LoginCallback.jsx    # Google OAuth callback
+│   │   │   ├── Menu.jsx             # Full menu page
+│   │   │   ├── Admin.jsx            # Admin dashboard
+│   │   │   └── Recommend.jsx        # Recommendation page
+│   │   ├── contexts/
+│   │   │   └── AuthContext.jsx      # Authentication state
+│   │   ├── hooks/
+│   │   │   └── useFood.js           # Food data hook
+│   │   ├── data/
+│   │   │   └── staticMenu.json      # Static menu data
+│   │   ├── App.jsx                  # Main app component
+│   │   ├── main.jsx                 # Entry point
+│   │   └── index.css & App.css      # Styling
+│   ├── index.html
+│   ├── vite.config.js
+│   ├── eslint.config.js
+│   └── package.json
 │
-└── server/                 # Backend (Express.js)
+└── server/                          # Backend (Express.js)
+    ├── config/
+    │   ├── db.js                    # PostgreSQL connection pool
+    │   ├── supabase.js              # Supabase client setup
+    │   └── supabase-schema.sql      # Database schema
+    ├── routes/
+    │   ├── foods.js & foods-pg.js   # Food menu endpoints
+    │   ├── auth.js & auth-pg.js     # Authentication endpoints
+    │   ├── users.js & users-pg.js   # User tracking endpoints
+    │   └── admin.js & admin-pg.js   # Admin management endpoints
+    ├── scripts/                     # Utility scripts for image generation
+    │   ├── generate_ai_images.js
+    │   ├── download_images.js
+    │   ├── analyze_images.js
+    │   └── ... (other utilities)
     ├── data/
-    │   ├── foods.json      # Food menu data
-    │   └── database.sqlite # SQLite database
-    ├── routes/             # API routes
-    └── app.js              # Main server
+    │   └── foods.json               # Food menu data
+    ├── app.js                       # Main Express server
+    ├── .env                         # Environment variables (not in git)
+    └── package.json
 ```
 
 ## 🚀 Getting Started
@@ -99,9 +142,21 @@ npm install
 
 3. **Setup Backend Environment**
 ```bash
-# Copy example env file
-cp .env.example .env
-# Edit .env and set your SESSION_SECRET
+# Create .env file
+cd server
+touch .env
+
+# Add required environment variables:
+# DATABASE_URL=postgresql://user:password@host:port/dbname (Supabase)
+# SUPABASE_URL=https://your-project.supabase.co
+# SUPABASE_KEY=your-anon-key
+# GOOGLE_CLIENT_ID=your-google-client-id
+# GOOGLE_CLIENT_SECRET=your-google-client-secret
+# GOOGLE_CALLBACK_URL=http://localhost:3001/api/auth/google/callback
+# FRONTEND_URL=http://localhost:5173
+# PORT=3001
+# NODE_ENV=development
+# SESSION_SECRET=generate-a-random-secret
 ```
 
 4. **Install Frontend Dependencies**
@@ -136,46 +191,62 @@ npm run dev
 3. **Open in browser**
 - Main App: http://localhost:5173
 - Admin Dashboard: http://localhost:5173/admin
+- API Docs: http://localhost:3001
 
-### Admin Login
-- **Username:** `admin`
-- **Password:** `admin123`
+### Authentication
+- **Google OAuth**: Sign in with Google account
+- **Admin Login**: Configured via Supabase auth
 
-## 🚀 Deployment to GitHub
+## 🚀 Deployment
 
-ขั้นตอนการนำโปรเจกต์ขึ้น GitHub และข้อควรระวัง:
+### Environment Setup
+ก่อน deploy ต้องตั้งค่า environment variables ในแต่ละ platform:
 
-1.  **Prepare Repository:**
-    - สร้าง Repository ใหม่บน GitHub
-    - **ห้าม** อัพโหลดไฟล์ `.env` (มีข้อมูลความลับ) และ `node_modules`
-    - ไฟล์ `database.sqlite` จะถูก ignore โดยอัตโนมัติ (ตาม `.gitignore`) เพื่อป้องกันการทับข้อมูลจริง
+**Required Environment Variables:**
+- `DATABASE_URL` - Supabase PostgreSQL connection string
+- `SUPABASE_URL` - Supabase project URL
+- `SUPABASE_KEY` - Supabase anonymous key
+- `GOOGLE_CLIENT_ID` - Google OAuth 2.0 Client ID
+- `GOOGLE_CLIENT_SECRET` - Google OAuth Client Secret
+- `GOOGLE_CALLBACK_URL` - OAuth redirect URI
+- `FRONTEND_URL` - Frontend application URL
+- `SESSION_SECRET` - Random session secret
+- `NODE_ENV` - production / development
 
-2.  **Push Code:**
-    ```bash
-    git init
-    git add .
-    git commit -m "First commit: Ginraidee Project"
-    git branch -M main
-    git remote add origin https://github.com/yourusername/ginraidee.git
-    git push -u origin main
-    ```
+### Frontend Deployment (Vercel)
+1. Connect GitHub repository to Vercel
+2. Set Root Directory: `client`
+3. Build Command: `npm run build`
+4. Output Directory: `dist`
+5. Add Environment Variables (if needed for frontend)
 
-3.  **Deployment (Optional):**
-    หากต้องการ deploy ขึ้น Server จริง (เช่น Vercel + Render):
-    - **Frontend (Vercel):** เชื่อมต่อกับ GitHub repo, ตั้งค่า Root Directory เป็น `client`, Build Command: `npm run build`, Output: `dist`.
-    - **Backend (Render/Railway):** เชื่อมต่อ GitHub, Root Directory `server`, Command `npm start`. Set Environment Variables เดียวกับใน `.env`.
-    - **Database:** เนื่องจากใช้ SQLite (ไฟล์), ข้อมูลจะไม่ถูก persist หาก Server restart บน Cloud บางเจ้า (เช่น Render Free Tier). แนะนำให้เปลี่ยนไปใช้ PostgreSQL หรือ Supabase สำหรับ Production จริง.
+### Backend Deployment (Render / Railway)
+1. Connect GitHub repository
+2. Set Root Directory: `server`
+3. Build Command: `npm install`
+4. Start Command: `npm start`
+5. Add all environment variables above
+6. Database: Uses Supabase (no local SQLite)
 
 ## ⚠️ Important Notes
 
 > [!IMPORTANT]
-> **Database**: โปรเจกต์นี้ใช้ **SQLite** (`server/data/database.sqlite`) ซึ่งเป็นไฟล์ Local.
-> เมื่อ Clone ไปเครื่องใหม่ จะต้องเริ่มระบบใหม่ ข้อมูลเก่าจะไม่ตามไปด้วย
-> (ระบบจะสร้างไฟล์ database ให้อัตโนมัติเมื่อรัน server ครั้งแรก หรือใช้ script seed)
+> **Database**: โปรเจกต์นี้ใช้ **Supabase PostgreSQL** (Cloud Database) ไม่ใช่ SQLite
+> - ข้อมูลจะถูกเก็บบน cloud และยังคงอยู่เมื่อ server restart
+> - ต้องมี `DATABASE_URL` และ Supabase credentials ในไฟล์ `.env`
+> - ข้อมูลจะ persist ระหว่าง deployments ต่าง ๆ
 
 > [!WARNING]
-> **Environment Variables**: ต้องสร้างไฟล์ `.env` ในโฟลเดอร์ `server` และ `client` (ถ้ามี) เสมอ
-> ดูตัวอย่างจาก `.env.example`
+> **Environment Variables**: ต้องสร้างไฟล์ `.env` ในโฟลเดอร์ `server` เสมอ
+> - **ห้าม** commit `.env` ขึ้น Git (มีข้อมูลความลับ)
+> - `.env` ถูก ignore โดยอัตโนมัติตาม `.gitignore`
+> - Local development ต้องสร้างไฟล์ `.env` ด้วยตัวเอง
+
+> [!NOTE]
+> **Authentication**: โปรเจกต์นี้ใช้ Google OAuth 2.0
+> - ต้องสร้าง OAuth app บน Google Cloud Console
+> - เพิ่ม redirect URI: `http://localhost:3001/api/auth/google/callback`
+> - เก็บ `GOOGLE_CLIENT_ID` และ `GOOGLE_CLIENT_SECRET` ในไฟล์ `.env`
 
 
 ## 📷 Screenshots
@@ -214,21 +285,78 @@ npm run dev
 | POST | `/api/users/init` | Initialize user session |
 | POST | `/api/users/select` | บันทึกการเลือกอาหาร |
 
-### Admin
+### Authentication Routes
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/admin/login` | Admin login |
+| GET | `/api/auth/google` | Initiate Google OAuth |
+| GET | `/api/auth/google/callback` | Google OAuth callback handler |
+| POST | `/api/auth/logout` | User logout |
+| GET | `/api/auth/me` | Get current user info |
+
+### Admin Routes (Protected)
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/admin/login` | Admin authentication |
 | GET | `/api/admin/stats` | Dashboard statistics |
-| GET | `/api/admin/popular-menus` | เมนูยอดนิยม |
-| POST | `/api/admin/menus` | เพิ่มเมนูใหม่ |
-| PUT | `/api/admin/menus/:id` | แก้ไขเมนู |
-| DELETE | `/api/admin/menus/:id` | ลบเมนู |
+| GET | `/api/admin/popular-menus` | Top 10 popular menus |
+| GET | `/api/admin/food-timeline` | Daily food selection timeline |
+| POST | `/api/admin/foods` | Create new food item |
+| PUT | `/api/admin/foods/:id` | Update food item |
+| DELETE | `/api/admin/foods/:id` | Delete food item |
 
 ## 📝 License
 
 MIT License - feel free to use for learning and projects!
 
-## 👨‍💻 Author
+## � Security & Best Practices
+
+- ✅ Environment variables for sensitive data (API keys, database URLs)
+- ✅ Password hashing with bcryptjs
+- ✅ Session-based authentication with express-session
+- ✅ Google OAuth 2.0 for secure social login
+- ✅ Protected routes for admin features
+- ✅ CORS configured for cross-origin requests
+- ✅ Database connection pooling for performance
+
+## 📚 Database Schema
+
+Database ใช้ PostgreSQL บน Supabase มี tables ดังนี้:
+- **foods** - เมนูอาหาร
+- **users** - ข้อมูลผู้ใช้งาน
+- **user_selections** - ประวัติการเลือกอาหาร
+- **admin_logs** - Admin activity logs
+
+## 🐛 Troubleshooting
+
+### Database Connection Error
+```
+❌ PostgreSQL connection failed
+```
+**Solution:**
+- ตรวจสอบ `DATABASE_URL` ในไฟล์ `.env`
+- ตรวจสอบว่า Supabase project สามารถเข้าถึงได้
+- ตรวจสอบ firewall/network settings
+
+### Google OAuth Issues
+```
+Error: Invalid OAuth redirect URI
+```
+**Solution:**
+- ตรวจสอบ `GOOGLE_CALLBACK_URL` ตรงกันกับ Google Cloud Console
+- ตรวจสอบ `GOOGLE_CLIENT_ID` และ `GOOGLE_CLIENT_SECRET`
+
+### Port Already in Use
+```
+Error: listen EADDRINUSE :::3001
+```
+**Solution:**
+```bash
+# Kill process using port 3001
+lsof -i :3001
+kill -9 <PID>
+```
+
+## �👨‍💻 Author
 
 Created with ❤️ as a learning project
 
