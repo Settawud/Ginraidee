@@ -45,6 +45,16 @@
 - **SQLite** (better-sqlite3)
 - **bcryptjs** - Password hashing
 - **express-session** - Session management
+## 🚀 Live Demo
+
+🌐 **Web Application**
+[https://ginraidee.onrender.com](https://ginraidee.onrender.com)
+
+⚙️ **Backend API**
+[https://ginraidee-api.onrender.com](https://ginraidee-api.onrender.com)
+
+⏳ **Note:** Backend server is hosted on a free tier.
+Please allow **up to 5 minutes** for the server to wake up on the first visit.
 
 ## 📁 Project Structure
 
