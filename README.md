@@ -46,6 +46,8 @@
 - **Express.js 4** - REST API server
 - **PostgreSQL** (via Supabase) - Cloud database
 - **Supabase Auth SDK** - Authentication & database client
+- **Passport.js** - Authentication middleware
+- **Google OAuth 2.0** - Social authentication strategy
 - **better-sqlite3 / Node-pg** - Database drivers
 - **bcryptjs** - Password hashing
 - **express-session** - Session management
@@ -308,7 +310,7 @@ npm run dev
 
 MIT License - feel free to use for learning and projects!
 
-## � Security & Best Practices
+## 🛡️ Security & Best Practices
 
 - ✅ Environment variables for sensitive data (API keys, database URLs)
 - ✅ Password hashing with bcryptjs
