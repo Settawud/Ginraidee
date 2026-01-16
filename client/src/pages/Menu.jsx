@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiSearch, FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import FoodCard from '../components/FoodCard';
+import { Modal, FoodQuickView } from '../components/Modal';
 import { useFoods, useCategories } from '../hooks/useFood';
 import './Menu.css';
 
@@ -36,6 +37,7 @@ const Menu = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [sortBy, setSortBy] = useState('name');
     const [showMobileFilters, setShowMobileFilters] = useState(false);
+    const [selectedFood, setSelectedFood] = useState(null);
 
     const { foods, loading, updateFilters, pagination } = useFoods({
         category: selectedCategories.length > 0 ? selectedCategories : 'all',
@@ -241,7 +243,12 @@ const Menu = () => {
                         <motion.div className="menu-grid" layout>
                             <AnimatePresence>
                                 {sortedFoods.map((food, index) => (
-                                    <FoodCard key={food.id} food={food} delay={index * 0.03} />
+                                    <FoodCard
+                                        key={food.id}
+                                        food={food}
+                                        delay={index * 0.03}
+                                        onClick={() => setSelectedFood(food)}
+                                    />
                                 ))}
                             </AnimatePresence>
                         </motion.div>
@@ -271,6 +278,13 @@ const Menu = () => {
                     </div>
                 </main>
             </div >
+
+            {/* Quick View Modal */}
+            <Modal isOpen={!!selectedFood} onClose={() => setSelectedFood(null)}>
+                {selectedFood && (
+                    <FoodQuickView food={selectedFood} onClose={() => setSelectedFood(null)} />
+                )}
+            </Modal>
         </div >
     );
 };

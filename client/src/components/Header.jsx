@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiHome, FiCompass, FiGrid, FiSettings, FiMenu, FiX, FiLogIn, FiLogOut, FiUser } from 'react-icons/fi';
 import { useAuth } from '../contexts/AuthContext';
+import ThemeToggle from './ThemeToggle';
 import './Header.css';
 
 const Header = () => {
@@ -79,6 +80,9 @@ const Header = () => {
                 </nav>
 
                 <div className="header-actions">
+                    {/* Theme Toggle */}
+                    <ThemeToggle />
+
                     {/* User section */}
                     {!loading && (
                         <AnimatePresence mode="wait">

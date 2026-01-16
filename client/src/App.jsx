@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
+import { ThemeProvider } from './contexts/ThemeContext';
+import { ToastProvider } from './components/Toast';
 import Header from './components/Header';
 import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
@@ -46,7 +48,7 @@ function AppContent() {
 
       <footer className="footer">
         <div className="container">
-          <p>© 2024 Ginraidee - Made with 🍜</p>
+          <p>© {new Date().getFullYear()} Ginraidee - Made with 🍜</p>
         </div>
       </footer>
     </div>
@@ -56,11 +58,16 @@ function AppContent() {
 function App() {
   return (
     <Router>
-      <AuthProvider>
-        <AppContent />
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <ToastProvider>
+            <AppContent />
+          </ToastProvider>
+        </AuthProvider>
+      </ThemeProvider>
     </Router>
   );
 }
 
 export default App;
+

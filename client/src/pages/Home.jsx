@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 // eslint-disable-next-line no-unused-vars
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { FiArrowRight, FiZap, FiHeart, FiTrendingUp } from 'react-icons/fi';
 import axios from 'axios';
 import './Home.css';
@@ -54,11 +54,22 @@ const Home = () => {
     ];
 
     const [isDragging, setIsDragging] = useState(false);
-    const [dragOffset, setDragOffset] = useState(0); // Real-time drag offset in pixels
+    // Use motion value for GPU-accelerated smooth dragging (no React re-renders)
+    const dragX = useMotionValue(0);
+    const smoothDragX = useSpring(dragX, { stiffness: 300, damping: 30 });
+    const [dragOffset, setDragOffset] = useState(0);
     const hoverTimeout = useRef(null);
 
     const sliderRef = useRef(null);
     const scrollTimeout = useRef(null);
+
+    // Sync motion value to state only when needed (for getCardStyle calculation)
+    useEffect(() => {
+        const unsubscribe = smoothDragX.on('change', (v) => {
+            setDragOffset(v);
+        });
+        return () => unsubscribe();
+    }, [smoothDragX]);
 
     // Scroll hijacking removed to restore native scrolling performance
     // The carousel can still be navigated via drag/swipe gestures handled by the container (not shown here but retained in state)
@@ -78,7 +89,8 @@ const Home = () => {
     const handlePanEnd = () => {
         // Determine which slide to snap to based on drag distance
         const slideWidth = 220; // Approximate width between slides
-        const slidesToMove = Math.round(-dragOffset / slideWidth);
+        const currentOffset = dragX.get();
+        const slidesToMove = Math.round(-currentOffset / slideWidth);
 
         if (displayFoods.length > 0 && slidesToMove !== 0) {
             setCurrentSlide((prev) => {
@@ -89,8 +101,8 @@ const Home = () => {
             });
         }
 
-        // Reset drag state
-        setDragOffset(0);
+        // Reset drag state with spring animation
+        dragX.set(0);
         setTimeout(() => setIsDragging(false), 50);
     };
 
@@ -447,11 +459,11 @@ const Home = () => {
                                 aria-label="Food Carousel"
                                 onPanStart={() => {
                                     setIsDragging(true);
-                                    setDragOffset(0);
+                                    dragX.set(0);
                                 }}
                                 onPan={(e, info) => {
-                                    // Real-time finger following - update offset directly
-                                    setDragOffset(info.offset.x);
+                                    // GPU-accelerated: set motion value directly, no setState
+                                    dragX.set(info.offset.x);
                                 }}
                                 onPanEnd={handlePanEnd}
                                 style={{ cursor: isDragging ? 'grabbing' : 'grab', touchAction: 'none' }}

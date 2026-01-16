@@ -1,0 +1,205 @@
+/* Modal Backdrop */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 9990;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Modal Content Container */
+.modal-content {
+    position: relative;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: var(--color-bg-secondary);
+    border-radius: 20px;
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Close Button */
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    border-radius: 50%;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+    background: rgba(255, 71, 87, 0.8);
+    transform: rotate(90deg);
+}
+
+/* =====================
+   Food Quick View
+   ===================== */
+.food-quickview {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Image Container */
+.quickview-image-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    border-radius: 20px 20px 0 0;
+}
+
+.quickview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.quickview-rating {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    color: #fbbf24;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.quickview-rating svg {
+    fill: #fbbf24;
+}
+
+/* Info Section */
+.quickview-info {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.quickview-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.quickview-name {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.quickview-name-en {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+}
+
+.quickview-description {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Meta Info */
+.quickview-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.quickview-category {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    background: var(--color-bg-tertiary);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.quickview-tags {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+}
+
+.quickview-tag {
+    padding: 4px 10px;
+    background: rgba(255, 71, 87, 0.1);
+    color: var(--color-primary);
+    border-radius: 12px;
+    font-size: 0.8rem;
+}
+
+/* Footer */
+.quickview-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid var(--color-border);
+    margin-top: 8px;
+}
+
+.quickview-price {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .modal-backdrop {
+        padding: 16px;
+    }
+
+    .modal-content {
+        border-radius: 16px;
+    }
+
+    .quickview-image-container {
+        border-radius: 16px 16px 0 0;
+    }
+
+    .quickview-info {
+        padding: 20px;
+    }
+
+    .quickview-name {
+        font-size: 1.4rem;
+    }
+}

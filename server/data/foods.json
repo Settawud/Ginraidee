@@ -635,7 +635,7 @@
         "price": 120,
         "category": "korean",
         "categoryName": "อาหารเกาหลี",
-        "image": "/images/menus/tteokbokki_1766494740801.png",
+        "image": "/images/menus/tteokbokki_ai.png",
         "tags": [
             "spicy",
             "rice cake"
@@ -665,7 +665,7 @@
         "price": 140,
         "category": "korean",
         "categoryName": "อาหารเกาหลี",
-        "image": "/images/menus/jajangmyeon_1766494741906.png",
+        "image": "/images/menus/jajangmyeon_ai.png",
         "tags": [
             "noodle",
             "popular"
@@ -680,7 +680,7 @@
         "price": 180,
         "category": "korean",
         "categoryName": "อาหารเกาหลี",
-        "image": "/images/fried_chicken_1765343711239.png",
+        "image": "/images/menus/korean_fried_chicken_ai.png",
         "tags": [
             "chicken",
             "fried",
@@ -696,7 +696,7 @@
         "price": 60,
         "category": "korean",
         "categoryName": "อาหารเกาหลี",
-        "image": "/images/menus/gimbap_1766494742844.png",
+        "image": "/images/menus/gimbap_ai.png",
         "tags": [
             "rice",
             "roll"
@@ -711,7 +711,7 @@
         "price": 150,
         "category": "western",
         "categoryName": "อาหารตะวันตก",
-        "image": "/images/menus/spaghetti_carbonara_1766494743852.png",
+        "image": "/images/menus/spaghetti_carbonara_ai.png",
         "tags": [
             "pasta",
             "cheese",
@@ -772,7 +772,7 @@
         "price": 60,
         "category": "fastfood",
         "categoryName": "ฟาสต์ฟู้ด",
-        "image": "/images/menus/chicken_nuggets_1766494749341.png",
+        "image": "/images/menus/chicken_nuggets_ai.png",
         "tags": [
             "chicken",
             "fried"
@@ -847,7 +847,7 @@
         "price": 40,
         "category": "dessert",
         "categoryName": "ของหวาน",
-        "image": "/images/menus/tub_tim_krob_1766494955527.png",
+        "image": "/images/menus/tub_tim_krob_ai.png",
         "tags": [
             "thai",
             "sweet",
@@ -878,7 +878,7 @@
         "price": 40,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/menus/grilled_meatballs_1766542580906.png",
+        "image": "/images/menus/grilled_meatballs_ai.png",
         "tags": [
             "pork",
             "streetfood"
@@ -893,7 +893,7 @@
         "price": 50,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/menus/isan_sausage_1766494958911.png",
+        "image": "/images/menus/isan_sausage_ai.png",
         "tags": [
             "pork",
             "sausage",
@@ -909,7 +909,7 @@
         "price": 10,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/menus/grilled_pork_skewers_1766494960296.png",
+        "image": "/images/menus/pork_skewers_ai.png",
         "tags": [
             "pork",
             "streetfood"
@@ -924,7 +924,7 @@
         "price": 250,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/menus/salt_grilled_fish_1766494966900.png",
+        "image": "/images/menus/salt_grilled_fish_ai.png",
         "tags": [
             "seafood",
             "grilled",
@@ -970,7 +970,7 @@
         "price": 180,
         "category": "western",
         "categoryName": "อาหารตะวันตก",
-        "image": "/images/menus/fish_and_chips_1766494978931.png",
+        "image": "/images/menus/fish_and_chips_ai.png",
         "tags": [
             "seafood",
             "fried"
@@ -1001,7 +1001,7 @@
         "price": 120,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/menus/crispy_catfish_salad_1766494981171.png",
+        "image": "/images/menus/crispy_catfish_salad_ai.png",
         "tags": [
             "salad",
             "fish",
@@ -1017,7 +1017,7 @@
         "price": 40,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/menus/minced_pork_omelet_1766494982669.png",
+        "image": "/images/menus/minced_pork_omelet_ai.png",
         "tags": [
             "egg",
             "popular",
@@ -1049,7 +1049,7 @@
         "price": 65,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/menus/shrimp_paste_fried_rice_1766542586298.png",
+        "image": "/images/menus/shrimp_paste_fried_rice_ai.png",
         "tags": [
             "rice",
             "popular"
@@ -1080,7 +1080,7 @@
         "price": 60,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/menus/crispy_mussel_pancake_1766494990922.png",
+        "image": "/images/menus/crispy_mussel_pancake_ai.png",
         "tags": [
             "fried",
             "seafood"
@@ -1111,7 +1111,7 @@
         "price": 50,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/menus/yentafo_1766494992136.png",
+        "image": "/images/menus/yentafo_ai.png",
         "tags": [
             "noodle",
             "soup"
@@ -1126,7 +1126,7 @@
         "price": 60,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/menus/shrimp_wonton_1766498567333.png",
+        "image": "/images/menus/shrimp_wonton_ai.png",
         "tags": [
             "soup",
             "shrimp"
@@ -1141,7 +1141,7 @@
         "price": 299,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/samgyeopsal_bbq_1765343636088.png",
+        "image": "/images/menus/thai_bbq_mookata_ai.png",
         "tags": [
             "bbq",
             "buffet",
@@ -1157,7 +1157,7 @@
         "price": 199,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/menus/jim_jum_1766494992895.png",
+        "image": "/images/menus/jim_jum_ai.png",
         "tags": [
             "soup",
             "hotpot",
@@ -1218,7 +1218,7 @@
         "price": 20,
         "category": "dessert",
         "categoryName": "ของหวาน",
-        "image": "/images/menus/tokyo_pancake_1766495082759.png",
+        "image": "/images/menus/tokyo_pancake_ai.png",
         "tags": [
             "snack",
             "sweet"
@@ -1324,7 +1324,7 @@
         "price": 100,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/menus/mixed_spicy_salad_1766495099765.png",
+        "image": "/images/menus/mixed_spicy_salad_ai.png",
         "tags": [
             "spicy",
             "salad"
@@ -1339,7 +1339,7 @@
         "price": 80,
         "category": "japanese",
         "categoryName": "อาหารญี่ปุ่น",
-        "image": "/images/menus/crab_stick_wasabi_1766495101620.png",
+        "image": "/images/menus/crab_stick_wasabi_ai.png",
         "tags": [
             "appetizer",
             "seafood"
@@ -1354,7 +1354,7 @@
         "price": 60,
         "category": "japanese",
         "categoryName": "อาหารญี่ปุ่น",
-        "image": "/images/menus/seaweed_salad_1766495102559.png",
+        "image": "/images/menus/seaweed_salad_ai.png",
         "tags": [
             "appetizer",
             "healthy"
@@ -1384,7 +1384,7 @@
         "price": 120,
         "category": "japanese",
         "categoryName": "อาหารญี่ปุ่น",
-        "image": "/images/menus/grilled_fish_soy_sauce_1766495106967.png",
+        "image": "/images/menus/grilled_fish_soy_sauce_ai.png",
         "tags": [
             "fish",
             "grilled"
@@ -1444,7 +1444,7 @@
         "price": 50,
         "category": "western",
         "categoryName": "อาหารตะวันตก",
-        "image": "/images/menus/salad_roll_1766495125320.png",
+        "image": "/images/menus/salad_roll_ai.png",
         "tags": [
             "healthy",
             "salad"
@@ -1489,7 +1489,7 @@
         "price": 50,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/menus/spicy_stir_fried_instant_noodles_1766495131526.png",
+        "image": "/images/menus/spicy_instant_noodles_ai.png",
         "tags": [
             "noodle",
             "spicy"
@@ -1504,7 +1504,7 @@
         "price": 35,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/menus/rice_with_omelet_1766495134470.png",
+        "image": "/images/menus/rice_with_omelet_ai.png",
         "tags": [
             "rice",
             "egg",
@@ -1535,7 +1535,7 @@
         "price": 25,
         "category": "dessert",
         "categoryName": "ของหวาน",
-        "image": "/images/menus/chakangrao_grass_jelly_1766495142255.png",
+        "image": "/images/menus/grass_jelly_milk_ai.png",
         "tags": [
             "sweet",
             "cold"
@@ -1582,7 +1582,7 @@
         "price": 280,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/menus/baked_shrimp_with_glass_noodles_1766495145939.png",
+        "image": "/images/menus/baked_shrimp_noodles_ai.png",
         "tags": [
             "seafood",
             "noodle",
@@ -1598,7 +1598,7 @@
         "price": 120,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/menus/grilled_squid_1766495146873.png",
+        "image": "/images/menus/grilled_squid_ai.png",
         "tags": [
             "seafood",
             "grilled",

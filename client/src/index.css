@@ -5,21 +5,25 @@
 /* CSS Variables - Design Tokens */
 :root {
   /* Colors - Vibrant Neo Theme */
-  --color-primary: #FF4757;    /* Vibrant Coral */
+  --color-primary: #FF4757;
+  /* Vibrant Coral */
   --color-primary-light: #FF6B81;
   --color-primary-dark: #E03B4B;
-  
-  --color-secondary: #7BED9F;  /* Soft Mint */
-  
-  --color-accent: #3742FA;     /* Electric Blue */
+
+  --color-secondary: #7BED9F;
+  /* Soft Mint */
+
+  --color-accent: #3742FA;
+  /* Electric Blue */
   --color-accent-light: #5352ED;
 
   /* Neutrals - Deep Navy Base */
-  --color-bg: #090C14;         /* Deepest Navy/Black */
+  --color-bg: #090C14;
+  /* Deepest Navy/Black */
   --color-bg-secondary: #0E131F;
   --color-bg-card: #151A2C;
   --color-bg-glass: rgba(21, 26, 44, 0.4);
-  
+
   --color-text: #F1F2F6;
   --color-text-secondary: #A4B0BE;
   --color-text-muted: #747D8C;
@@ -40,13 +44,20 @@
   --font-display: 'Outfit', sans-serif;
 
   /* Spacing */
-  --space-xs: 0.25rem;   /* 4px */
-  --space-sm: 0.5rem;    /* 8px */
-  --space-md: 1rem;      /* 16px */
-  --space-lg: 1.5rem;    /* 24px */
-  --space-xl: 2.5rem;    /* 40px */
-  --space-2xl: 4rem;     /* 64px */
-  --space-3xl: 6rem;     /* 96px */
+  --space-xs: 0.25rem;
+  /* 4px */
+  --space-sm: 0.5rem;
+  /* 8px */
+  --space-md: 1rem;
+  /* 16px */
+  --space-lg: 1.5rem;
+  /* 24px */
+  --space-xl: 2.5rem;
+  /* 40px */
+  --space-2xl: 4rem;
+  /* 64px */
+  --space-3xl: 6rem;
+  /* 96px */
 
   /* Border Radius */
   --radius-sm: 8px;
@@ -67,10 +78,99 @@
   --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-bounce: 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* Additional variables for theme compatibility */
+  --color-bg-tertiary: #1A2035;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-text-primary: #F1F2F6;
+}
+
+/* ========================================
+   Light Theme Overrides
+   ======================================== */
+[data-theme="light"] {
+  /* Light Background Colors */
+  --color-bg: #F8FAFC;
+  --color-bg-secondary: #FFFFFF;
+  --color-bg-card: #FFFFFF;
+  --color-bg-tertiary: #E2E8F0;
+  --color-bg-glass: rgba(255, 255, 255, 0.9);
+
+  /* Light Text Colors - HIGH CONTRAST */
+  --color-text: #0F172A;
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #334155;
+  --color-text-muted: #64748B;
+
+  /* Light Borders - More visible */
+  --color-border: rgba(0, 0, 0, 0.12);
+
+  /* Light Shadows - Softer */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+  --shadow-glow: 0 0 20px rgba(255, 71, 87, 0.2);
+
+  /* Light Gradient Override for cards */
+  --gradient-card: linear-gradient(145deg, #FFFFFF 0%, #F8FAFC 100%);
+  --gradient-primary: linear-gradient(135deg, #FF4757 0%, #FF6B81 100%);
+}
+
+/* Light mode specific overrides */
+[data-theme="light"] body {
+  background: var(--color-bg);
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255, 71, 87, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(55, 66, 250, 0.06) 0%, transparent 40%);
+}
+
+[data-theme="light"] .glass {
+  background: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .glass-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .btn-secondary {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--color-text);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .btn-secondary:hover {
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .input {
+  background: #FFFFFF;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  color: var(--color-text);
+}
+
+[data-theme="light"] .input:focus {
+  background: #FFFFFF;
+  border-color: var(--color-primary);
+}
+
+[data-theme="light"] .footer {
+  background: #F1F5F9;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .card {
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 /* Reset & Base */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -79,6 +179,11 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -89,7 +194,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  background-image: 
+  background-image:
     radial-gradient(circle at 10% 20%, rgba(255, 71, 87, 0.05) 0%, transparent 40%),
     radial-gradient(circle at 90% 80%, rgba(55, 66, 250, 0.08) 0%, transparent 40%);
   background-attachment: fixed;
@@ -143,7 +248,9 @@ img {
 .glass-card::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   opacity: 0.5;
@@ -178,12 +285,10 @@ img {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(
-    to bottom right,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.1) 50%,
-    rgba(255,255,255,0) 100%
-  );
+  background: linear-gradient(to bottom right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0) 100%);
   transform: rotate(45deg) translateY(-100%);
   transition: transform 0.6s ease;
 }
@@ -299,27 +404,55 @@ img {
    Animation Keyframes
    ======================================== */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.85; transform: scale(1.02); }
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.85;
+    transform: scale(1.02);
+  }
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 /* Utilities */
-.animate-float { animation: float 4s ease-in-out infinite; }
-.animate-pulse { animation: pulse 3s ease-in-out infinite; }
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse {
+  animation: pulse 3s ease-in-out infinite;
+}
 
 /* ========================================
    Typography Utilities
@@ -332,15 +465,30 @@ img {
   display: inline-block;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--color-text);
   font-family: var(--font-display);
   line-height: 1.2;
 }
 
-h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); letter-spacing: -0.02em; }
-h2 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.01em; }
-h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
 
 /* ========================================
    Layout Utilities
@@ -357,9 +505,21 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
   position: relative;
 }
 
-.flex-center { display: flex; align-items: center; justify-content: center; }
-.flex-between { display: flex; align-items: center; justify-content: space-between; }
-.grid { display: grid; }
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.grid {
+  display: grid;
+}
 
 /* Main Content & Footer */
 .main-content {
@@ -382,11 +542,19 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
    Responsive Utilities
    ======================================== */
 @media (max-width: 768px) {
-  .section { padding: var(--space-xl) 0; }
-  .btn-lg { padding: 1rem 2rem; font-size: 1rem; }
+  .section {
+    padding: var(--space-xl) 0;
+  }
+
+  .btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
 }
 
 /* Special Background Elements */
-.bg-pattern, .bg-grid {
-  display: none; /* Removed old specific backgrounds to use body bg */
+.bg-pattern,
+.bg-grid {
+  display: none;
+  /* Removed old specific backgrounds to use body bg */
 }
