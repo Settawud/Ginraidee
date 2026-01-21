@@ -63,12 +63,19 @@ const Recommend = () => {
     }, []);
 
     // Sync filters when category or price changes
+    // Also reset animation state so spin button reappears
     useEffect(() => {
         updateFilters({
             category: selectedCategories.length > 0 ? selectedCategories : 'all',
             minPrice: priceRange.min,
             maxPrice: priceRange.max
         });
+        // Reset to idle when filters change so spin button shows again
+        if (animationState === 'result') {
+            setAnimationState('idle');
+            setFood(null);
+            setShuffleFood(null);
+        }
     }, [selectedCategories, priceRange, updateFilters]);
 
     useEffect(() => {
