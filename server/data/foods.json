@@ -605,7 +605,7 @@
         "price": 30,
         "category": "japanese",
         "categoryName": "อาหารญี่ปุ่น",
-        "image": "/images/menus/miso_soup_1766494739416.png",
+        "image": "/images/menus/miso_soup_ai.png",
         "tags": [
             "soup",
             "tofu"
@@ -742,7 +742,7 @@
         "price": 50,
         "category": "fastfood",
         "categoryName": "ฟาสต์ฟู้ด",
-        "image": "/images/menus/french_fries_1766542575186.png",
+        "image": "/images/menus/french_fries_ai.png",
         "tags": [
             "fried",
             "snack"
@@ -832,7 +832,7 @@
         "price": 35,
         "category": "dessert",
         "categoryName": "ของหวาน",
-        "image": "/images/menus/grass_jelly_milk_1766494755801.png",
+        "image": "/images/menus/grass_jelly_milk_new_ai.png",
         "tags": [
             "cold",
             "sweet"
@@ -940,7 +940,7 @@
         "price": 120,
         "category": "western",
         "categoryName": "อาหารตะวันตก",
-        "image": "/images/menus/spaghetti_aglio_e_olio_1766494969276.png",
+        "image": "/images/menus/aglio_e_olio_ai.png",
         "tags": [
             "pasta",
             "spicy"
@@ -955,7 +955,7 @@
         "price": 160,
         "category": "western",
         "categoryName": "อาหารตะวันตก",
-        "image": "/images/menus/truffle_mushroom_soup_1766498562173.png",
+        "image": "/images/menus/truffle_mushroom_soup_ai.png",
         "tags": [
             "soup",
             "premium"
@@ -1033,7 +1033,7 @@
         "price": 100,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/menus/shrimp_paste_dip_1766542584369.png",
+        "image": "/images/menus/shrimp_paste_dip_ai.png",
         "tags": [
             "spicy",
             "dip",
@@ -1064,7 +1064,7 @@
         "price": 120,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/menus/crab_curry_noodles_1766498566391.png",
+        "image": "/images/menus/crab_curry_noodles_ai.png",
         "tags": [
             "noodle",
             "curry",
@@ -1248,7 +1248,7 @@
         "price": 30,
         "category": "dessert",
         "categoryName": "ของหวาน",
-        "image": "/images/menus/egg_tart_1766495092022.png",
+        "image": "/images/menus/egg_tart_ai.png",
         "tags": [
             "sweet",
             "bakery"
@@ -1293,7 +1293,7 @@
         "price": 50,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/menus/spring_rolls_1766542591380.png",
+        "image": "/images/menus/spring_rolls_ai.png",
         "tags": [
             "fried",
             "appetizer"
@@ -1308,7 +1308,7 @@
         "price": 120,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/menus/raw_shrimp_in_fish_sauce_1766542596912.png",
+        "image": "/images/menus/raw_shrimp_fish_sauce_ai.png",
         "tags": [
             "spicy",
             "seafood",
@@ -1474,7 +1474,7 @@
         "price": 40,
         "category": "western",
         "categoryName": "อาหารตะวันตก",
-        "image": "/images/menus/garlic_bread_1766542600877.png",
+        "image": "/images/menus/garlic_bread_ai.png",
         "tags": [
             "bread",
             "appetizer"
@@ -1520,7 +1520,7 @@
         "price": 30,
         "category": "dessert",
         "categoryName": "ของหวาน",
-        "image": "/images/menus/shaved_ice_1766542604649.png",
+        "image": "/images/menus/shaved_ice_ai.png",
         "tags": [
             "cold",
             "sweet"
@@ -1550,7 +1550,7 @@
         "price": 40,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/menus/tapioca_pork_balls_1766542607665.png",
+        "image": "/images/menus/tapioca_pork_balls_ai.png",
         "tags": [
             "appetizer",
             "thai",
@@ -1566,7 +1566,7 @@
         "price": 10,
         "category": "dessert",
         "categoryName": "ของหวาน",
-        "image": "/images/menus/bananas_with_sticky_rice_1766542610078.png",
+        "image": "/images/menus/bananas_sticky_rice_ai.png",
         "tags": [
             "thai",
             "sweet",
@@ -1614,7 +1614,7 @@
         "price": 50,
         "category": "thai",
         "categoryName": "อาหารไทย",
-        "image": "/images/menus/red_pork_rice_1766542612034.png",
+        "image": "/images/menus/red_pork_rice_ai.png",
         "tags": [
             "pork",
             "rice",
